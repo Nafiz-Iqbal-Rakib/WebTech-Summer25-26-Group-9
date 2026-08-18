@@ -269,3 +269,144 @@ body {
     color: #111;
 }
 
+.footer {
+    border-top: 1px solid #ddd;
+}
+
+.footer-main {
+    min-height: 158px;
+
+    display: grid;
+
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+
+    padding: 32px 16.5%;
+}
+.footer-column {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.footer-column h3 {
+    font-size: 8px;
+
+    margin-bottom: 5px;
+}
+
+
+.footer-column a,
+.footer-column p {
+    font-size: 8px;
+
+    text-decoration: none;
+
+    color: #111;
+}
+
+.brand-column h2 {
+    font-family: Georgia, serif;
+
+    font-size: 23px;
+
+    font-style: italic;
+
+    margin-bottom: 3px;
+}
+
+
+.brand-column .office {
+    margin-top: 0;
+}
+
+
+.brand-column small {
+    font-size: 5px;
+
+    letter-spacing: 1px;
+
+    color: #777;
+}
+.social-icons {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 9px;
+}
+
+
+.social-icons span {
+    font-size: 9px;
+}
+
+.footer-bottom {
+    min-height: 58px;
+
+    border-top: 1px solid #eee;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+}
+
+
+.payment-methods {
+    display: flex;
+
+    gap: 4px;
+
+    align-items: center;
+}
+
+
+.payment-methods span {
+    font-size: 6px;
+
+    border: 1px solid #111;
+
+    padding: 2px 4px;
+}
+
+
+.footer-bottom p {
+    font-size: 6px;
+
+    color: #111;
+}
+
+@media (max-width: 700px) {
+
+    .nav-links {
+        display: none;
+    }
+
+
+    .nav-icons {
+        gap: 9px;
+    }
+
+
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+
+        padding: 30px;
+        
+        gap: 25px;
+    }
+
+
+    .login-container {
+        min-height: 330px;
+    }
+
+}
