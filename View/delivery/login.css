@@ -86,3 +86,186 @@ body {
 
     gap: 16px;
 }
+.nav-icons span {
+    font-size: 17px;
+
+    font-weight: 300;
+}
+
+.login-container {
+    min-height: 310px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding-top: 61px;
+}
+
+.login-tabs {
+    display: flex;
+
+    gap: 35px;
+
+    margin-bottom: 25px;
+}
+
+
+.login-tabs a {
+    text-decoration: none;
+
+    color: #999;
+
+    font-size: 8px;
+
+    padding-bottom: 5px;
+}
+
+
+.login-tabs .active {
+    color: #111;
+
+    border-bottom: 1px solid #111;
+}
+
+
+.login-form {
+    width: 240px;
+}
+
+.input-group input {
+    width: 100%;
+
+    height: 27px;
+
+    border: 1px solid #ddd;
+
+    padding: 0 8px;
+
+    font-size: 7px;
+
+    outline: none;
+}
+
+
+.input-group input:focus {
+    border-color: #111;
+}
+
+.password-group {
+    position: relative;
+
+    margin-top: 13px;
+}
+
+
+.password-group label {
+    position: absolute;
+
+    top: -5px;
+
+    left: 7px;
+
+    background-color: white;
+
+    padding: 0 2px;
+
+    font-size: 7px;
+
+    color: #111;
+}
+
+
+.password-group input {
+    width: 100%;
+
+    height: 27px;
+
+    border: 1px solid #111;
+
+    padding: 0 8px;
+
+    font-size: 8px;
+
+    outline: none;
+}
+
+.login-options {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 8px;
+
+    margin-bottom: 18px;
+}
+
+
+.remember {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+.remember input {
+    width: 9px;
+
+    height: 9px;
+}
+
+
+.remember span,
+.login-options a {
+    font-size: 7px;
+
+    color: #999;
+}
+
+
+.login-options a {
+    color: #111;
+}
+
+.login-button {
+    width: 100%;
+
+    height: 27px;
+
+    border: none;
+
+    background-color: #000;
+
+    color: #fff;
+
+    font-size: 7px;
+
+    cursor: pointer;
+}
+
+
+.login-button:hover {
+    background-color: #222;
+}
+
+.create-account {
+    text-align: center;
+
+    font-size: 7px;
+
+    color: #aaa;
+
+    margin-top: 13px;
+}
+
+
+.create-account a {
+    color: #111;
+}
+
