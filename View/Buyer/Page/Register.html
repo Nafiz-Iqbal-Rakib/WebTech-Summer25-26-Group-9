@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>MiniMart - Register</title>
+        <link rel="stylesheet" href="../Design/Style.css">
+    </head>
+    <body>
+        <div class="saleBar">New Year sale | 44% Off</div>
+
+        <div class="header">
+            <div class="logo">Arabi</div>
+            <div class="nav">
+                <a href="BuyerDashboard.html">Home</a>
+                <a href="BuyerDashboard.html">Shop</a>
+                <a href="Login.html">Login</a>
+            </div>
+        </div>
+
+        <div class="smallContainer">
+            <div class="tabs">
+                <a href="Login.html">LOGIN</a>
+                <a class="active" href="Register.html">REGISTER</a>
+            </div>
+
+            <form>
+                <fieldset>
+                    <legend>Buyer Registration</legend>
+                    <table>
+                        <tr>
+                            <td><label for="firstName">First Name:</label></td>
+                            <td><input type="text" id="firstName" name="firstName" placeholder="First name"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="lastName">Last Name:</label></td>
+                            <td><input type="text" id="lastName" name="lastName" placeholder="Last name"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="username">Username:</label></td>
+                            <td><input type="text" id="username" name="username" placeholder="Username"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="email">Email:</label></td>
+                            <td><input type="email" id="email" name="email" placeholder="Email address"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="phone">Phone:</label></td>
+                            <td><input type="text" id="phone" name="phone" placeholder="Phone number"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="password">Password:</label></td>
+                            <td><input type="password" id="password" name="password" placeholder="Password"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="confirmPassword">Confirm Password:</label></td>
+                            <td><input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password"></td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <p class="smallText" style="margin-bottom:15px;">Your personal data will be used to manage your account and shopping information.</p>
+                <input class="fullButton" type="submit" value="REGISTER">
+            </form>
+
+            <p class="centerText smallText" style="margin-top:15px;">Already have an account? <a class="formLink" href="Login.html">LOG IN</a></p>
+        </div>
+
+        <div class="footer">© Arabi 2026 | All rights reserved</div>
+    </body>
+</html>
