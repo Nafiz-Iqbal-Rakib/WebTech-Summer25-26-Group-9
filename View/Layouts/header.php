@@ -53,7 +53,7 @@
                     <nav class="nav-links">
                         <ul>
                             <li><a href="/WebTech-Summer25-26-Group-9/View/landingPage.php">Home</a></li>
-                            <li><a href="/WebTech-Summer25-26-Group-9/View/Admin/adminDashboardPage.php">Shop</a></li>
+                            <li><a href="#collections-section">Shop</a></li>
                         </ul>
                     </nav>
             
@@ -67,7 +67,7 @@
                         <a href="#" aria-label="Cart">
                             <i class="fas fa-shopping-cart"></i>
                         </a>    
-                        <a href="loginPage.php" aria-label="User">
+                        <a href="\WebTech-Summer25-26-Group-9\View\loginPage.php" aria-label="User">
                             <i class="fas fa-user"></i>
                         </a>
 

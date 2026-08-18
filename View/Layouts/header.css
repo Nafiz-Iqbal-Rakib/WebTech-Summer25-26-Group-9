@@ -1,7 +1,17 @@
 /* Header General Styles */
 .main-header {
+
     width: 100%;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+main {
+    padding-top: 80px;
 }
 
 /* Main Navigation Bar */
