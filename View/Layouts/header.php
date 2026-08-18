@@ -8,25 +8,27 @@
 
         <title><?= $title ?? 'My Website' ?></title>
 
-      
-
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\style.css">
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\updateInfo.css">
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\sidebar.css">
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\order.css">
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\adminUser.css">
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\adminProduct.css">
-
-
-        <link rel="stylesheet" href="loginPage.css">
-        <link rel="stylesheet" href="signUp.css">
-        <link rel="stylesheet" href="dashboard.css">
-
         <!-- header css -->
         <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Layouts\header.css">
 
         <!-- footer css -->
         <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Layouts\footer.css">
+
+        <!-- landing page css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\style.css">
+
+        <!-- login page css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\loginPage.css">
+
+        <!-- sign up page css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\style.css">
+
+        <!-- admin dashboard css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\sidebar.css">
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\dashboard.css">
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\order.css">
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\adminUser.css">
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\adminProduct.css">
 
         <!-- font awesome icon -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
