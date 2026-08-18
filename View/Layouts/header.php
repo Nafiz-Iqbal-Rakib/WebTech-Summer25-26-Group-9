@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\loginPage.css">
 
         <!-- sign up page css -->
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\style.css">
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\signUp.css">
 
         <!-- admin dashboard css -->
         <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\sidebar.css">
@@ -29,6 +29,10 @@
         <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\order.css">
         <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\adminUser.css">
         <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\adminProduct.css">
+
+        <!-- information update css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\updateInfo.css">
+
 
         <!-- font awesome icon -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -56,6 +60,8 @@
                         <ul>
                             <li><a href="/WebTech-Summer25-26-Group-9/View/landingPage.php">Home</a></li>
                             <li><a href="#collections-section">Shop</a></li>
+                            <li><a href="#collections-section">New Collection</a></li>
+                            <li><a href="#collections-section">Contact</a></li>
                         </ul>
                     </nav>
             
