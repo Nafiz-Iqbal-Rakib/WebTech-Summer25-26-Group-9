@@ -321,3 +321,6 @@ button:hover,
 .danger h3{
     color: crimson;
 }
+.rightLink{
+    float: right;
+}
