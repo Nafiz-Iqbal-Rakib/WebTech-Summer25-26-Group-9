@@ -319,9 +319,9 @@ html {
 
 
 /* Product Card */
-
 .product-card {
     text-align: center;
+    transition: transform 0.2s ease;
 }
 
 .product-image {
@@ -342,10 +342,7 @@ html {
     object-fit: contain;
 }
 
-.product-card {
-    text-align: center;
-    transition: transform 0.2s ease;
-}
+
 
 .product-card:hover {
     transform: scale(1.03);

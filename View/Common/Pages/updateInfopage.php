@@ -1,4 +1,4 @@
-<?php include 'Layouts/header.php'; ?>
+<?php include '../../Layouts/header.php'; ?>
 
 <!-- Page Title Area -->
 <div class="page-header-section">

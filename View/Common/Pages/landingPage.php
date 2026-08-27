@@ -1,4 +1,4 @@
-<?php include 'Layouts/header.php'; ?>
+<?php include '../../Layouts/header.php'; ?>
 
     <!--1. Hero / Banner Section -->
 
@@ -17,7 +17,7 @@
 
             <!-- Hero Image -->
             <div class="hero-image">
-                <img src="../Uploaded File/banerimg.png" alt="Green Dress Offer">
+                <img src="\WebTech-Summer25-26-Group-9\Uploaded File\banerimg.png" alt="Green Dress Offer">
             </div>
 
         </div>
@@ -44,7 +44,7 @@
             <div class="collection-card large-card">
 
                 <div class="card-img">
-                    <img src="../Asset/jacket.png" alt="Winter Jacket">
+                    <img src="\WebTech-Summer25-26-Group-9\Asset\jacket.png" alt="Winter Jacket">
                 </div>
 
                 <div class="card-content">
@@ -62,7 +62,7 @@
             <div class="collection-card small-card bg-mint">
 
                 <div class="card-img">
-                    <img src="../Asset/babycloth.png" alt="Baby Clothes">
+                    <img src="\WebTech-Summer25-26-Group-9\Asset\babycloth.png" alt="Baby Clothes">
                 </div>
 
                 <div class="card-content">
@@ -76,7 +76,7 @@
             <div class="collection-card small-card bg-blue">
 
                 <div class="card-img">
-                    <img src="../Asset/women.png" alt="Women Coat">
+                    <img src="\WebTech-Summer25-26-Group-9\Asset\women.png" alt="Women Coat">
                 </div>
 
                 <div class="card-content">
@@ -517,4 +517,4 @@
         </div>
     </section>
 
-<?php include 'Layouts/footer.php'; ?>
+<?php include '../../Layouts/footer.php'; ?>

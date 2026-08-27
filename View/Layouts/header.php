@@ -15,31 +15,41 @@
         <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Layouts\footer.css">
 
         <!-- landing page css -->
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\style.css">
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\landingPage.css">
 
         <!-- login page css -->
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\loginPage.css">
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\loginPage.css">
 
         <!-- sign up page css -->
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\signUp.css">
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\signUp.css">
 
         <!-- admin dashboard css -->
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\sidebar.css">
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\dashboard.css">
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\order.css">
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\adminUser.css">
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\adminProduct.css">
+
+
+        <!-- admin sidebar css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\Designs\sidebar.css">
+        <!-- admin dashboard -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\Designs\dashboard.css">
+        <!-- admin order css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\Designs\order.css">
+        <!-- Admin User View css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\Designs\adminUser.css">
+        <!-- product view -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\Designs\adminProduct.css">
 
         <!-- information update css -->
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\updateInfo.css">
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\updateInfo.css">
 
 
         <!-- font awesome icon -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+        
     </head>
 
     <body>
+
+     
 
         <!-- Main Header -->
 
@@ -58,7 +68,7 @@
 
                     <nav class="nav-links">
                         <ul>
-                            <li><a href="/WebTech-Summer25-26-Group-9/View/landingPage.php">Home</a></li>
+                            <li><a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\landingPage.php">Home</a></li>
                             <li><a href="#collections-section">Shop</a></li>
                             <li><a href="#collections-section">New Collection</a></li>
                             <li><a href="#collections-section">Contact</a></li>
@@ -75,7 +85,7 @@
                         <a href="#" aria-label="Cart">
                             <i class="fas fa-shopping-cart"></i>
                         </a>    
-                        <a href="\WebTech-Summer25-26-Group-9\View\loginPage.php" aria-label="User">
+                        <a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\loginPage.php" aria-label="User">
                             <i class="fas fa-user"></i>
                         </a>
 

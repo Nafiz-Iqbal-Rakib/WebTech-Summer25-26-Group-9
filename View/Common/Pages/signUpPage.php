@@ -1,4 +1,4 @@
-<?php include 'Layouts/header.php'; ?>
+<?php include '../../Layouts/header.php'; ?>
 
 <!-- Register Section -->
 <section class="register-section">
@@ -34,13 +34,16 @@
             </div>
 
             <div class="form-group">
-                <input 
-                    type="text"
-                    id="username"
-                    name="username"
+                <select 
+                    id="role"
+                    name="role"
                     class="form-control"
-                    placeholder="Username"
                 >
+                    <option value="" selected disabled>Select your role</option>
+                    <option value="buyer">Buyer</option>
+                    <option value="seller">Seller</option>
+                    <option value="delivery">Delivery</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -49,8 +52,8 @@
                     id="email"
                     name="email"
                     class="form-control"
-                    placeholder="Email address *"
-                    required
+                    placeholder="Email address"
+                
                 >
             </div>
 
@@ -70,8 +73,8 @@
                     id="password"
                     name="password"
                     class="form-control"
-                    placeholder="Password *"
-                    required
+                    placeholder="Password"
+                   
                 >
             </div>
 
@@ -81,8 +84,8 @@
                     id="confirmPassword"
                     name="confirmPassword"
                     class="form-control"
-                    placeholder="Confirm password *"
-                    required
+                    placeholder="Confirm password"
+                
                 >
             </div>
 
@@ -104,4 +107,4 @@
     </div>
 </section>
 
-<?php include 'Layouts/footer.php'; ?>
+<?php include '../../Layouts/footer.php'; ?>

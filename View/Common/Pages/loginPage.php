@@ -1,4 +1,4 @@
-<?php include 'Layouts/header.php'; ?> 
+<?php include '../../Layouts/header.php'; ?> 
  
 <!-- Login Section --> 
 <section class="login-section"> 
@@ -11,7 +11,7 @@
         </div> 
  
         <!-- Login Form --> 
-        <form class="login-form" action="" method=""> 
+        <form class="login-form" action="../../../Controller/AuthController.php" method="POST">
              
             <!-- Username Input --> 
             <div class="form-group"> 
@@ -54,13 +54,7 @@
             <button type="button" class="btn-submit" id="loginBtn">
                 LOG IN
             </button> 
-         
-            <script> 
-                document.getElementById("loginBtn").addEventListener("click", function() { 
-                    window.location.href = "/WebTech-Summer25-26-Group-9/View/Admin/adminDashboardPage.php"; 
-                }); 
-            </script> 
- 
+        
             <!-- Create Account Link --> 
             <div class="register"> 
                 No account yet? <a href="signUpPage.php">Create Account</a> 
@@ -70,4 +64,4 @@
     </div> 
 </section> 
  
-<?php include 'Layouts/footer.php'; ?>
+<?php include '../../Layouts/footer.php'; ?>
