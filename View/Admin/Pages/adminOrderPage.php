@@ -35,6 +35,7 @@ $deliveryAgents = $data["deliveryAgents"];
                         <tr>
                             <th>ORDER</th>
                             <th>CUSTOMER</th>
+                            <th>SELLER</th>
                             <th>PRODUCT</th>
                             <th>AMOUNT</th>
                             <th>DATE</th>
@@ -63,6 +64,13 @@ $deliveryAgents = $data["deliveryAgents"];
 
                                 <td>
                                     <?php echo $order["customer"]; ?>
+                                </td>
+
+
+                                <!-- SELLER -->
+
+                                <td>
+                                    <?php echo $order["seller"]; ?>
                                 </td>
 
 

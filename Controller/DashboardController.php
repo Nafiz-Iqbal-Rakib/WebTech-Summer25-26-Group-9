@@ -14,7 +14,7 @@ class DashboardController
         }
 
 
-        // Dashboard Data
+        // Dashboard Statistics
 
         $totalUsers = 10;
         $deliveryAgents = 3;
@@ -36,6 +36,7 @@ class DashboardController
             [
                 "id" => "#ORD-001",
                 "customer" => "Ayaan Rahman",
+                "seller" => "Hasan Furniture",
                 "product" => "Oslo Lounge Chair",
                 "amount" => "৳12,500",
                 "status" => "PENDING",
@@ -45,6 +46,7 @@ class DashboardController
             [
                 "id" => "#ORD-002",
                 "customer" => "Nadia Islam",
+                "seller" => "Urban Home",
                 "product" => "Linen Throw Pillow Set",
                 "amount" => "৳1,800",
                 "status" => "PROCESSING",
@@ -54,6 +56,7 @@ class DashboardController
             [
                 "id" => "#ORD-003",
                 "customer" => "Fatima Khanam",
+                "seller" => "Elegant Living",
                 "product" => "Marble Side Table",
                 "amount" => "৳8,900",
                 "status" => "SHIPPED",
@@ -63,6 +66,7 @@ class DashboardController
             [
                 "id" => "#ORD-004",
                 "customer" => "Omar Faruk",
+                "seller" => "Light House BD",
                 "product" => "Rattan Pendant Light",
                 "amount" => "৳5,400",
                 "status" => "DELIVERED",
@@ -72,6 +76,7 @@ class DashboardController
             [
                 "id" => "#ORD-005",
                 "customer" => "Mim Sultana",
+                "seller" => "Natural Craft",
                 "product" => "Jute Storage Basket",
                 "amount" => "৳900",
                 "status" => "PENDING",
@@ -81,20 +86,22 @@ class DashboardController
         ];
 
 
-        return compact(
-            "totalUsers",
-            "deliveryAgents",
+        // Return Dashboard Data
 
-            "totalProducts",
-            "activeListings",
+        return [
+            "totalUsers" => $totalUsers,
+            "deliveryAgents" => $deliveryAgents,
 
-            "totalOrders",
-            "pendingToday",
+            "totalProducts" => $totalProducts,
+            "activeListings" => $activeListings,
 
-            "deliveriesAssigned",
-            "unassignedDeliveries",
+            "totalOrders" => $totalOrders,
+            "pendingToday" => $pendingToday,
 
-            "recentOrders"
-        );
+            "deliveriesAssigned" => $deliveriesAssigned,
+            "unassignedDeliveries" => $unassignedDeliveries,
+
+            "recentOrders" => $recentOrders
+        ];
     }
 }

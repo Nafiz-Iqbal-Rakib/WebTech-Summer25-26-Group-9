@@ -47,7 +47,7 @@
                     Remember me 
                 </label> 
                 
-                <a href="#" class="forgot-link">Lost password?</a> 
+                <a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\forgetPass.php" class="forgot-link">Lost password?</a> 
             </div> 
  
             <!-- Submit Button --> 

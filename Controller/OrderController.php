@@ -9,6 +9,7 @@ class OrderController
             [
                 "id" => "#ORD-001",
                 "customer" => "Ayaan Rahman",
+                "seller" => "Hasan Furniture",
                 "product" => "Oslo Lounge Chair",
                 "amount" => "৳12,500",
                 "date" => "Aug 10, 2026",
@@ -21,6 +22,7 @@ class OrderController
             [
                 "id" => "#ORD-002",
                 "customer" => "Nadia Islam",
+                "seller" => "Urban Home",
                 "product" => "Linen Throw Pillow Set",
                 "amount" => "৳1,800",
                 "date" => "Aug 11, 2026",
@@ -33,6 +35,7 @@ class OrderController
             [
                 "id" => "#ORD-003",
                 "customer" => "Fatima Khanam",
+                "seller" => "Elegant Living",
                 "product" => "Marble Side Table",
                 "amount" => "৳8,900",
                 "date" => "Aug 12, 2026",
@@ -45,6 +48,7 @@ class OrderController
             [
                 "id" => "#ORD-004",
                 "customer" => "Omar Faruk",
+                "seller" => "Light House BD",
                 "product" => "Rattan Pendant Light",
                 "amount" => "৳5,400",
                 "date" => "Aug 13, 2026",
@@ -57,6 +61,7 @@ class OrderController
             [
                 "id" => "#ORD-005",
                 "customer" => "Mim Sultana",
+                "seller" => "Natural Craft",
                 "product" => "Jute Storage Basket",
                 "amount" => "৳900",
                 "date" => "Aug 14, 2026",
@@ -69,6 +74,7 @@ class OrderController
             [
                 "id" => "#ORD-006",
                 "customer" => "Sumaiya Begum",
+                "seller" => "Modern Decor",
                 "product" => "Minimalist Wall Clock",
                 "amount" => "৳2,200",
                 "date" => "Aug 15, 2026",
@@ -81,6 +87,7 @@ class OrderController
             [
                 "id" => "#ORD-007",
                 "customer" => "Shirina Akter",
+                "seller" => "Wood Works BD",
                 "product" => "Cedar Bookshelf",
                 "amount" => "৳16,000",
                 "date" => "Aug 16, 2026",
@@ -93,6 +100,7 @@ class OrderController
             [
                 "id" => "#ORD-008",
                 "customer" => "Ayaan Rahman",
+                "seller" => "Aroma Living",
                 "product" => "Arabi Scented Candle",
                 "amount" => "৳650",
                 "date" => "Aug 17, 2026",

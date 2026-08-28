@@ -38,6 +38,9 @@
 
         <!-- information update css -->
         <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\updateInfo.css">
+        <!-- forgotten password css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\forgetPass.css">
+         
 
 
         <!-- font awesome icon -->

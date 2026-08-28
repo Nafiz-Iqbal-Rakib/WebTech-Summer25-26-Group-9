@@ -9,7 +9,7 @@ class ProductController
             [
                 "id" => 1,
                 "name" => "Oslo Lounge Chair",
-                "category" => "Furniture",
+                "seller" => "Hasan Furniture",
                 "price" => "$500",
                 "stock" => 8,
                 "status" => "ACTIVE",
@@ -19,7 +19,7 @@ class ProductController
             [
                 "id" => 2,
                 "name" => "Linen Throw Pillow Set",
-                "category" => "Textiles",
+                "seller" => "Urban Home",
                 "price" => "$800",
                 "stock" => 3,
                 "status" => "LOW STOCK",
@@ -29,7 +29,7 @@ class ProductController
             [
                 "id" => 3,
                 "name" => "Marble Side Table",
-                "category" => "Furniture",
+                "seller" => "Elegant Living",
                 "price" => "$8,900",
                 "stock" => 12,
                 "status" => "ACTIVE",
@@ -39,7 +39,7 @@ class ProductController
             [
                 "id" => 4,
                 "name" => "Arabi Scented Candle",
-                "category" => "Decor",
+                "seller" => "Aroma Living",
                 "price" => "$650",
                 "stock" => 0,
                 "status" => "OUT OF STOCK",
@@ -49,7 +49,7 @@ class ProductController
             [
                 "id" => 5,
                 "name" => "Rattan Pendant Light",
-                "category" => "Lighting",
+                "seller" => "Light House BD",
                 "price" => "$400",
                 "stock" => 6,
                 "status" => "ACTIVE",
@@ -59,7 +59,7 @@ class ProductController
             [
                 "id" => 6,
                 "name" => "Jute Storage Basket",
-                "category" => "Decor",
+                "seller" => "Natural Craft",
                 "price" => "$900",
                 "stock" => 25,
                 "status" => "ACTIVE",
@@ -69,7 +69,7 @@ class ProductController
             [
                 "id" => 7,
                 "name" => "Minimalist Wall Clock",
-                "category" => "Decor",
+                "seller" => "Modern Decor",
                 "price" => "$200",
                 "stock" => 2,
                 "status" => "LOW STOCK",
@@ -79,7 +79,7 @@ class ProductController
             [
                 "id" => 8,
                 "name" => "Cedar Bookshelf",
-                "category" => "Furniture",
+                "seller" => "Wood Works BD",
                 "price" => "$6,000",
                 "stock" => 4,
                 "status" => "ACTIVE",

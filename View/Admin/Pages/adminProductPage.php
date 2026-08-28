@@ -29,15 +29,17 @@ $products = $controller->getProducts();
                 <table>
 
                     <thead>
+
                         <tr>
                             <th>#</th>
                             <th>NAME</th>
-                            <th>CATEGORY</th>
+                            <th>SELLER</th>
                             <th>PRICE</th>
                             <th>STOCK</th>
                             <th>STATUS</th>
                             <th>ACTION</th>
                         </tr>
+
                     </thead>
 
 
@@ -47,34 +49,63 @@ $products = $controller->getProducts();
 
                             <tr>
 
+                                <!-- ID -->
+
                                 <td class="text-muted">
                                     <?php echo $product["id"]; ?>
                                 </td>
+
+
+                                <!-- NAME -->
 
                                 <td class="product-name-bold">
                                     <?php echo $product["name"]; ?>
                                 </td>
 
+
+                                <!-- SELLER -->
+
                                 <td class="text-muted">
-                                    <?php echo $product["category"]; ?>
+                                    <?php echo $product["seller"]; ?>
                                 </td>
+
+
+                                <!-- PRICE -->
 
                                 <td>
                                     <?php echo $product["price"]; ?>
                                 </td>
 
+
+                                <!-- STOCK -->
+
                                 <td>
                                     <?php echo $product["stock"]; ?>
                                 </td>
 
+
+                                <!-- STATUS -->
+
                                 <td>
+
                                     <span class="badge-status-outline <?php echo $product["statusClass"]; ?>">
                                         <?php echo $product["status"]; ?>
                                     </span>
+
                                 </td>
 
+
+                                <!-- ACTION -->
+
                                 <td>
-                                    <button type="button" class="delete-product-btn">Delete</button>
+
+                                    <button
+                                        type="button"
+                                        class="delete-product-btn"
+                                    >
+                                        Delete
+                                    </button>
+
                                 </td>
 
                             </tr>
