@@ -24,12 +24,11 @@
         <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\signUp.css">
 
         <!-- admin dashboard css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\Designs\dashboard.css">
 
 
         <!-- admin sidebar css -->
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\Designs\sidebar.css">
-        <!-- admin dashboard -->
-        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\Designs\dashboard.css">
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\Designs\sidebar.css">      
         <!-- admin order css -->
         <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\Designs\order.css">
         <!-- Admin User View css -->

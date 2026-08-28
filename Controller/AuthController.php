@@ -9,12 +9,16 @@ class AuthController
 
         if ($email === "nafiziqbal@gmail.com" && $password === "4545") {
 
+            session_start();
+
+            $_SESSION["email"] = $email;
+            $_SESSION["role"] = "admin";
+
             return [
                 "success" => true,
                 "message" => "Login successful.",
                 "role" => "admin"
             ];
-
         }
 
         return [

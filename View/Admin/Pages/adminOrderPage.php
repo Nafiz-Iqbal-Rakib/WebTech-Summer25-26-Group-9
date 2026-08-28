@@ -1,20 +1,38 @@
-<?php include '../Layouts/header.php'; ?>
+<?php
+
+include "../../../Controller/OrderController.php";
+
+$controller = new OrderController();
+
+$data = $controller->getOrders();
+
+$orders = $data["orders"];
+$deliveryAgents = $data["deliveryAgents"];
+
+?>
+
+<?php include '../../Layouts/header.php'; ?>
 
 <div class="app-container">
 
-    <!-- Sidebar / Aside -->
     <?php include 'sidebar.php'; ?>
 
-    <!-- Main Content -->
+
     <main class="main-content">
 
         <div class="content-body">
+
             <p class="section-subtitle">MANAGE</p>
+
             <h1 class="page-title">Orders</h1>
 
+
             <div class="table-container">
+
                 <table>
+
                     <thead>
+
                         <tr>
                             <th>ORDER</th>
                             <th>CUSTOMER</th>
@@ -23,115 +41,141 @@
                             <th>DATE</th>
                             <th>STATUS</th>
                             <th>DELIVERY</th>
-                            <th></th>
+                            <th>ACTION</th>
                         </tr>
+
                     </thead>
 
+
                     <tbody>
-                        <tr>
-                            <td class="order-id">#ORD-001</td>
-                            <td>Ayaan Rahman</td>
-                            <td class="product-name">Oslo Lounge Chair</td>
-                            <td>৳12,500</td>
-                            <td class="date-col">Aug 10, 2026</td>
-                            <td><span class="badge-status badge-pending">PENDING</span></td>
-                            <td class="unassigned">Unassigned</td>
-                            <td><button class="action-btn">ASSIGN</button></td>
-                        </tr>
 
-                        <tr>
-                            <td class="order-id">#ORD-002</td>
-                            <td>Nadia Islam</td>
-                            <td class="product-name">Linen Throw Pillow Set</td>
-                            <td>৳1,800</td>
-                            <td class="date-col">Aug 11, 2026</td>
-                            <td><span class="badge-status badge-processing">PROCESSING</span></td>
-                            <td class="unassigned">Unassigned</td>
-                            <td><button class="action-btn">ASSIGN</button></td>
-                        </tr>
+                        <?php foreach ($orders as $order): ?>
 
-                        <tr>
-                            <td class="order-id">#ORD-003</td>
-                            <td>Fatima Khanam</td>
-                            <td class="product-name">Marble Side Table</td>
-                            <td>৳8,900</td>
-                            <td class="date-col">Aug 12, 2026</td>
-                            <td><span class="badge-status badge-shipped">SHIPPED</span></td>
-                            <td>
-                                <div class="delivery-agent">
-                                    <span class="agent-avatar">K</span>
-                                    <span>Karim Hossain</span>
-                                </div>
-                            </td>
-                            <td><button class="action-btn">REASSIGN</button></td>
-                        </tr>
+                            <tr>
 
-                        <tr>
-                            <td class="order-id">#ORD-004</td>
-                            <td>Omar Faruk</td>
-                            <td class="product-name">Rattan Pendant Light</td>
-                            <td>৳5,400</td>
-                            <td class="date-col">Aug 13, 2026</td>
-                            <td><span class="badge-status badge-delivered">DELIVERED</span></td>
-                            <td>
-                                <div class="delivery-agent">
-                                    <span class="agent-avatar">R</span>
-                                    <span>Rafiq Ahmed</span>
-                                </div>
-                            </td>
-                            <td></td>
-                        </tr>
+                                <td class="order-id">
+                                    <?php echo $order["id"]; ?>
+                                </td>
 
-                        <tr>
-                            <td class="order-id">#ORD-005</td>
-                            <td>Mim Sultana</td>
-                            <td class="product-name">Jute Storage Basket</td>
-                            <td>৳900</td>
-                            <td class="date-col">Aug 14, 2026</td>
-                            <td><span class="badge-status badge-pending">PENDING</span></td>
-                            <td class="unassigned">Unassigned</td>
-                            <td><button class="action-btn">ASSIGN</button></td>
-                        </tr>
 
-                        <tr>
-                            <td class="order-id">#ORD-006</td>
-                            <td>Sumaiya Begum</td>
-                            <td class="product-name">Minimalist Wall Clock</td>
-                            <td>৳2,200</td>
-                            <td class="date-col">Aug 15, 2026</td>
-                            <td><span class="badge-status badge-processing">PROCESSING</span></td>
-                            <td class="unassigned">Unassigned</td>
-                            <td><button class="action-btn">ASSIGN</button></td>
-                        </tr>
+                                <td>
+                                    <?php echo $order["customer"]; ?>
+                                </td>
 
-                        <tr>
-                            <td class="order-id">#ORD-007</td>
-                            <td>Shirina Akter</td>
-                            <td class="product-name">Cedar Bookshelf</td>
-                            <td>৳16,000</td>
-                            <td class="date-col">Aug 16, 2026</td>
-                            <td><span class="badge-status badge-pending">PENDING</span></td>
-                            <td class="unassigned">Unassigned</td>
-                            <td><button class="action-btn">ASSIGN</button></td>
-                        </tr>
 
-                        <tr>
-                            <td class="order-id">#ORD-008</td>
-                            <td>Ayaan Rahman</td>
-                            <td class="product-name">Arabi Scented Candle</td>
-                            <td>৳650</td>
-                            <td class="date-col">Aug 17, 2026</td>
-                            <td><span class="badge-status badge-shipped">SHIPPED</span></td>
-                            <td>
-                                <div class="delivery-agent">
-                                    <span class="agent-avatar">T</span>
-                                    <span>Tariq Miah</span>
-                                </div>
-                            </td>
-                            <td><button class="action-btn">REASSIGN</button></td>
-                        </tr>
+                                <td class="product-name">
+                                    <?php echo $order["product"]; ?>
+                                </td>
+
+
+                                <td>
+                                    <?php echo $order["amount"]; ?>
+                                </td>
+
+
+                                <td class="date-col">
+                                    <?php echo $order["date"]; ?>
+                                </td>
+
+
+                                <td>
+                                    <span class="badge-status <?php echo $order["statusClass"]; ?>">
+                                        <?php echo $order["status"]; ?>
+                                    </span>
+                                </td>
+
+
+                                <td>
+
+                                    <?php if (!empty($order["delivery"])): ?>
+
+                                        <div class="delivery-agent">
+
+                                            <span class="agent-avatar">
+                                                <?php echo $order["deliveryInitial"]; ?>
+                                            </span>
+
+                                            <span>
+                                                <?php echo $order["delivery"]; ?>
+                                            </span>
+
+                                        </div>
+
+                                    <?php else: ?>
+
+                                        <span class="unassigned">
+                                            Unassigned
+                                        </span>
+
+                                    <?php endif; ?>
+
+                                </td>
+
+
+                                <td class="action-column">
+
+                                    <?php if (empty($order["delivery"])): ?>
+
+                                        <form method="post" class="delivery-assign-form">
+
+                                            <input
+                                                type="hidden"
+                                                name="orderId"
+                                                value="<?php echo $order["id"]; ?>"
+                                            >
+
+                                            <select
+                                                name="deliveryAgentId"
+                                                class="delivery-select"
+                                                required
+                                            >
+
+                                                <option value="" selected disabled>
+                                                    Select Agent
+                                                </option>
+
+                                                <?php foreach ($deliveryAgents as $agent): ?>
+
+                                                    <option value="<?php echo $agent["id"]; ?>">
+                                                        <?php echo $agent["name"]; ?>
+                                                    </option>
+
+                                                <?php endforeach; ?>
+
+                                            </select>
+
+                                            <button
+                                                type="submit"
+                                                name="assign"
+                                                class="action-btn"
+                                            >
+                                                ASSIGN
+                                            </button>
+
+                                        </form>
+
+
+                                    <?php elseif ($order["status"] !== "DELIVERED"): ?>
+
+                                        <button
+                                            type="button"
+                                            class="action-btn"
+                                        >
+                                            REASSIGN
+                                        </button>
+
+                                    <?php endif; ?>
+
+                                </td>
+
+                            </tr>
+
+                        <?php endforeach; ?>
+
                     </tbody>
+
                 </table>
+
             </div>
 
         </div>

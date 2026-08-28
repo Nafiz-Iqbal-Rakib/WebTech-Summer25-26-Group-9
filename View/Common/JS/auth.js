@@ -517,7 +517,7 @@ if (registerForm) {
 
     registerPassword.addEventListener("input", function () {
 
-        if (registerPassword.value.length >= 8) {
+        if (registerPassword.value.length >= 4) {
             removeRegisterError(registerPassword);
         }
 
