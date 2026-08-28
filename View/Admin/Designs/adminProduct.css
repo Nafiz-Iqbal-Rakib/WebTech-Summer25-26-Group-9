@@ -36,24 +36,44 @@
     color: #888888;
 }
 
-/* Delete Button */
 .delete-product-btn {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 75px;
+    height: 34px;
+
+    padding: 0;
+    margin: 0;
+
+    border: 1px solid #000000;
+    border-radius: 0;
+
     background-color: #000000;
     color: #ffffff;
-    padding: 10px 18px;
-    margin: 0;
-    font-size: 12px;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
     font-weight: 700;
-    text-transform: uppercase;
+
     letter-spacing: 1px;
-    border: none;
+    text-transform: uppercase;
+    line-height: 1;
+
     cursor: pointer;
+    white-space: nowrap;
     box-sizing: border-box;
-    transition: background-color 0.3s;
+
+    transition: all 0.2s ease;
 }
 
-/* Delete Button Hover */
 .delete-product-btn:hover {
-    background-color: #333333;
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #000000;
+}
+
+table .delete-product-btn:active {
+    background-color: #eeeeee;
 }

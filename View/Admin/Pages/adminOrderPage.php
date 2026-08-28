@@ -17,7 +17,6 @@ $deliveryAgents = $data["deliveryAgents"];
 
     <?php include 'sidebar.php'; ?>
 
-
     <main class="main-content">
 
         <div class="content-body">
@@ -53,37 +52,53 @@ $deliveryAgents = $data["deliveryAgents"];
 
                             <tr>
 
+                                <!-- ORDER -->
+
                                 <td class="order-id">
                                     <?php echo $order["id"]; ?>
                                 </td>
 
+
+                                <!-- CUSTOMER -->
 
                                 <td>
                                     <?php echo $order["customer"]; ?>
                                 </td>
 
 
+                                <!-- PRODUCT -->
+
                                 <td class="product-name">
                                     <?php echo $order["product"]; ?>
                                 </td>
 
+
+                                <!-- AMOUNT -->
 
                                 <td>
                                     <?php echo $order["amount"]; ?>
                                 </td>
 
 
+                                <!-- DATE -->
+
                                 <td class="date-col">
                                     <?php echo $order["date"]; ?>
                                 </td>
 
 
+                                <!-- STATUS -->
+
                                 <td>
+
                                     <span class="badge-status <?php echo $order["statusClass"]; ?>">
                                         <?php echo $order["status"]; ?>
                                     </span>
+
                                 </td>
 
+
+                                <!-- DELIVERY -->
 
                                 <td>
 
@@ -112,9 +127,13 @@ $deliveryAgents = $data["deliveryAgents"];
                                 </td>
 
 
+                                <!-- ACTION -->
+
                                 <td class="action-column">
 
                                     <?php if (empty($order["delivery"])): ?>
+
+                                        <!-- ASSIGN -->
 
                                         <form method="post" class="delivery-assign-form">
 
@@ -144,6 +163,7 @@ $deliveryAgents = $data["deliveryAgents"];
 
                                             </select>
 
+
                                             <button
                                                 type="submit"
                                                 name="assign"
@@ -157,12 +177,46 @@ $deliveryAgents = $data["deliveryAgents"];
 
                                     <?php elseif ($order["status"] !== "DELIVERED"): ?>
 
-                                        <button
-                                            type="button"
-                                            class="action-btn"
-                                        >
-                                            REASSIGN
-                                        </button>
+                                        <!-- REASSIGN -->
+
+                                        <form method="post" class="delivery-assign-form">
+
+                                            <input
+                                                type="hidden"
+                                                name="orderId"
+                                                value="<?php echo $order["id"]; ?>"
+                                            >
+
+                                            <select
+                                                name="deliveryAgentId"
+                                                class="delivery-select"
+                                                required
+                                            >
+
+                                                <option value="" selected disabled>
+                                                    Select Agent
+                                                </option>
+
+                                                <?php foreach ($deliveryAgents as $agent): ?>
+
+                                                    <option value="<?php echo $agent["id"]; ?>">
+                                                        <?php echo $agent["name"]; ?>
+                                                    </option>
+
+                                                <?php endforeach; ?>
+
+                                            </select>
+
+
+                                            <button
+                                                type="submit"
+                                                name="reassign"
+                                                class="action-btn"
+                                            >
+                                                REASSIGN
+                                            </button>
+
+                                        </form>
 
                                     <?php endif; ?>
 

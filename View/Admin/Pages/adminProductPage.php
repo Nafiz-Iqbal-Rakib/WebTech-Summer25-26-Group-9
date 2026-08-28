@@ -74,11 +74,7 @@ $products = $controller->getProducts();
                                 </td>
 
                                 <td>
-                                    <button
-                                        type="button"
-                                        class="delete-product-btn">
-                                        Delete
-                                    </button>
+                                    <button type="button" class="delete-product-btn">Delete</button>
                                 </td>
 
                             </tr>
