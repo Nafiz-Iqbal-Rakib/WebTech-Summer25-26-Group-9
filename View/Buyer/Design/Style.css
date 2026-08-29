@@ -187,22 +187,23 @@ button:hover,
 }
 
 .productBox{
-    width: 30%;
-    float: left;
+    width: 100%;
     border: 1px solid lightgray;
     padding: 15px;
-    margin-right: 3%;
-    margin-bottom: 25px;
-    min-height: 250px;
+    margin-bottom: 15px;
+    overflow: hidden;
 }
 
 .productImage{
-    height: 130px;
+    width: 180px;
+    height: 120px;
     background-color: #eeeeee;
-    border: 1px solid #dddddd;
+    border: 1px solid lightgray;
     text-align: center;
-    padding-top: 52px;
-    margin-bottom: 15px;
+    padding-top: 45px;
+    margin-right: 20px;
+    margin-bottom: 0;
+    float: left;
     color: gray;
 }
 

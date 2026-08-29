@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+$username="Buyer";
+
+if(isset($_SESSION["username"]))
+    {
+        $username=$_SESSION["username"];
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -10,16 +21,16 @@
         <div class="header">
             <div class="logo">Arabi</div>
             <div class="nav">
-                <a href="BuyerDashboard.html">Shop</a>
-                <a href="MyOrders.html">My Orders</a>
+                <a href="BuyerDashboard.php">Shop</a>
+                <a href="MyOrders.php">My Orders</a>
                 <a href="EditProfile.html">Profile</a>
-                <a href="Cart.html">Cart</a>
+                <a href="Cart.php">Cart</a>
             </div>
         </div>
 
         <div class="container">
             <div class="pageTitle">
-                <p class="smallText">Sadika</p>
+                <p class="smallText"><?php echo $username; ?></p>
                 <h1>My Orders</h1>
             </div>
 
@@ -31,7 +42,7 @@
                 </div>
                 <div class="orderRight">
                     <h3>৳5,400</h3>
-                    <td>DELIVERED</td>
+                    <p>DELIVERED</p>
                 </div>
             </div>
 
@@ -43,7 +54,7 @@
                 </div>
                 <div class="orderRight">
                     <h3>৳3,600</h3>
-                    <td>ASSIGNED</td>
+                    <p>ASSIGNED</p>
                 </div>
             </div>
 
@@ -55,7 +66,7 @@
                 </div>
                 <div class="orderRight">
                     <h3>৳12,500</h3>
-                    <td>PENDING</td>
+                    <p>PENDING</p>
                 </div>
             </div>
         </div>
