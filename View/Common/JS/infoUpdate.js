@@ -1,154 +1,342 @@
-// JS for edit profile start here
+// ============================================================
+// JS FOR EDIT PROFILE
+// ============================================================
 
-const personalInfoForm = document.querySelector(".personal-info-form");
-const changePasswordForm = document.querySelector(".change-password-form");
-const deliveryAddressForm = document.querySelector(".delivery-address-form");
-const deleteAccountForm = document.querySelector(".delete-account-form");
+const UPDATE_INFO_URL =
+    "/WebTech-Summer25-26-Group-9/Controller/UpdateInfoController.php";
 
 
-// Personal Information
+// ============================================================
+// PERSONAL INFORMATION
+// ============================================================
+
+const personalInfoForm =
+    document.querySelector(".personal-info-form");
+
 
 if (personalInfoForm) {
 
     personalInfoForm.noValidate = true;
 
-    const fullName = document.getElementById("full_name");
-    const phone = document.getElementById("phone");
 
-    function handlePersonalInfo(event) {
+    const firstName =
+        document.getElementById("first_name");
 
-        event.preventDefault();
+    const lastName =
+        document.getElementById("last_name");
 
-        const nameValid = validateFullName();
-        const phoneValid = validatePhone();
+    const phone =
+        document.getElementById("phone");
 
-        if (nameValid && phoneValid) {
-            updatePersonalInfo();
-        }
-    }
 
-    function validateFullName() {
+    // ========================================================
+    // Validate First Name
+    // ========================================================
 
-        if (fullName.value.trim() === "") {
-            showProfileError(fullName, "Full name is required");
+    function validateFirstName() {
+
+        if (firstName.value.trim() === "") {
+
+            showProfileError(
+                firstName,
+                "First name is required"
+            );
+
             return false;
         }
 
-        removeProfileError(fullName);
+        removeProfileError(firstName);
+
         return true;
     }
+
+
+    // ========================================================
+    // Validate Last Name
+    // ========================================================
+
+    function validateLastName() {
+
+        if (lastName.value.trim() === "") {
+
+            showProfileError(
+                lastName,
+                "Last name is required"
+            );
+
+            return false;
+        }
+
+        removeProfileError(lastName);
+
+        return true;
+    }
+
+
+    // ========================================================
+    // Validate Phone
+    // ========================================================
 
     function validatePhone() {
 
-        const value = phone.value.trim();
+        const value =
+            phone.value.trim();
+
 
         if (value === "") {
-            showProfileError(phone, "Phone number is required");
+
+            showProfileError(
+                phone,
+                "Phone number is required"
+            );
+
             return false;
         }
+
 
         if (!isValidPhone(value)) {
-            showProfileError(phone, "Please enter a valid phone number");
+
+            showProfileError(
+                phone,
+                "Please enter a valid phone number"
+            );
+
             return false;
         }
 
+
         removeProfileError(phone);
+
         return true;
     }
 
-    function updatePersonalInfo() {
 
-        const formData = new FormData(personalInfoForm);
-
-        fetch(personalInfoForm.action, {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-
-            if (data.success) {
-
-                showProfileSuccess(
-                    fullName,
-                    data.message
-                );
-
-            } else {
-
-                showProfileBackendError(
-                    fullName,
-                    data.message
-                );
-            }
-
-        })
-        .catch(error => {
-
-            showProfileBackendError(
-                fullName,
-                "Something went wrong. Please try again."
-            );
-
-        });
-    }
-
-    fullName.addEventListener("input", function () {
-
-        if (fullName.value.trim() !== "") {
-            removeProfileError(fullName);
-        }
-    });
-
-    phone.addEventListener("input", function () {
-
-        if (isValidPhone(phone.value.trim())) {
-            removeProfileError(phone);
-        }
-    });
+    // ========================================================
+    // PERSONAL INFORMATION SUBMIT
+    // ========================================================
 
     personalInfoForm.addEventListener(
         "submit",
-        handlePersonalInfo
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const firstNameValid =
+                validateFirstName();
+
+            const lastNameValid =
+                validateLastName();
+
+            const phoneValid =
+                validatePhone();
+
+
+            if (
+                !firstNameValid ||
+                !lastNameValid ||
+                !phoneValid
+            ) {
+
+                return;
+            }
+
+
+            const formData =
+                new FormData(personalInfoForm);
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        UPDATE_INFO_URL,
+                        {
+                            method: "POST",
+                            body: formData
+                        }
+                    );
+
+
+                const text =
+                    await response.text();
+
+
+                console.log(
+                    "Personal Information Server Response:",
+                    text
+                );
+
+
+                let data;
+
+
+                try {
+
+                    data =
+                        JSON.parse(text);
+
+                } catch (error) {
+
+                    console.error(
+                        "Invalid JSON from server:",
+                        text
+                    );
+
+
+                    showProfileBackendError(
+                        firstName,
+                        "Server returned an invalid response."
+                    );
+
+                    return;
+                }
+
+
+                console.log(
+                    "Personal Information Response:",
+                    data
+                );
+
+
+                if (data.success) {
+
+                    showProfileSuccess(
+                        firstName,
+                        data.message
+                    );
+
+                } else {
+
+                    showProfileBackendError(
+                        firstName,
+                        data.message
+                    );
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Personal Information Error:",
+                    error
+                );
+
+
+                showProfileBackendError(
+                    firstName,
+                    "Something went wrong. Please try again."
+                );
+            }
+
+        }
     );
+
+
+    // ========================================================
+    // FIRST NAME INPUT
+    // ========================================================
+
+    firstName.addEventListener(
+        "input",
+        function () {
+
+            if (
+                firstName.value.trim() !== ""
+            ) {
+
+                removeProfileError(firstName);
+            }
+
+        }
+    );
+
+
+    // ========================================================
+    // LAST NAME INPUT
+    // ========================================================
+
+    lastName.addEventListener(
+        "input",
+        function () {
+
+            if (
+                lastName.value.trim() !== ""
+            ) {
+
+                removeProfileError(lastName);
+            }
+
+        }
+    );
+
+
+    // ========================================================
+    // PHONE INPUT
+    // ========================================================
+
+    phone.addEventListener(
+        "input",
+        function () {
+
+            if (
+                isValidPhone(
+                    phone.value.trim()
+                )
+            ) {
+
+                removeProfileError(phone);
+            }
+
+        }
+    );
+
 }
 
 
-// Change Password
+
+// ============================================================
+// CHANGE PASSWORD
+// ============================================================
+
+const changePasswordForm =
+    document.querySelector(
+        ".change-password-form"
+    );
+
 
 if (changePasswordForm) {
 
     changePasswordForm.noValidate = true;
 
+
     const currentPassword =
-        document.getElementById("current_password");
+        document.getElementById(
+            "current_password"
+        );
+
 
     const newPassword =
-        document.getElementById("new_password");
+        document.getElementById(
+            "new_password"
+        );
+
 
     const confirmPassword =
-        document.getElementById("confirm_password");
+        document.getElementById(
+            "confirm_password"
+        );
 
-    function handleChangePassword(event) {
 
-        event.preventDefault();
-
-        const currentValid = validateCurrentPassword();
-        const newValid = validateNewPassword();
-        const confirmValid = validateConfirmPassword();
-
-        if (
-            currentValid &&
-            newValid &&
-            confirmValid
-        ) {
-            updatePassword();
-        }
-    }
+    // ========================================================
+    // Validate Current Password
+    // ========================================================
 
     function validateCurrentPassword() {
 
-        if (currentPassword.value.trim() === "") {
+        if (
+            currentPassword.value.trim() === ""
+        ) {
 
             showProfileError(
                 currentPassword,
@@ -158,13 +346,24 @@ if (changePasswordForm) {
             return false;
         }
 
-        removeProfileError(currentPassword);
+
+        removeProfileError(
+            currentPassword
+        );
+
         return true;
     }
 
+
+    // ========================================================
+    // Validate New Password
+    // ========================================================
+
     function validateNewPassword() {
 
-        if (newPassword.value.trim() === "") {
+        if (
+            newPassword.value.trim() === ""
+        ) {
 
             showProfileError(
                 newPassword,
@@ -174,13 +373,24 @@ if (changePasswordForm) {
             return false;
         }
 
-        removeProfileError(newPassword);
+
+        removeProfileError(
+            newPassword
+        );
+
         return true;
     }
 
+
+    // ========================================================
+    // Validate Confirm Password
+    // ========================================================
+
     function validateConfirmPassword() {
 
-        if (confirmPassword.value.trim() === "") {
+        if (
+            confirmPassword.value.trim() === ""
+        ) {
 
             showProfileError(
                 confirmPassword,
@@ -190,7 +400,11 @@ if (changePasswordForm) {
             return false;
         }
 
-        if (confirmPassword.value !== newPassword.value) {
+
+        if (
+            confirmPassword.value !==
+            newPassword.value
+        ) {
 
             showProfileError(
                 confirmPassword,
@@ -200,328 +414,431 @@ if (changePasswordForm) {
             return false;
         }
 
-        removeProfileError(confirmPassword);
+
+        removeProfileError(
+            confirmPassword
+        );
+
         return true;
     }
 
-    function updatePassword() {
 
-        const formData =
-            new FormData(changePasswordForm);
-
-        fetch(changePasswordForm.action, {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-
-            if (data.success) {
-
-                showProfileSuccess(
-                    newPassword,
-                    data.message
-                );
-
-                changePasswordForm.reset();
-
-            } else {
-
-                showProfileBackendError(
-                    currentPassword,
-                    data.message
-                );
-            }
-
-        })
-        .catch(error => {
-
-            showProfileBackendError(
-                currentPassword,
-                "Something went wrong. Please try again."
-            );
-
-        });
-    }
-
-    currentPassword.addEventListener("input", function () {
-
-        if (currentPassword.value.trim() !== "") {
-            removeProfileError(currentPassword);
-        }
-    });
-
-    newPassword.addEventListener("input", function () {
-
-        if (newPassword.value.trim() !== "") {
-            removeProfileError(newPassword);
-        }
-
-        if (
-            confirmPassword.value !== "" &&
-            confirmPassword.value === newPassword.value
-        ) {
-            removeProfileError(confirmPassword);
-        }
-    });
-
-    confirmPassword.addEventListener("input", function () {
-
-        if (
-            confirmPassword.value !== "" &&
-            confirmPassword.value === newPassword.value
-        ) {
-            removeProfileError(confirmPassword);
-        }
-    });
+    // ========================================================
+    // CHANGE PASSWORD SUBMIT
+    // ========================================================
 
     changePasswordForm.addEventListener(
         "submit",
-        handleChangePassword
-    );
-}
+        async function (event) {
+
+            event.preventDefault();
 
 
-// Delivery Address
+            const currentValid =
+                validateCurrentPassword();
 
-if (deliveryAddressForm) {
+            const newValid =
+                validateNewPassword();
 
-    deliveryAddressForm.noValidate = true;
+            const confirmValid =
+                validateConfirmPassword();
 
-    const streetAddress =
-        document.getElementById("street_address");
 
-    const areaCity =
-        document.getElementById("area_city");
+            if (
+                !currentValid ||
+                !newValid ||
+                !confirmValid
+            ) {
 
-    function handleDeliveryAddress(event) {
+                return;
+            }
 
-        event.preventDefault();
 
-        const streetValid = validateStreetAddress();
-        const cityValid = validateAreaCity();
-
-        if (streetValid && cityValid) {
-            updateDeliveryAddress();
-        }
-    }
-
-    function validateStreetAddress() {
-
-        if (streetAddress.value.trim() === "") {
-
-            showProfileError(
-                streetAddress,
-                "Street address is required"
-            );
-
-            return false;
-        }
-
-        removeProfileError(streetAddress);
-        return true;
-    }
-
-    function validateAreaCity() {
-
-        if (areaCity.value.trim() === "") {
-
-            showProfileError(
-                areaCity,
-                "Area / City is required"
-            );
-
-            return false;
-        }
-
-        removeProfileError(areaCity);
-        return true;
-    }
-
-    function updateDeliveryAddress() {
-
-        const formData =
-            new FormData(deliveryAddressForm);
-
-        fetch(deliveryAddressForm.action, {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-
-            if (data.success) {
-
-                showProfileSuccess(
-                    streetAddress,
-                    data.message
+            const formData =
+                new FormData(
+                    changePasswordForm
                 );
 
-            } else {
+
+            try {
+
+                const response =
+                    await fetch(
+                        UPDATE_INFO_URL,
+                        {
+                            method: "POST",
+                            body: formData
+                        }
+                    );
+
+
+                const text =
+                    await response.text();
+
+
+                console.log(
+                    "Password Server Response:",
+                    text
+                );
+
+
+                let data;
+
+
+                try {
+
+                    data =
+                        JSON.parse(text);
+
+                } catch (error) {
+
+                    console.error(
+                        "Invalid JSON:",
+                        text
+                    );
+
+
+                    showProfileBackendError(
+                        currentPassword,
+                        "Server returned an invalid response."
+                    );
+
+                    return;
+                }
+
+
+                if (data.success) {
+
+                    showProfileSuccess(
+                        newPassword,
+                        data.message
+                    );
+
+
+                    changePasswordForm.reset();
+
+                } else {
+
+                    showProfileBackendError(
+                        currentPassword,
+                        data.message
+                    );
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Password Error:",
+                    error
+                );
+
 
                 showProfileBackendError(
-                    streetAddress,
-                    data.message
+                    currentPassword,
+                    "Something went wrong. Please try again."
                 );
             }
 
-        })
-        .catch(error => {
-
-            showProfileBackendError(
-                streetAddress,
-                "Something went wrong. Please try again."
-            );
-
-        });
-    }
-
-    streetAddress.addEventListener("input", function () {
-
-        if (streetAddress.value.trim() !== "") {
-            removeProfileError(streetAddress);
         }
-    });
-
-    areaCity.addEventListener("input", function () {
-
-        if (areaCity.value.trim() !== "") {
-            removeProfileError(areaCity);
-        }
-    });
-
-    deliveryAddressForm.addEventListener(
-        "submit",
-        handleDeliveryAddress
     );
+
+
+    // ========================================================
+    // CURRENT PASSWORD INPUT
+    // ========================================================
+
+    currentPassword.addEventListener(
+        "input",
+        function () {
+
+            if (
+                currentPassword.value.trim() !== ""
+            ) {
+
+                removeProfileError(
+                    currentPassword
+                );
+            }
+
+        }
+    );
+
+
+    // ========================================================
+    // NEW PASSWORD INPUT
+    // ========================================================
+
+    newPassword.addEventListener(
+        "input",
+        function () {
+
+            if (
+                newPassword.value.trim() !== ""
+            ) {
+
+                removeProfileError(
+                    newPassword
+                );
+            }
+
+
+            if (
+                confirmPassword.value !== "" &&
+                confirmPassword.value ===
+                newPassword.value
+            ) {
+
+                removeProfileError(
+                    confirmPassword
+                );
+            }
+
+        }
+    );
+
+
+    // ========================================================
+    // CONFIRM PASSWORD INPUT
+    // ========================================================
+
+    confirmPassword.addEventListener(
+        "input",
+        function () {
+
+            if (
+                confirmPassword.value !== "" &&
+                confirmPassword.value ===
+                newPassword.value
+            ) {
+
+                removeProfileError(
+                    confirmPassword
+                );
+            }
+
+        }
+    );
+
 }
 
 
-// Delete Account
+
+// ============================================================
+// DELETE ACCOUNT
+// ============================================================
+
+const deleteAccountForm =
+    document.querySelector(
+        ".delete-account-form"
+    );
+
 
 if (deleteAccountForm) {
 
     deleteAccountForm.noValidate = true;
 
+
     const deleteConfirmation =
-        document.getElementById("delete_confirmation");
+        document.getElementById(
+            "delete_confirmation"
+        );
 
-    function handleDeleteAccount(event) {
 
-        event.preventDefault();
-
-        const value =
-            deleteConfirmation.value.trim();
-
-        if (value === "") {
-
-            showProfileError(
-                deleteConfirmation,
-                "Please type DELETE to confirm"
-            );
-
-            return;
-        }
-
-        if (value !== "DELETE") {
-
-            showProfileError(
-                deleteConfirmation,
-                "Please type DELETE exactly"
-            );
-
-            return;
-        }
-
-        removeProfileError(deleteConfirmation);
-
-        deleteAccount();
-    }
-
-    function deleteAccount() {
-
-        const formData =
-            new FormData(deleteAccountForm);
-
-        fetch(deleteAccountForm.action, {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-
-            if (data.success) {
-
-                showProfileSuccess(
-                    deleteConfirmation,
-                    data.message
-                );
-
-                deleteAccountForm.reset();
-
-            } else {
-
-                showProfileBackendError(
-                    deleteConfirmation,
-                    data.message
-                );
-            }
-
-        })
-        .catch(error => {
-
-            showProfileBackendError(
-                deleteConfirmation,
-                "Something went wrong. Please try again."
-            );
-
-        });
-    }
-
-    deleteConfirmation.addEventListener("input", function () {
-
-        if (
-            deleteConfirmation.value.trim() === "DELETE"
-        ) {
-            removeProfileError(deleteConfirmation);
-        }
-    });
+    // ========================================================
+    // DELETE SUBMIT
+    // ========================================================
 
     deleteAccountForm.addEventListener(
         "submit",
-        handleDeleteAccount
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const value =
+                deleteConfirmation.value.trim();
+
+
+            if (value === "") {
+
+                showProfileError(
+                    deleteConfirmation,
+                    "Please type DELETE to confirm"
+                );
+
+                return;
+            }
+
+
+            if (value !== "DELETE") {
+
+                showProfileError(
+                    deleteConfirmation,
+                    "Please type DELETE exactly"
+                );
+
+                return;
+            }
+
+
+            removeProfileError(
+                deleteConfirmation
+            );
+
+
+            const formData =
+                new FormData(
+                    deleteAccountForm
+                );
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        UPDATE_INFO_URL,
+                        {
+                            method: "POST",
+                            body: formData
+                        }
+                    );
+
+
+                const text =
+                    await response.text();
+
+
+                console.log(
+                    "Delete Server Response:",
+                    text
+                );
+
+
+                let data;
+
+
+                try {
+
+                    data =
+                        JSON.parse(text);
+
+                } catch (error) {
+
+                    console.error(
+                        "Invalid JSON:",
+                        text
+                    );
+
+
+                    showProfileBackendError(
+                        deleteConfirmation,
+                        "Server returned an invalid response."
+                    );
+
+                    return;
+                }
+
+
+                if (data.success) {
+
+                    showProfileSuccess(
+                        deleteConfirmation,
+                        data.message
+                    );
+
+
+                    deleteAccountForm.reset();
+
+                } else {
+
+                    showProfileBackendError(
+                        deleteConfirmation,
+                        data.message
+                    );
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Delete Error:",
+                    error
+                );
+
+
+                showProfileBackendError(
+                    deleteConfirmation,
+                    "Something went wrong. Please try again."
+                );
+            }
+
+        }
+    );
+
+
+    // ========================================================
+    // DELETE INPUT
+    // ========================================================
+
+    deleteConfirmation.addEventListener(
+        "input",
+        function () {
+
+            if (
+                deleteConfirmation.value.trim() ===
+                "DELETE"
+            ) {
+
+                removeProfileError(
+                    deleteConfirmation
+                );
+            }
+
+        }
+    );
+
+}
+
+
+
+// ============================================================
+// PHONE VALIDATION
+// ============================================================
+
+function isValidPhone(value) {
+
+    return /^[0-9+\-\s()]{7,20}$/.test(
+        value
     );
 }
 
 
-// Phone Validation
 
-function isValidPhone(value) {
-
-    return /^[0-9+\-\s()]{7,20}$/.test(value);
-}
-
-
-// Get Error Parent
+// ============================================================
+// GET MESSAGE PARENT
+// ============================================================
 
 function getProfileMessageParent(input) {
 
-    const wrapper =
-        input.closest(".input-icon-wrapper");
-
-    if (wrapper) {
-        return wrapper.parentElement;
-    }
-
-    return input.parentElement;
+    return input.closest(
+        ".form-group"
+    );
 }
 
 
-// Show Validation Error
 
-function showProfileError(input, message) {
+// ============================================================
+// SHOW ERROR
+// ============================================================
+
+function showProfileError(
+    input,
+    message
+) {
 
     removeProfileError(input);
+
 
     input.style.setProperty(
         "border",
@@ -529,99 +846,199 @@ function showProfileError(input, message) {
         "important"
     );
 
-    const error = document.createElement("span");
 
-    error.classList.add("validation-error");
-    error.textContent = message;
+    const error =
+        document.createElement("span");
 
-    error.style.color = "red";
-    error.style.fontSize = "12px";
-    error.style.display = "block";
-    error.style.marginTop = "4px";
+
+    error.className =
+        "validation-error";
+
+
+    error.textContent =
+        message;
+
+
+    error.style.color =
+        "red";
+
+
+    error.style.fontSize =
+        "12px";
+
+
+    error.style.display =
+        "block";
+
+
+    error.style.marginTop =
+        "4px";
+
 
     const parent =
         getProfileMessageParent(input);
 
-    parent.appendChild(error);
+
+    if (parent) {
+
+        parent.appendChild(error);
+    }
 }
 
 
-// Show Backend Error
 
-function showProfileBackendError(input, message) {
+// ============================================================
+// SHOW BACKEND ERROR
+// ============================================================
+
+function showProfileBackendError(
+    input,
+    message
+) {
 
     removeProfileError(input);
 
-    const error = document.createElement("span");
 
-    error.classList.add("backend-error");
-    error.textContent = message;
+    input.style.setProperty(
+        "border",
+        "1px solid red",
+        "important"
+    );
 
-    error.style.color = "red";
-    error.style.fontSize = "12px";
-    error.style.display = "block";
-    error.style.marginTop = "4px";
+
+    const error =
+        document.createElement("span");
+
+
+    error.className =
+        "backend-error";
+
+
+    error.textContent =
+        message;
+
+
+    error.style.color =
+        "red";
+
+
+    error.style.fontSize =
+        "12px";
+
+
+    error.style.display =
+        "block";
+
+
+    error.style.marginTop =
+        "4px";
+
 
     const parent =
         getProfileMessageParent(input);
 
-    parent.appendChild(error);
+
+    if (parent) {
+
+        parent.appendChild(error);
+    }
 }
 
 
-// Show Success
 
-function showProfileSuccess(input, message) {
+// ============================================================
+// SHOW SUCCESS
+// ============================================================
+
+function showProfileSuccess(
+    input,
+    message
+) {
 
     removeProfileError(input);
 
-    const success = document.createElement("span");
 
-    success.classList.add("validation-success");
-    success.textContent = message;
+    input.style.setProperty(
+        "border",
+        "1px solid green",
+        "important"
+    );
 
-    success.style.color = "green";
-    success.style.fontSize = "12px";
-    success.style.display = "block";
-    success.style.marginTop = "4px";
+
+    const success =
+        document.createElement("span");
+
+
+    success.className =
+        "validation-success";
+
+
+    success.textContent =
+        message;
+
+
+    success.style.color =
+        "green";
+
+
+    success.style.fontSize =
+        "12px";
+
+
+    success.style.display =
+        "block";
+
+
+    success.style.marginTop =
+        "4px";
+
 
     const parent =
         getProfileMessageParent(input);
 
-    parent.appendChild(success);
+
+    if (parent) {
+
+        parent.appendChild(success);
+    }
 }
 
 
-// Remove Error
+
+// ============================================================
+// REMOVE ERROR / SUCCESS
+// ============================================================
 
 function removeProfileError(input) {
 
-    input.style.removeProperty("border");
+    if (!input) {
+        return;
+    }
+
+
+    input.style.removeProperty(
+        "border"
+    );
+
 
     const parent =
         getProfileMessageParent(input);
 
-    const error =
-        parent.querySelector(".validation-error");
 
-    if (error) {
-        error.remove();
+    if (!parent) {
+        return;
     }
 
-    const backendError =
-        parent.querySelector(".backend-error");
 
-    if (backendError) {
-        backendError.remove();
-    }
+    const messages =
+        parent.querySelectorAll(
+            ".validation-error, " +
+            ".backend-error, " +
+            ".validation-success"
+        );
 
-    const success =
-        parent.querySelector(".validation-success");
 
-    if (success) {
-        success.remove();
-    }
+    messages.forEach(
+        message => message.remove()
+    );
 }
-
-
-// JS for edit profile end here

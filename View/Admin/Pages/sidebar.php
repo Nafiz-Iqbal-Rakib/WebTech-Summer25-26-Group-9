@@ -72,7 +72,7 @@ $adminData = $sidebarController->getAdminData();
 
         </div>
 
-        <a href="\WebTech-Summer25-26-Group-9\View\updateInfopage.php">
+        <a href="/WebTech-Summer25-26-Group-9/Controller/UpdateInfoController.php?action=edit_profile">
             <i class="fas fa-user-edit"></i>
         </a>
 

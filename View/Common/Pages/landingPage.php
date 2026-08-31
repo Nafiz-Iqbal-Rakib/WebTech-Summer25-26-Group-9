@@ -599,11 +599,11 @@ $featuredProducts = array_slice($products, 0, 8);
                         <div class="product-price">
 
                             <span class="current-price">
-                                $124 USD
+                               599 TK
                             </span>
 
                             <del class="old-price">
-                                $156 USD
+                                1000 TK
                             </del>
 
                         </div>
@@ -639,11 +639,11 @@ $featuredProducts = array_slice($products, 0, 8);
                         <div class="product-price">
 
                             <span class="current-price">
-                                $124 USD
+                                700 TK
                             </span>
 
                             <del class="old-price">
-                                $156 USD
+                               800 TK
                             </del>
 
                         </div>
@@ -679,11 +679,11 @@ $featuredProducts = array_slice($products, 0, 8);
                         <div class="product-price">
 
                             <span class="current-price">
-                                $124 USD
+                                1240 TK
                             </span>
 
                             <del class="old-price">
-                                $156 USD
+                                1560 TK
                             </del>
 
                         </div>
@@ -719,11 +719,11 @@ $featuredProducts = array_slice($products, 0, 8);
                         <div class="product-price">
 
                             <span class="current-price">
-                                $124 USD
+                                124 TK
                             </span>
 
                             <del class="old-price">
-                                $156 USD
+                                156 TK
                             </del>
 
                         </div>

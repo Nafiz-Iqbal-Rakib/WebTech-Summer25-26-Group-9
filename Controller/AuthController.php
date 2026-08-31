@@ -14,26 +14,62 @@ class AuthController
         $result = $model->getUserByEmail($email);
 
         if ($result->num_rows === 0) {
+
             return [
                 "success" => false,
                 "message" => "Invalid email or password."
             ];
         }
+
 
         $user = $result->fetch_row();
 
+
+        // Check password
+
         if (!password_verify($password, $user[3])) {
+
             return [
                 "success" => false,
                 "message" => "Invalid email or password."
             ];
         }
 
-        session_start();
+
+        // Check user status
+
+        $status = $user[6];
+
+
+        if ($status === "suspended") {
+
+            return [
+                "success" => false,
+                "message" => "Your account has been suspended."
+            ];
+        }
+
+
+        if ($status === "deactivated") {
+
+            return [
+                "success" => false,
+                "message" => "Your account has been deactivated."
+            ];
+        }
+
+
+        // Login successful
+
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
 
         $_SESSION["user_id"] = $user[0];
         $_SESSION["email"] = $user[1];
         $_SESSION["role"] = $user[2];
+
 
         return [
             "success" => true,
@@ -42,6 +78,10 @@ class AuthController
         ];
     }
 
+
+    // =========================
+    // REGISTER
+    // =========================
 
     public function register()
     {
@@ -53,6 +93,7 @@ class AuthController
         $password = $_POST["password"] ?? "";
         $confirmPassword = $_POST["confirmPassword"] ?? "";
 
+
         if (
             $firstName === "" ||
             $lastName === "" ||
@@ -62,31 +103,42 @@ class AuthController
             $password === "" ||
             $confirmPassword === ""
         ) {
+
             return [
                 "success" => false,
                 "message" => "All fields are required."
             ];
         }
 
+
         if ($password !== $confirmPassword) {
+
             return [
                 "success" => false,
                 "message" => "Passwords do not match."
             ];
         }
 
+
         $model = new CommonModel();
 
         $result = $model->getUserByEmail($email);
 
+
         if ($result->num_rows > 0) {
+
             return [
                 "success" => false,
                 "message" => "Email already exists."
             ];
         }
 
-        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        $password = password_hash(
+            $password,
+            PASSWORD_DEFAULT
+        );
+
 
         $success = $model->registerUser(
             $firstName,
@@ -97,12 +149,15 @@ class AuthController
             $password
         );
 
+
         if ($success) {
+
             return [
                 "success" => true,
                 "message" => "Registration successful."
             ];
         }
+
 
         return [
             "success" => false,
@@ -111,16 +166,21 @@ class AuthController
     }
 }
 
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $controller = new AuthController();
 
+
     if ($_GET["action"] === "login") {
+
         $response = $controller->login();
     }
     elseif ($_GET["action"] === "register") {
+
         $response = $controller->register();
     }
+
 
     header("Content-Type: application/json");
 
