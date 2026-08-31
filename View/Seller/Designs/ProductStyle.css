@@ -1,0 +1,442 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f7f7f7;
+    color: #111;
+}
+
+.topbar {
+    height: 44px;
+    background-color: #050505;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    letter-spacing: 0.2px;
+}
+
+.layout {
+    display: flex;
+    min-height: calc(100vh - 44px);
+}
+
+.sidebar {
+    width: 255px;
+    background-color: white;
+    border-right: 1px solid #dddddd;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    height: 80px;
+    border-bottom: 1px solid #dddddd;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    gap: 10px;
+}
+
+.logo span {
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.logo small {
+    font-size: 10px;
+    color: #999;
+    border: 1px solid #d5d5d5;
+    padding: 5px 9px;
+    letter-spacing: 2px;
+}
+
+.menu {
+    padding: 28px 13px;
+}
+
+.menu-title {
+    font-size: 10px;
+    color: #999;
+    letter-spacing: 2px;
+    margin-left: 17px;
+    margin-bottom: 18px;
+}
+
+.menu-item {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-left: 18px;
+    text-decoration: none;
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.menu-item span {
+    font-size: 17px;
+}
+
+.menu-item:hover {
+    background-color: #f5f5f5;
+    color: #111;
+}
+
+.menu-item.active {
+    background-color: #050505;
+    color: white;
+}
+
+.main-content {
+    flex: 1;
+    background-color: #f8f8f8;
+    padding: 48px 44px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.breadcrumb {
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.header h1 {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.live {
+    color: #222;
+    font-weight: bold;
+}
+
+.date {
+    color: #777;
+    font-size: 13px;
+}
+
+.add-product-area {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.add-product {
+    background-color: #050505;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.add-product:hover {
+    background-color: #333;
+}
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: white;
+    border: 1px solid #ddd;
+    margin-bottom: 25px;
+}
+
+.summary-card {
+    padding: 24px;
+    border-right: 1px solid #ddd;
+}
+
+.summary-card:last-child {
+    border-right: none;
+}
+
+.summary-card p {
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+.summary-card h2 {
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.product-section {
+    background-color: white;
+    border: 1px solid #ddd;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #fff;
+}
+
+th {
+    text-align: left;
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 1px;
+    font-weight: normal;
+    padding: 16px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 13px;
+    color: #555;
+    white-space: nowrap;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background-color: #fafafa;
+}
+
+.product-name {
+    color: #222;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.product-description {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    border: 1px solid;
+}
+
+.active-status {
+    color: #222;
+    border-color: #333;
+}
+
+.low-status {
+    color: #b48600;
+    border-color: #d6a800;
+}
+
+.out-status {
+    color: #e51b3e;
+    border-color: #e51b3e;
+}
+
+.edit-btn,
+.delete-btn {
+    background-color: white;
+    font-size: 11px;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin-right: 4px;
+    border-radius: 3px;
+}
+
+.edit-btn {
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.delete-btn {
+    color: #e51b3e;
+    border: 1px solid #eee;
+}
+
+.edit-btn:hover {
+    background-color: #f2f2f2;
+}
+
+.delete-btn:hover {
+    background-color: #fff1f3;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal Content Card */
+.modal-card {
+    background-color: #ffffff;
+    width: 90%;
+    max-width: 520px;
+    border: 1px solid #dddddd;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-card {
+    transform: translateY(0);
+}
+
+.modal-header {
+    background-color: #050505;
+    color: #ffffff;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.form-group-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.modal-form .form-field {
+    margin-bottom: 16px;
+}
+
+.modal-form label {
+    display: block;
+    font-size: 10px;
+    color: #888888;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.modal-form input[type="text"],
+.modal-form input[type="number"],
+.modal-form textarea,
+.modal-form input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cccccc;
+    font-size: 13px;
+    color: #111111;
+    background-color: #fafafa;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.modal-form input:focus,
+.modal-form textarea:focus {
+    border-color: #050505;
+    background-color: #ffffff;
+}
+
+.modal-form textarea {
+    height: 70px;
+    resize: vertical;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    background: #ffffff;
+    color: #333333;
+    border: 1px solid #cccccc;
+    padding: 10px 18px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background-color: #f2f2f2;
+}
+
+.btn-save {
+    background: #050505;
+    color: #ffffff;
+    border: none;
+    padding: 10px 22px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.btn-save:hover {
+    background-color: #333333;
+}
+
