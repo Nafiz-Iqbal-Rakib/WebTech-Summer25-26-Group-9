@@ -108,8 +108,10 @@ include '../../Layouts/header.php';
 
 
                 <!-- Buy Now -->
-                <button class="buy-now-btn">
-                    BUY NOW
+                <button
+                     class="buy-now-btn"
+                     data-id="<?= $product['id'] ?>">
+                     BUY NOW
                 </button>
 
             </div>

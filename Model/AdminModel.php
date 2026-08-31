@@ -273,6 +273,35 @@ class AdminModel
         return $stmt->execute();
     }
 
+    public function getAllProductsShop()
+    {
+        $sql = "SELECT
+                    products.id,
+                    products.produce_name,
+                    products.price,
+                    products.stock,
+                    products.img,
+                    products.seller_id,
+
+                    users.first_name AS seller_first_name,
+                    users.last_name AS seller_last_name
+
+                FROM products
+
+                INNER JOIN users
+                    ON products.seller_id = users.id
+
+                ORDER BY products.id DESC";
+
+        $result = $this->connection->query($sql);
+
+        if ($result === false) {
+            die("SQL Error: " . $this->connection->error);
+        }
+
+        return $result;
+    }
+
 }
 
 ?>
