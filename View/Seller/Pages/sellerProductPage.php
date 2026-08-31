@@ -16,7 +16,7 @@ $sellerData = $sellerController->getSellerProductData($userId);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seller Portal - Products</title>
-    <link rel="stylesheet" href="/WebTech-Summer25-26-Group-9/View/Seller/Designs/ProductStyle.css">
+    <link rel="stylesheet" href="../Designs/ProductStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
