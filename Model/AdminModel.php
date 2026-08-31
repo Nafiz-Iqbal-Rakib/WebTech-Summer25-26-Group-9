@@ -302,6 +302,19 @@ class AdminModel
         return $result;
     }
 
+    public function updateUserStatus($id, $status)
+    {
+        $sql = "UPDATE users
+                SET status = ?
+                WHERE id = ?";
+    
+        $stmt = $this->connection->prepare($sql);
+    
+        $stmt->bind_param("si", $status, $id);
+    
+        return $stmt->execute();
+    }
+
 }
 
 ?>

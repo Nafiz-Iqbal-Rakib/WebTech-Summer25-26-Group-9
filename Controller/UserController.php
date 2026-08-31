@@ -58,6 +58,11 @@ class UserController
     {
         return $this->model->deleteUser($id);
     }
+
+    public function updateUserStatus($id, $status)
+    {
+        return $this->model->updateUserStatus($id, $status);
+    }
 }
 
 
@@ -69,30 +74,50 @@ class UserController
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    if (isset($_POST["delete_user"]) && isset($_POST["user_id"])) {
+    $controller = new UserController();
 
-        $id = intval($_POST["user_id"]);
 
-        $controller = new UserController();
+    // DELETE USER
 
-        $result = $controller->deleteUser($id);
+    if (isset($_POST["delete_user"])) {
+
+        $userId = $_POST["user_id"];
+
+        $success = $controller->deleteUser($userId);
 
         header("Content-Type: application/json");
 
-        if ($result) {
+        echo json_encode([
+            "success" => $success,
+            "message" => $success
+                ? "User deleted successfully."
+                : "Failed to delete user."
+        ]);
 
-            echo json_encode([
-                "success" => true,
-                "message" => "User deleted successfully."
-            ]);
+        exit;
+    }
 
-        } else {
 
-            echo json_encode([
-                "success" => false,
-                "message" => "Failed to delete user."
-            ]);
-        }
+    // UPDATE USER STATUS
+
+    if (isset($_POST["update_status"])) {
+
+        $userId = $_POST["user_id"];
+        $status = $_POST["status"];
+
+        $success = $controller->updateUserStatus(
+            $userId,
+            $status
+        );
+
+        header("Content-Type: application/json");
+
+        echo json_encode([
+            "success" => $success,
+            "message" => $success
+                ? "User status updated successfully."
+                : "Failed to update user status."
+        ]);
 
         exit;
     }

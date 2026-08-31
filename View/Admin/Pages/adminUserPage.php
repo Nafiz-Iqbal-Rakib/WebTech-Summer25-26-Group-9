@@ -114,7 +114,7 @@ $users = $controller->getUsers();
 
                                 <td>
 
-                                    <select class="user-status">
+                                    <select class="user-status" data-id="<?php echo $user["id"]; ?>">
 
                                         <option
                                             value="active"
