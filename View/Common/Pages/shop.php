@@ -97,7 +97,7 @@ include '../../Layouts/header.php';
                         <div class="product-price">
 
                             <span class="current-price">
-                                $<?= $product['price'] ?> USD
+                                <?= $product['price'] ?> TK
                             </span>
 
                         </div>
