@@ -15,14 +15,40 @@ $products = $controller->getProducts();
     <!-- Sidebar / Aside -->
     <?php include 'sidebar.php'; ?>
 
+
     <!-- Main Content -->
     <main class="main-content">
 
         <div class="content-body">
 
-            <p class="section-subtitle">MANAGE</p>
-            <h1 class="page-title">Products</h1>
 
+            <!-- Page Header -->
+
+            <div class="page-header">
+
+                <div>
+                    <p class="section-subtitle">MANAGE</p>
+                    <h1 class="page-title">Products</h1>
+                </div>
+
+
+                <!-- Search -->
+
+                <div class="search-container">
+
+                    <input
+                        type="text"
+                        placeholder="Search products..."
+                        class="search-input"
+                        id="productSearch"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Product Table -->
 
             <div class="table-container">
 
@@ -31,7 +57,7 @@ $products = $controller->getProducts();
                     <thead>
 
                         <tr>
-                            <th>#</th>
+                            <th>ID</th>
                             <th>NAME</th>
                             <th>SELLER</th>
                             <th>PRICE</th>
@@ -43,7 +69,7 @@ $products = $controller->getProducts();
                     </thead>
 
 
-                    <tbody>
+                    <tbody id="productTableBody">
 
                         <?php foreach ($products as $product): ?>
 
@@ -123,3 +149,41 @@ $products = $controller->getProducts();
     </main>
 
 </div>
+
+
+<script>
+
+const searchInput = document.getElementById("productSearch");
+
+searchInput.addEventListener("input", function () {
+
+    const searchValue = this.value.toLowerCase().trim();
+
+    const rows = document.querySelectorAll("#productTableBody tr");
+
+    rows.forEach(function (row) {
+
+        const productName = row
+            .querySelector(".product-name-bold")
+            .textContent
+            .toLowerCase();
+
+        const seller = row
+            .querySelector(".text-muted")
+            .textContent
+            .toLowerCase();
+
+        if (
+            productName.includes(searchValue) ||
+            seller.includes(searchValue)
+        ) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+
+    });
+
+});
+
+</script>

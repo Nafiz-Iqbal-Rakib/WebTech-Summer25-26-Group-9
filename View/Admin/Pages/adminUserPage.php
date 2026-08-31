@@ -62,10 +62,6 @@ $users = $controller->getUsers();
 
                                     <div class="user-name-col">
 
-                                        <span class="user-avatar">
-                                            <?php echo $user["initial"]; ?>
-                                        </span>
-
                                         <span class="user-fullname">
                                             <?php echo $user["name"]; ?>
                                         </span>
@@ -86,10 +82,8 @@ $users = $controller->getUsers();
 
                                 <td>
 
-                                    <span class="badge-role <?php echo $user["roleClass"]; ?>">
-                                        <?php echo $user["role"]; ?>
-                                    </span>
-
+                                    <?php echo $user["role"]; ?>
+                               
                                 </td>
 
 

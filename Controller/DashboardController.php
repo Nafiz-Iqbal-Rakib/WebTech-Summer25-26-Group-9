@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "/../Model/AdminModel.php";
+
 class DashboardController
 {
     public function getDashboardData()
@@ -13,82 +15,80 @@ class DashboardController
             exit;
         }
 
+        $adminModel = new AdminModel();
+
 
         // Dashboard Statistics
 
-        $totalUsers = 10;
-        $deliveryAgents = 3;
+        $totalUsersResult = $adminModel->getTotalUsers();
+        $deliveryAgentsResult = $adminModel->getDeliveryAgents();
 
-        $totalProducts = 8;
-        $activeListings = 5;
+        $totalProductsResult = $adminModel->getTotalProducts();
+        $activeListingsResult = $adminModel->getActiveListings();
 
-        $totalOrders = 8;
-        $pendingToday = 3;
+        $totalOrdersResult = $adminModel->getTotalOrders();
+        $pendingTodayResult = $adminModel->getPendingOrdersToday();
 
-        $deliveriesAssigned = 3;
-        $unassignedDeliveries = 5;
+        $assignedDeliveriesResult = $adminModel->getAssignedDeliveries();
+        $unassignedDeliveriesResult = $adminModel->getUnassignedDeliveries();
+
+
+        // Convert Database Results
+
+        $totalUsers = $totalUsersResult->fetch_row()[0];
+        $deliveryAgents = $deliveryAgentsResult->fetch_row()[0];
+
+        $totalProducts = $totalProductsResult->fetch_row()[0];
+        $activeListings = $activeListingsResult->fetch_row()[0];
+
+        $totalOrders = $totalOrdersResult->fetch_row()[0];
+        $pendingToday = $pendingTodayResult->fetch_row()[0];
+
+        $deliveriesAssigned = $assignedDeliveriesResult->fetch_row()[0];
+        $unassignedDeliveries = $unassignedDeliveriesResult->fetch_row()[0];
 
 
         // Recent Orders
 
-        $recentOrders = [
+        $recentOrdersResult = $adminModel->getRecentOrders();
 
-            [
-                "id" => "#ORD-001",
-                "customer" => "Ayaan Rahman",
-                "seller" => "Hasan Furniture",
-                "product" => "Oslo Lounge Chair",
-                "amount" => "৳12,500",
-                "status" => "PENDING",
-                "statusClass" => "badge-pending"
-            ],
+        $recentOrders = [];
 
-            [
-                "id" => "#ORD-002",
-                "customer" => "Nadia Islam",
-                "seller" => "Urban Home",
-                "product" => "Linen Throw Pillow Set",
-                "amount" => "৳1,800",
-                "status" => "PROCESSING",
-                "statusClass" => "badge-processing"
-            ],
+        while ($row = $recentOrdersResult->fetch_assoc()) {
 
-            [
-                "id" => "#ORD-003",
-                "customer" => "Fatima Khanam",
-                "seller" => "Elegant Living",
-                "product" => "Marble Side Table",
-                "amount" => "৳8,900",
-                "status" => "SHIPPED",
-                "statusClass" => "badge-shipped"
-            ],
+            $status = strtoupper($row["status"]);
 
-            [
-                "id" => "#ORD-004",
-                "customer" => "Omar Faruk",
-                "seller" => "Light House BD",
-                "product" => "Rattan Pendant Light",
-                "amount" => "৳5,400",
-                "status" => "DELIVERED",
-                "statusClass" => "badge-delivered"
-            ],
+            $recentOrders[] = [
 
-            [
-                "id" => "#ORD-005",
-                "customer" => "Mim Sultana",
-                "seller" => "Natural Craft",
-                "product" => "Jute Storage Basket",
-                "amount" => "৳900",
-                "status" => "PENDING",
-                "statusClass" => "badge-pending"
-            ]
+                "id" => $row["order_id"],
 
-        ];
+                "customer" =>
+                    $row["buyer_first_name"] . " " .
+                    $row["buyer_last_name"],
+
+                "seller" =>
+                    $row["seller_first_name"] . " " .
+                    $row["seller_last_name"],
+
+                "product" => $row["produce_name"],
+
+                "amount" => $row["total_price"],
+
+                "status" => $status,
+
+
+                "created_at" => date(
+                    "d M Y, h:i A",
+                    strtotime($row["created_at"])
+                )
+            ];
+        }
 
 
         // Return Dashboard Data
 
         return [
+
             "totalUsers" => $totalUsers,
             "deliveryAgents" => $deliveryAgents,
 
@@ -105,3 +105,5 @@ class DashboardController
         ];
     }
 }
+
+?>

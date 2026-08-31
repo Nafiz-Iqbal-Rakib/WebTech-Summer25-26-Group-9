@@ -17,14 +17,41 @@ $deliveryAgents = $data["deliveryAgents"];
 
     <?php include 'sidebar.php'; ?>
 
+
+    <!-- Main Content -->
+
     <main class="main-content">
 
         <div class="content-body">
 
-            <p class="section-subtitle">MANAGE</p>
 
-            <h1 class="page-title">Orders</h1>
+            <!-- Page Header -->
 
+            <div class="page-header">
+
+                <div>
+                    <p class="section-subtitle">MANAGE</p>
+                    <h1 class="page-title">Orders</h1>
+                </div>
+
+
+                <!-- Search -->
+
+                <div class="search-container">
+
+                    <input
+                        type="text"
+                        placeholder="Search orders..."
+                        class="search-input"
+                        id="orderSearch"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Orders Table -->
 
             <div class="table-container">
 
@@ -47,7 +74,7 @@ $deliveryAgents = $data["deliveryAgents"];
                     </thead>
 
 
-                    <tbody>
+                    <tbody id="orderTableBody">
 
                         <?php foreach ($orders as $order): ?>
 
@@ -245,3 +272,63 @@ $deliveryAgents = $data["deliveryAgents"];
     </main>
 
 </div>
+
+
+<!-- =========================
+     Order Search
+     ========================= -->
+
+<script>
+
+const orderSearch = document.getElementById("orderSearch");
+
+orderSearch.addEventListener("input", function () {
+
+    const searchValue = this.value.toLowerCase().trim();
+
+    const rows = document.querySelectorAll("#orderTableBody tr");
+
+    rows.forEach(function (row) {
+
+        const orderId = row
+            .querySelector(".order-id")
+            .textContent
+            .toLowerCase();
+
+        const customer = row
+            .children[1]
+            .textContent
+            .toLowerCase();
+
+        const seller = row
+            .children[2]
+            .textContent
+            .toLowerCase();
+
+        const product = row
+            .querySelector(".product-name")
+            .textContent
+            .toLowerCase();
+
+
+        if (
+            orderId.includes(searchValue) ||
+            customer.includes(searchValue) ||
+            seller.includes(searchValue) ||
+            product.includes(searchValue)
+        ) {
+
+            row.style.display = "";
+
+        } else {
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+});
+
+</script>
+

@@ -161,55 +161,56 @@ if (loginForm) {
     // Send Login Request
     function sendLoginRequest() {
 
-    const formData = new FormData(loginForm);
+        const formData = new FormData(loginForm);
 
-    fetch(loginForm.action, {
-        method: "POST",
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
+        fetch(loginForm.action, {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
 
-        if (data.success) {
+            if (data.success) {
 
-            showLoginSuccess(loginPassword, data.message);
+                showLoginSuccess(loginPassword, data.message);
 
-            if (data.role === "admin") {
+                if (data.role === "admin") {
 
-                window.location.href =
-                    "/WebTech-Summer25-26-Group-9/View/Admin/Pages/adminDashboardPage.php";
+                    window.location.href =
+                        "/WebTech-Summer25-26-Group-9/View/Admin/Pages/adminDashboardPage.php";
+
+                }
+                else if (data.role === "employee") {
+
+                    window.location.href =
+                        "/WebTech-Summer25-26-Group-9/View/Employee/Pages/employeeDashboardPage.php";
+
+                }
+                else if (data.role === "delivery") {
+
+                    window.location.href =
+                        "/WebTech-Summer25-26-Group-9/View/Delivery/Pages/deliveryDashboardPage.php";
+
+                }
+
+            } else {
+
+                showLoginBackendError(loginPassword, data.message);
 
             }
-            else if (data.role === "employee") {
 
-                window.location.href =
-                    "/WebTech-Summer25-26-Group-9/View/Employee/Pages/employeeDashboardPage.php";
+        })
+        .catch(error => {
 
-            }
-            else if (data.role === "delivery") {
+            showLoginBackendError(
+                loginPassword,
+                "Something went wrong. Please try again."
+            );
 
-                window.location.href =
-                    "/WebTech-Summer25-26-Group-9/View/Delivery/Pages/deliveryDashboardPage.php";
+            console.log(error);
+        });
+    }
 
-            }
-
-        } else {
-
-            showLoginBackendError(loginPassword, data.message);
-
-        }
-
-    })
-    .catch(error => {
-
-        showLoginBackendError(
-            loginPassword,
-            "Something went wrong. Please try again."
-        );
-
-        // console.log(error);
-    });
-}
 
     // Email Input Handler
     function handleLoginEmailInput() {
@@ -244,13 +245,13 @@ if (loginForm) {
 }
 
 
-// JS for login ened here
+// JS for login ended here
 
 
-//================================================================
+// ================================================================
 
 
-//JS for signUpPage start here
+// JS for signUpPage start here
 
 const registerForm = document.querySelector(".register-form");
 
@@ -289,7 +290,7 @@ if (registerForm) {
             passwordValid &&
             confirmPasswordValid
         ) {
-            registerForm.submit();
+            sendRegisterRequest();
         }
     }
 
@@ -303,6 +304,7 @@ if (registerForm) {
         }
 
         removeRegisterError(firstName);
+
         return true;
     }
 
@@ -316,6 +318,7 @@ if (registerForm) {
         }
 
         removeRegisterError(lastName);
+
         return true;
     }
 
@@ -329,6 +332,7 @@ if (registerForm) {
         }
 
         removeRegisterError(role);
+
         return true;
     }
 
@@ -348,10 +352,12 @@ if (registerForm) {
                 registerEmail,
                 "Please enter a valid email address"
             );
+
             return false;
         }
 
         removeRegisterError(registerEmail);
+
         return true;
     }
 
@@ -367,11 +373,16 @@ if (registerForm) {
         }
 
         if (!isValidPhone(value)) {
-            showRegisterError(phone, "Please enter a valid phone number");
+            showRegisterError(
+                phone,
+                "Please enter a valid phone number"
+            );
+
             return false;
         }
 
         removeRegisterError(phone);
+
         return true;
     }
 
@@ -382,7 +393,11 @@ if (registerForm) {
         const value = registerPassword.value;
 
         if (value.trim() === "") {
-            showRegisterError(registerPassword, "Password is required");
+            showRegisterError(
+                registerPassword,
+                "Password is required"
+            );
+
             return false;
         }
 
@@ -391,10 +406,12 @@ if (registerForm) {
                 registerPassword,
                 "Password must be at least 8 characters"
             );
+
             return false;
         }
 
         removeRegisterError(registerPassword);
+
         return true;
     }
 
@@ -409,6 +426,7 @@ if (registerForm) {
                 confirmPassword,
                 "Please confirm your password"
             );
+
             return false;
         }
 
@@ -417,10 +435,12 @@ if (registerForm) {
                 confirmPassword,
                 "Passwords do not match"
             );
+
             return false;
         }
 
         removeRegisterError(confirmPassword);
+
         return true;
     }
 
@@ -444,7 +464,11 @@ if (registerForm) {
 
         removeRegisterError(input);
 
-        input.style.setProperty("border", "1px solid red", "important");
+        input.style.setProperty(
+            "border",
+            "1px solid red",
+            "important"
+        );
 
         const error = document.createElement("span");
 
@@ -471,6 +495,102 @@ if (registerForm) {
         if (error) {
             error.remove();
         }
+
+        const backendError =
+            input.parentElement.querySelector(".backend-error");
+
+        if (backendError) {
+            backendError.remove();
+        }
+
+        const success =
+            input.parentElement.querySelector(".validation-success");
+
+        if (success) {
+            success.remove();
+        }
+    }
+
+
+    // Show Backend Error
+    function showRegisterBackendError(input, message) {
+
+        removeRegisterError(input);
+
+        const error = document.createElement("span");
+
+        error.classList.add("backend-error");
+        error.textContent = message;
+
+        error.style.color = "red";
+        error.style.fontSize = "12px";
+        error.style.display = "block";
+        error.style.marginTop = "4px";
+
+        input.parentElement.appendChild(error);
+    }
+
+
+    // Show Success
+    function showRegisterSuccess(input, message) {
+
+        removeRegisterError(input);
+
+        const success = document.createElement("span");
+
+        success.classList.add("validation-success");
+        success.textContent = message;
+
+        success.style.color = "green";
+        success.style.fontSize = "12px";
+        success.style.display = "block";
+        success.style.marginTop = "4px";
+
+        input.parentElement.appendChild(success);
+    }
+
+
+    // Send Register Request
+    function sendRegisterRequest() {
+
+        const formData = new FormData(registerForm);
+
+        fetch(registerForm.action, {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+
+            if (data.success) {
+
+                showRegisterSuccess(
+                    registerEmail,
+                    data.message
+                );
+
+                setTimeout(function () {
+                    window.location.href = "loginPage.php";
+                }, 1000);
+
+            } else {
+
+                showRegisterBackendError(
+                    registerEmail,
+                    data.message
+                );
+            }
+
+        })
+        .catch(error => {
+
+            showRegisterBackendError(
+                registerEmail,
+                "Something went wrong. Please try again."
+            );
+
+            console.log(error);
+        });
     }
 
 
@@ -517,7 +637,7 @@ if (registerForm) {
 
     registerPassword.addEventListener("input", function () {
 
-        if (registerPassword.value.length >= 4) {
+        if (registerPassword.value.length >= 8) {
             removeRegisterError(registerPassword);
         }
 
@@ -547,4 +667,4 @@ if (registerForm) {
 }
 
 
-//JS for signUP page end here
+// JS for signUpPage end here

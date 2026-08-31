@@ -11,7 +11,7 @@
         </div>
 
         <!-- Register Form -->
-        <form class="register-form" action=" " method="POST">
+        <form class="register-form" action="\WebTech-Summer25-26-Group-9\Controller\AuthController.php?action=register" method="POST">
             
             <div class="form-group">
                 <input 

@@ -12,7 +12,7 @@ $data = $controller->getDashboardData();
 
 <div class="app-container">
 
-    <!-- Sidebar / Aside -->
+    <!-- Sidebar -->
 
     <?php include 'sidebar.php'; ?>
 
@@ -145,6 +145,7 @@ $data = $controller->getDashboardData();
                             <th>PRODUCT</th>
                             <th>AMOUNT</th>
                             <th>STATUS</th>
+                            <th>DATE</th>
                         </tr>
 
                     </thead>
@@ -195,10 +196,17 @@ $data = $controller->getDashboardData();
 
                                 <td>
 
-                                    <span class="badge-status <?php echo $order["statusClass"]; ?>">
+                                    <span class="badge-status">
                                         <?php echo $order["status"]; ?>
                                     </span>
 
+                                </td>
+
+
+                                <!-- DATE -->
+
+                                <td>
+                                    <?php echo $order["created_at"]; ?>
                                 </td>
 
                             </tr>

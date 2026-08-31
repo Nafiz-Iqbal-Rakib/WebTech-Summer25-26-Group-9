@@ -11,7 +11,7 @@
         </div> 
  
         <!-- Login Form --> 
-        <form class="login-form" action="../../../Controller/AuthController.php" method="POST">
+        <form class="login-form" action="../../../Controller/AuthController.php?action=login" method="POST">
              
             <!-- Username Input --> 
             <div class="form-group"> 

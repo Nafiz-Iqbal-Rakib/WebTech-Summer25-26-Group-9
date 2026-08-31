@@ -1,141 +1,147 @@
 <?php
 
+require_once __DIR__ . "/../Model/AdminModel.php";
+
 class OrderController
 {
+    protected $model;
+
+    public function __construct()
+    {
+        $this->model = new AdminModel();
+    }
+
+
     public function getOrders()
     {
-        $orders = [
+        /* =========================
+           Get Orders
+        ========================= */
 
-            [
-                "id" => "#ORD-001",
-                "customer" => "Ayaan Rahman",
-                "seller" => "Hasan Furniture",
-                "product" => "Oslo Lounge Chair",
-                "amount" => "৳12,500",
-                "date" => "Aug 10, 2026",
-                "status" => "PENDING",
-                "statusClass" => "badge-pending",
-                "delivery" => null,
-                "deliveryInitial" => null
-            ],
+        $result = $this->model->getAllOrders();
 
-            [
-                "id" => "#ORD-002",
-                "customer" => "Nadia Islam",
-                "seller" => "Urban Home",
-                "product" => "Linen Throw Pillow Set",
-                "amount" => "৳1,800",
-                "date" => "Aug 11, 2026",
-                "status" => "PROCESSING",
-                "statusClass" => "badge-processing",
-                "delivery" => null,
-                "deliveryInitial" => null
-            ],
-
-            [
-                "id" => "#ORD-003",
-                "customer" => "Fatima Khanam",
-                "seller" => "Elegant Living",
-                "product" => "Marble Side Table",
-                "amount" => "৳8,900",
-                "date" => "Aug 12, 2026",
-                "status" => "SHIPPED",
-                "statusClass" => "badge-shipped",
-                "delivery" => "Karim Hossain",
-                "deliveryInitial" => "K"
-            ],
-
-            [
-                "id" => "#ORD-004",
-                "customer" => "Omar Faruk",
-                "seller" => "Light House BD",
-                "product" => "Rattan Pendant Light",
-                "amount" => "৳5,400",
-                "date" => "Aug 13, 2026",
-                "status" => "DELIVERED",
-                "statusClass" => "badge-delivered",
-                "delivery" => "Rafiq Ahmed",
-                "deliveryInitial" => "R"
-            ],
-
-            [
-                "id" => "#ORD-005",
-                "customer" => "Mim Sultana",
-                "seller" => "Natural Craft",
-                "product" => "Jute Storage Basket",
-                "amount" => "৳900",
-                "date" => "Aug 14, 2026",
-                "status" => "PENDING",
-                "statusClass" => "badge-pending",
-                "delivery" => null,
-                "deliveryInitial" => null
-            ],
-
-            [
-                "id" => "#ORD-006",
-                "customer" => "Sumaiya Begum",
-                "seller" => "Modern Decor",
-                "product" => "Minimalist Wall Clock",
-                "amount" => "৳2,200",
-                "date" => "Aug 15, 2026",
-                "status" => "PROCESSING",
-                "statusClass" => "badge-processing",
-                "delivery" => null,
-                "deliveryInitial" => null
-            ],
-
-            [
-                "id" => "#ORD-007",
-                "customer" => "Shirina Akter",
-                "seller" => "Wood Works BD",
-                "product" => "Cedar Bookshelf",
-                "amount" => "৳16,000",
-                "date" => "Aug 16, 2026",
-                "status" => "PENDING",
-                "statusClass" => "badge-pending",
-                "delivery" => null,
-                "deliveryInitial" => null
-            ],
-
-            [
-                "id" => "#ORD-008",
-                "customer" => "Ayaan Rahman",
-                "seller" => "Aroma Living",
-                "product" => "Arabi Scented Candle",
-                "amount" => "৳650",
-                "date" => "Aug 17, 2026",
-                "status" => "SHIPPED",
-                "statusClass" => "badge-shipped",
-                "delivery" => "Tariq Miah",
-                "deliveryInitial" => "T"
-            ]
-
-        ];
+        $orders = [];
 
 
-        $deliveryAgents = [
+        while ($row = $result->fetch_assoc()) {
 
-            [
-                "id" => 1,
-                "name" => "Karim Hossain"
-            ],
+            /* Delivery Agent */
 
-            [
-                "id" => 2,
-                "name" => "Rafiq Ahmed"
-            ],
+            if ($row["delivery_first_name"] !== null) {
 
-            [
-                "id" => 3,
-                "name" => "Tariq Miah"
-            ]
+                $deliveryName =
+                    $row["delivery_first_name"] . " " .
+                    $row["delivery_last_name"];
 
-        ];
+                $deliveryInitial =
+                    strtoupper(
+                        substr($row["delivery_first_name"], 0, 1)
+                    );
 
+            } else {
+
+                $deliveryName = null;
+                $deliveryInitial = null;
+            }
+
+
+            /* Status Class */
+
+            $status = strtolower($row["status"]);
+
+            if ($status == "pending") {
+
+                $statusClass = "badge-pending";
+
+            } elseif ($status == "processing") {
+
+                $statusClass = "badge-processing";
+
+            } elseif ($status == "shipped") {
+
+                $statusClass = "badge-shipped";
+
+            } elseif ($status == "delivered") {
+
+                $statusClass = "badge-delivered";
+
+            } else {
+
+                $statusClass = "";
+            }
+
+
+            /* Order Data */
+
+            $orders[] = [
+
+                "id" => 
+                    $row["id"],
+
+                "customer" =>
+                    $row["buyer_first_name"] . " " .
+                    $row["buyer_last_name"],
+
+                "seller" =>
+                    $row["seller_first_name"] . " " .
+                    $row["seller_last_name"],
+
+                "product" => $row["produce_name"],
+
+                "amount" => "৳" . number_format(
+                    $row["total_price"]
+                ),
+
+                "date" => date(
+                    "M d, Y",
+                    strtotime($row["created_at"])
+                ),
+
+                "status" => strtoupper($row["status"]),
+
+                "statusClass" => $statusClass,
+
+                "delivery" => $deliveryName,
+
+                "deliveryInitial" => $deliveryInitial
+            ];
+        }
+
+
+        /* =========================
+           Get Delivery Agents
+        ========================= */
+
+        $result = $this->model->getAllDeliveryAgents();
+
+        $deliveryAgents = [];
+
+
+        while ($row = $result->fetch_assoc()) {
+
+            $deliveryAgents[] = [
+
+                "id" => $row["id"],
+
+                "name" =>
+                    $row["first_name"] . " " .
+                    $row["last_name"]
+            ];
+        }
+
+
+        /* =========================
+           Return Data
+        ========================= */
 
         return [
+
             "orders" => $orders,
+
             "deliveryAgents" => $deliveryAgents
+
         ];
     }
 }
+
+?>

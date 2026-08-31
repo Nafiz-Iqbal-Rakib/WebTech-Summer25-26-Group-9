@@ -1,113 +1,53 @@
 <?php
 
+require_once __DIR__ . "/../Model/AdminModel.php";
+
 class UserController
 {
+    protected $model;
+
+
+    public function __construct()
+    {
+        $this->model = new AdminModel();
+    }
+
+
+    // Get Users
     public function getUsers()
     {
-        $users = [
+        $result = $this->model->getAllUsers();
 
-            [
-                "initial" => "A",
-                "name" => "Ayaan Rahman",
-                "email" => "ayaan@example.com",
-                "role" => "CUSTOMER",
-                "roleClass" => "badge-customer",
-                "orders" => 8,
-                "status" => "active"
-            ],
+        $users = [];
 
-            [
-                "initial" => "N",
-                "name" => "Nadia Islam",
-                "email" => "nadia@example.com",
-                "role" => "CUSTOMER",
-                "roleClass" => "badge-customer",
-                "orders" => 14,
-                "status" => "active"
-            ],
 
-            [
-                "initial" => "K",
-                "name" => "Karim Hossain",
-                "email" => "karim@arabi.com",
-                "role" => "DELIVERY",
-                "roleClass" => "badge-delivery",
-                "orders" => "—",
-                "status" => "active"
-            ],
+        while ($row = $result->fetch_assoc()) {
 
-            [
-                "initial" => "S",
-                "name" => "Sumaiya Begum",
-                "email" => "sumaiya@example.com",
-                "role" => "CUSTOMER",
-                "roleClass" => "badge-customer",
-                "orders" => 3,
-                "status" => "suspended"
-            ],
+            $users[] = [
 
-            [
-                "initial" => "R",
-                "name" => "Rafiq Ahmed",
-                "email" => "rafiq@arabi.com",
-                "role" => "DELIVERY",
-                "roleClass" => "badge-delivery",
-                "orders" => "—",
-                "status" => "active"
-            ],
+                "id" => $row["id"],
 
-            [
-                "initial" => "F",
-                "name" => "Fatima Khanam",
-                "email" => "fatima@example.com",
-                "role" => "CUSTOMER",
-                "roleClass" => "badge-customer",
-                "orders" => 6,
-                "status" => "active"
-            ],
+                "name" =>
+                    $row["first_name"] . " " .
+                    $row["last_name"],
 
-            [
-                "initial" => "T",
-                "name" => "Tariq Miah",
-                "email" => "tariq@arabi.com",
-                "role" => "DELIVERY",
-                "roleClass" => "badge-delivery",
-                "orders" => "—",
-                "status" => "deactivated"
-            ],
+                "email" =>
+                    $row["email"],
 
-            [
-                "initial" => "S",
-                "name" => "Shirina Akter",
-                "email" => "shirina@example.com",
-                "role" => "CUSTOMER",
-                "roleClass" => "badge-customer",
-                "orders" => 1,
-                "status" => "active"
-            ],
+                "role" =>
+                    strtoupper($row["role"]),
 
-            [
-                "initial" => "O",
-                "name" => "Omar Faruk",
-                "email" => "omar@example.com",
-                "role" => "CUSTOMER",
-                "roleClass" => "badge-customer",
-                "orders" => 9,
-                "status" => "active"
-            ],
+                "orders" =>
+                    $row["total_orders"],
 
-            [
-                "initial" => "M",
-                "name" => "Mim Sultana",
-                "email" => "mim@example.com",
-                "role" => "CUSTOMER",
-                "roleClass" => "badge-customer",
-                "orders" => 2,
-                "status" => "active"
-            ]
+                "status" =>
+                    $row["status"]
+            ];
+        }
 
-        ];
 
         return $users;
     }
 }
+
+?>
