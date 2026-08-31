@@ -1,6 +1,6 @@
 </main>
 
-<footer class="main-footer">
+<footer class="main-footer" id="main-footer">
 
     <div class="footer-wrapper">
 

@@ -1,3 +1,4 @@
+
 /* General Reset */
 
 * {
@@ -5,7 +6,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-
 }
 
 html {
@@ -18,7 +18,9 @@ html {
 }
 
 
-/* 1. Hero / Banner Section */
+/* =========================================================
+   1. Hero / Banner Section
+   ========================================================= */
 
 .hero-section {
     background-color: #f6f5f3;
@@ -67,6 +69,27 @@ html {
     max-width: 400px;
 }
 
+.buy-now-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 1px solid #000;
+    background: #e8ede7;
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.buy-now-btn:hover {
+    background: #000;
+    color: #fff;
+}
+
+
 .btn-outline {
     display: inline-block;
     padding: 14px 35px;
@@ -97,7 +120,9 @@ html {
 }
 
 
-/*  2. Brands / Logos Section */
+/* =========================================================
+   2. Brands / Logos Section
+   ========================================================= */
 
 .brands-section {
     background-color: #fcfbfa;
@@ -120,7 +145,9 @@ html {
 }
 
 
-/*  3. Featured Collections Section */
+/* =========================================================
+   3. Featured Collections Section
+   ========================================================= */
 
 .collections-section {
     padding: 60px 40px;
@@ -196,7 +223,7 @@ html {
 }
 
 .btn-solid {
-    background: #000;
+    background-color: #000;
     color: #fff;
     padding: 12px 25px;
     text-decoration: none;
@@ -258,13 +285,14 @@ html {
 }
 
 
-/* 4. Fashion Collection Section */
+/* =========================================================
+   4. Fashion Collection Section
+   ========================================================= */
 
 .fashion-collection {
     padding: 80px 40px;
     background-color: #ffffff;
-    font-family: "Segoe UI",
-        Roboto, Helvetica, Arial, sans-serif;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .section-header {
@@ -303,12 +331,12 @@ html {
 .filter-tabs li a:hover {
     color: #000;
     border-bottom: 1px solid #000;
-
 }
 
 
-
-/* Product Grid */
+/* =========================================================
+   Product Grid
+   ========================================================= */
 
 .product-grid {
     display: grid;
@@ -318,11 +346,23 @@ html {
 }
 
 
+/* Product Wrapper */
+
+.product-wrapper {
+    text-align: center;
+}
+
+
 /* Product Card */
+
 .product-card {
     text-align: center;
-    transition: transform 0.2s ease;
 }
+
+
+/* =========================================================
+   Product Image Card
+   ========================================================= */
 
 .product-image {
     background-color: #f6f6f6;
@@ -334,7 +374,11 @@ html {
     justify-content: center;
     align-items: center;
     aspect-ratio: 1 / 1;
+    transition: transform 0.2s ease;
 }
+
+
+/* Image Size Stays Same */
 
 .product-image img {
     max-width: 100%;
@@ -343,13 +387,16 @@ html {
 }
 
 
+/* Only Grey Card Gets Bigger */
 
-.product-card:hover {
+.product-image:hover {
     transform: scale(1.03);
 }
 
 
-/* Product Rating */
+/* =========================================================
+   Product Rating
+   ========================================================= */
 
 .product-rating {
     color: #f1c40f;
@@ -362,7 +409,9 @@ html {
 }
 
 
-/* Product Info */
+/* =========================================================
+   Product Info
+   ========================================================= */
 
 .product-name {
     font-size: 13px;
@@ -382,10 +431,39 @@ html {
 }
 
 
-/* View All Button */
+/* =========================================================
+   Product Buy Now Button
+   ========================================================= */
+
+.product-wrapper .buy-now-btn {
+    display: inline-block;
+    border: none;
+    margin-top: 10px;
+    padding: 12px 35px;
+    background-color: #dff6f0;
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.product-wrapper .buy-now-btn:hover {
+    background-color: #2db79b;
+    color: #fff;
+}
+
+
+/* =========================================================
+   View All Button
+   ========================================================= */
 
 .view-all-action {
     text-align: center;
+    margin-top: 100px;
 }
 
 .view-all-action .btn-outline {
@@ -407,7 +485,9 @@ html {
 }
 
 
-/* 5. Promotional Banner Section */
+/* =========================================================
+   5. Promotional Banner Section
+   ========================================================= */
 
 .promo-banner-section {
     background-color: #dff6f0;
@@ -461,7 +541,6 @@ html {
 /* Promo Container */
 
 .promo-container {
-    
     display: flex;
     max-width: 1200px;
     width: 100%;
@@ -552,7 +631,9 @@ html {
 }
 
 
-/* 6. Features / Benefits Section */
+/* =========================================================
+   6. Features / Benefits Section
+   ========================================================= */
 
 .features-section {
     padding: 80px 0;
@@ -618,7 +699,9 @@ html {
 }
 
 
-/*7. New Items Section*/
+/* =========================================================
+   7. New Items Section
+   ========================================================= */
 
 .new-items-section {
     padding: 80px 0;

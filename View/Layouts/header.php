@@ -40,6 +40,10 @@
         <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\updateInfo.css">
         <!-- forgotten password css -->
         <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\forgetPass.css">
+
+        <!-- shop css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\shop.css">
+         
          
 
 
@@ -71,9 +75,9 @@
                     <nav class="nav-links">
                         <ul>
                             <li><a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\landingPage.php">Home</a></li>
-                            <li><a href="#collections-section">Shop</a></li>
-                            <li><a href="#collections-section">New Collection</a></li>
-                            <li><a href="#collections-section">Contact</a></li>
+                            <li><a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\shop.php">Shop</a></li>
+                            <li><a href="http://localhost/WebTech-Summer25-26-Group-9/View/Common/Pages/landingPage.php#new-items-section">New Collection</a></li>
+                            <li><a href="#main-footer">Contact</a></li>
                         </ul>
                     </nav>
             
