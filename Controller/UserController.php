@@ -14,6 +14,7 @@ class UserController
 
 
     // Get Users
+
     public function getUsers()
     {
         $result = $this->model->getAllUsers();
@@ -25,7 +26,8 @@ class UserController
 
             $users[] = [
 
-                "id" => $row["id"],
+                "id" =>
+                    $row["id"],
 
                 "name" =>
                     $row["first_name"] . " " .
@@ -47,6 +49,52 @@ class UserController
 
 
         return $users;
+    }
+
+
+    // Delete User
+
+    public function deleteUser($id)
+    {
+        return $this->model->deleteUser($id);
+    }
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| AJAX DELETE REQUEST
+|--------------------------------------------------------------------------
+*/
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    if (isset($_POST["delete_user"]) && isset($_POST["user_id"])) {
+
+        $id = intval($_POST["user_id"]);
+
+        $controller = new UserController();
+
+        $result = $controller->deleteUser($id);
+
+        header("Content-Type: application/json");
+
+        if ($result) {
+
+            echo json_encode([
+                "success" => true,
+                "message" => "User deleted successfully."
+            ]);
+
+        } else {
+
+            echo json_encode([
+                "success" => false,
+                "message" => "Failed to delete user."
+            ]);
+        }
+
+        exit;
     }
 }
 

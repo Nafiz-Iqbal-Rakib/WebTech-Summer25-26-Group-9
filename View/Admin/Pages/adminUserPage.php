@@ -2,8 +2,11 @@
 <?php include "../../../Controller/UserController.php"; ?>
 
 <?php
+
 $controller = new UserController();
+
 $users = $controller->getUsers();
+
 ?>
 
 <div class="app-container">
@@ -22,11 +25,12 @@ $users = $controller->getUsers();
                 </div>
 
                 <div class="search-container">
+
                     <input
                         type="text"
                         placeholder="Search users..."
-                        class="search-input"
-                    >
+                        class="search-input">
+
                 </div>
 
             </div>
@@ -39,6 +43,7 @@ $users = $controller->getUsers();
                     <thead>
 
                         <tr>
+                            <th>ID</th>
                             <th>NAME</th>
                             <th>EMAIL</th>
                             <th>ROLE</th>
@@ -55,6 +60,13 @@ $users = $controller->getUsers();
                         <?php foreach ($users as $user): ?>
 
                             <tr>
+
+                                <!-- ID -->
+
+                                <td class="user-id">
+                                    <?php echo $user["id"]; ?>
+                                </td>
+
 
                                 <!-- NAME -->
 
@@ -74,7 +86,9 @@ $users = $controller->getUsers();
                                 <!-- EMAIL -->
 
                                 <td class="text-muted">
+
                                     <?php echo $user["email"]; ?>
+
                                 </td>
 
 
@@ -83,14 +97,16 @@ $users = $controller->getUsers();
                                 <td>
 
                                     <?php echo $user["role"]; ?>
-                               
+
                                 </td>
 
 
                                 <!-- ORDERS -->
 
                                 <td>
+
                                     <?php echo $user["orders"]; ?>
+
                                 </td>
 
 
@@ -129,8 +145,11 @@ $users = $controller->getUsers();
 
                                     <button
                                         type="button"
-                                        class="delete-user-btn">
+                                        class="delete-user-btn"
+                                        data-id="<?php echo $user["id"]; ?>">
+
                                         DELETE
+
                                     </button>
 
                                 </td>
@@ -150,3 +169,7 @@ $users = $controller->getUsers();
     </main>
 
 </div>
+
+
+<script src="../../Common/JS/user.js"></script>
+<script src="../JS/user.js"></script>

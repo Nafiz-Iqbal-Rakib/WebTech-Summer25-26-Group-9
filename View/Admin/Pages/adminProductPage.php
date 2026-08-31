@@ -128,8 +128,8 @@ $products = $controller->getProducts();
                                     <button
                                         type="button"
                                         class="delete-product-btn"
-                                    >
-                                        Delete
+                                        data-id="<?php echo $product["id"]; ?>">
+                                        DELETE
                                     </button>
 
                                 </td>
@@ -150,40 +150,4 @@ $products = $controller->getProducts();
 
 </div>
 
-
-<script>
-
-const searchInput = document.getElementById("productSearch");
-
-searchInput.addEventListener("input", function () {
-
-    const searchValue = this.value.toLowerCase().trim();
-
-    const rows = document.querySelectorAll("#productTableBody tr");
-
-    rows.forEach(function (row) {
-
-        const productName = row
-            .querySelector(".product-name-bold")
-            .textContent
-            .toLowerCase();
-
-        const seller = row
-            .querySelector(".text-muted")
-            .textContent
-            .toLowerCase();
-
-        if (
-            productName.includes(searchValue) ||
-            seller.includes(searchValue)
-        ) {
-            row.style.display = "";
-        } else {
-            row.style.display = "none";
-        }
-
-    });
-
-});
-
-</script>
+<script src="../JS/product.js"></script>

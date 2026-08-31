@@ -251,6 +251,28 @@ class AdminModel
         return $this->connection->query($sql);
     }
 
+    public function deleteUser($id)
+    {
+        $sql = "DELETE FROM users WHERE id = ?";
+
+        $stmt = $this->connection->prepare($sql);
+
+        $stmt->bind_param("i", $id);
+
+        return $stmt->execute();
+    }
+
+    public function deleteProduct($id)
+    {
+        $sql = "DELETE FROM products WHERE id = ?";
+    
+        $stmt = $this->connection->prepare($sql);
+    
+        $stmt->bind_param("i", $id);
+    
+        return $stmt->execute();
+    }
+
 }
 
 ?>

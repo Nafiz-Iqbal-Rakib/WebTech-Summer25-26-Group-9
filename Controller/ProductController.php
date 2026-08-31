@@ -6,10 +6,16 @@ class ProductController
 {
     protected $model;
 
+
     public function __construct()
     {
         $this->model = new AdminModel();
     }
+
+
+    // =========================
+    // GET ALL PRODUCTS
+    // =========================
 
     public function getProducts()
     {
@@ -17,9 +23,12 @@ class ProductController
 
         $products = [];
 
+
         while ($row = $result->fetch_assoc()) {
 
-            
+
+            // Product Status
+
             if ($row["stock"] == 0) {
 
                 $status = "OUT OF STOCK";
@@ -37,26 +46,85 @@ class ProductController
             }
 
 
+            // Product Data
+
             $products[] = [
 
-                "id" => $row["id"],
+                "id" =>
+                    $row["id"],
 
-                "name" => $row["produce_name"],
+                "name" =>
+                    $row["produce_name"],
 
-                "seller" => $row["first_name"] . " " . $row["last_name"],
+                "seller" =>
+                    $row["first_name"] . " " .
+                    $row["last_name"],
 
-                "price" => "$" . $row["price"],
+                "price" =>
+                    $row["price"],
 
-                "stock" => $row["stock"],
+                "stock" =>
+                    $row["stock"],
 
-                "status" => $status,
+                "status" =>
+                    $status,
 
-                "statusClass" => $statusClass
-
+                "statusClass" =>
+                    $statusClass
             ];
         }
 
+
         return $products;
+    }
+
+
+    // =========================
+    // DELETE PRODUCT
+    // =========================
+
+    public function deleteProduct($id)
+    {
+        return $this->model->deleteProduct($id);
+    }
+}
+
+
+/* =========================
+   DELETE REQUEST
+========================= */
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    $data = json_decode(
+        file_get_contents("php://input"),
+        true
+    );
+
+
+    if (
+        isset($data["action"]) &&
+        $data["action"] === "delete" &&
+        isset($data["id"])
+    ) {
+
+        $controller = new ProductController();
+
+
+        $success = $controller->deleteProduct(
+            $data["id"]
+        );
+
+
+        header("Content-Type: application/json");
+
+
+        echo json_encode([
+            "success" => $success
+        ]);
+
+
+        exit;
     }
 }
 
