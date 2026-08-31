@@ -6,6 +6,7 @@ const UPDATE_INFO_URL =
     "/WebTech-Summer25-26-Group-9/Controller/UpdateInfoController.php";
 
 
+
 // ============================================================
 // PERSONAL INFORMATION
 // ============================================================
@@ -30,7 +31,7 @@ if (personalInfoForm) {
 
 
     // ========================================================
-    // Validate First Name
+    // VALIDATE FIRST NAME
     // ========================================================
 
     function validateFirstName() {
@@ -52,7 +53,7 @@ if (personalInfoForm) {
 
 
     // ========================================================
-    // Validate Last Name
+    // VALIDATE LAST NAME
     // ========================================================
 
     function validateLastName() {
@@ -74,7 +75,7 @@ if (personalInfoForm) {
 
 
     // ========================================================
-    // Validate Phone
+    // VALIDATE PHONE
     // ========================================================
 
     function validatePhone() {
@@ -109,6 +110,7 @@ if (personalInfoForm) {
 
         return true;
     }
+
 
 
     // ========================================================
@@ -233,6 +235,7 @@ if (personalInfoForm) {
     );
 
 
+
     // ========================================================
     // FIRST NAME INPUT
     // ========================================================
@@ -252,6 +255,7 @@ if (personalInfoForm) {
     );
 
 
+
     // ========================================================
     // LAST NAME INPUT
     // ========================================================
@@ -269,6 +273,7 @@ if (personalInfoForm) {
 
         }
     );
+
 
 
     // ========================================================
@@ -328,8 +333,9 @@ if (changePasswordForm) {
         );
 
 
+
     // ========================================================
-    // Validate Current Password
+    // VALIDATE CURRENT PASSWORD
     // ========================================================
 
     function validateCurrentPassword() {
@@ -355,8 +361,9 @@ if (changePasswordForm) {
     }
 
 
+
     // ========================================================
-    // Validate New Password
+    // VALIDATE NEW PASSWORD
     // ========================================================
 
     function validateNewPassword() {
@@ -382,8 +389,9 @@ if (changePasswordForm) {
     }
 
 
+
     // ========================================================
-    // Validate Confirm Password
+    // VALIDATE CONFIRM PASSWORD
     // ========================================================
 
     function validateConfirmPassword() {
@@ -421,6 +429,7 @@ if (changePasswordForm) {
 
         return true;
     }
+
 
 
     // ========================================================
@@ -544,6 +553,7 @@ if (changePasswordForm) {
     );
 
 
+
     // ========================================================
     // CURRENT PASSWORD INPUT
     // ========================================================
@@ -563,6 +573,7 @@ if (changePasswordForm) {
 
         }
     );
+
 
 
     // ========================================================
@@ -596,6 +607,7 @@ if (changePasswordForm) {
 
         }
     );
+
 
 
     // ========================================================
@@ -645,6 +657,12 @@ if (deleteAccountForm) {
         );
 
 
+    const deleteButton =
+        deleteAccountForm.querySelector(
+            "button[type='submit']"
+        );
+
+
     // ========================================================
     // DELETE SUBMIT
     // ========================================================
@@ -660,6 +678,10 @@ if (deleteAccountForm) {
                 deleteConfirmation.value.trim();
 
 
+            // ------------------------------------------------
+            // Validate Empty
+            // ------------------------------------------------
+
             if (value === "") {
 
                 showProfileError(
@@ -670,6 +692,10 @@ if (deleteAccountForm) {
                 return;
             }
 
+
+            // ------------------------------------------------
+            // Validate DELETE
+            // ------------------------------------------------
 
             if (value !== "DELETE") {
 
@@ -740,6 +766,11 @@ if (deleteAccountForm) {
                 }
 
 
+
+                // ====================================================
+                // DELETE SUCCESS
+                // ====================================================
+
                 if (data.success) {
 
                     showProfileSuccess(
@@ -749,6 +780,22 @@ if (deleteAccountForm) {
 
 
                     deleteAccountForm.reset();
+
+
+                    // ------------------------------------------------
+                    // Redirect to Login Page
+                    // ------------------------------------------------
+
+                    setTimeout(
+                        function () {
+
+                            window.location.href =
+                                "/WebTech-Summer25-26-Group-9/View/Common/Pages/loginPage.php";
+
+                        },
+                        1000
+                    );
+
 
                 } else {
 
@@ -777,6 +824,7 @@ if (deleteAccountForm) {
     );
 
 
+
     // ========================================================
     // DELETE INPUT
     // ========================================================
@@ -785,14 +833,53 @@ if (deleteAccountForm) {
         "input",
         function () {
 
-            if (
-                deleteConfirmation.value.trim() ===
-                "DELETE"
-            ) {
+            const value =
+                deleteConfirmation.value.trim();
+
+
+            // ------------------------------------------------
+            // DELETE লিখলে button color change হবে
+            // ------------------------------------------------
+
+            if (value === "DELETE") {
 
                 removeProfileError(
                     deleteConfirmation
                 );
+
+
+                if (deleteButton) {
+
+                    deleteButton.style.backgroundColor =
+                        "#dc3545";
+
+                    deleteButton.style.borderColor =
+                        "#dc3545";
+
+                    deleteButton.style.color =
+                        "#ffffff";
+                }
+
+
+            } else {
+
+                // ------------------------------------------------
+                // DELETE না থাকলে আগের button color
+                // ফিরে যাবে
+                // ------------------------------------------------
+
+                if (deleteButton) {
+
+                    deleteButton.style.backgroundColor =
+                        "";
+
+                    deleteButton.style.borderColor =
+                        "";
+
+                    deleteButton.style.color =
+                        "";
+                }
+
             }
 
         }
@@ -810,19 +897,6 @@ function isValidPhone(value) {
 
     return /^[0-9+\-\s()]{7,20}$/.test(
         value
-    );
-}
-
-
-
-// ============================================================
-// GET MESSAGE PARENT
-// ============================================================
-
-function getProfileMessageParent(input) {
-
-    return input.closest(
-        ".form-group"
     );
 }
 
@@ -862,26 +936,39 @@ function showProfileError(
     error.style.color =
         "red";
 
-
     error.style.fontSize =
         "12px";
-
 
     error.style.display =
         "block";
 
-
     error.style.marginTop =
-        "4px";
+        "8px";
 
 
-    const parent =
-        getProfileMessageParent(input);
+    const form =
+        input.closest("form");
 
 
-    if (parent) {
+    if (form) {
 
-        parent.appendChild(error);
+        const button =
+            form.querySelector(
+                "button[type='submit']"
+            );
+
+
+        if (button) {
+
+            button.insertAdjacentElement(
+                "afterend",
+                error
+            );
+
+        } else {
+
+            form.appendChild(error);
+        }
     }
 }
 
@@ -921,26 +1008,39 @@ function showProfileBackendError(
     error.style.color =
         "red";
 
-
     error.style.fontSize =
         "12px";
-
 
     error.style.display =
         "block";
 
-
     error.style.marginTop =
-        "4px";
+        "8px";
 
 
-    const parent =
-        getProfileMessageParent(input);
+    const form =
+        input.closest("form");
 
 
-    if (parent) {
+    if (form) {
 
-        parent.appendChild(error);
+        const button =
+            form.querySelector(
+                "button[type='submit']"
+            );
+
+
+        if (button) {
+
+            button.insertAdjacentElement(
+                "afterend",
+                error
+            );
+
+        } else {
+
+            form.appendChild(error);
+        }
     }
 }
 
@@ -980,26 +1080,39 @@ function showProfileSuccess(
     success.style.color =
         "green";
 
-
     success.style.fontSize =
         "12px";
-
 
     success.style.display =
         "block";
 
-
     success.style.marginTop =
-        "4px";
+        "8px";
 
 
-    const parent =
-        getProfileMessageParent(input);
+    const form =
+        input.closest("form");
 
 
-    if (parent) {
+    if (form) {
 
-        parent.appendChild(success);
+        const button =
+            form.querySelector(
+                "button[type='submit']"
+            );
+
+
+        if (button) {
+
+            button.insertAdjacentElement(
+                "afterend",
+                success
+            );
+
+        } else {
+
+            form.appendChild(success);
+        }
     }
 }
 
@@ -1021,17 +1134,17 @@ function removeProfileError(input) {
     );
 
 
-    const parent =
-        getProfileMessageParent(input);
+    const form =
+        input.closest("form");
 
 
-    if (!parent) {
+    if (!form) {
         return;
     }
 
 
     const messages =
-        parent.querySelectorAll(
+        form.querySelectorAll(
             ".validation-error, " +
             ".backend-error, " +
             ".validation-success"
