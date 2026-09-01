@@ -81,52 +81,52 @@ if (session_status() === PHP_SESSION_NONE) {
                     <nav class="nav-links">
                         <ul>
 
-    <li>
-        <a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\landingPage.php">
-            Home
-        </a>
-    </li>
+                            <li>
+                                <a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\landingPage.php">
+                                    Home
+                                </a>
+                            </li>
 
-    <li>
-        <a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\shop.php">
-            Shop
-        </a>
-    </li>
-
-
-    <?php
-
-    if(($_SESSION["role"] ?? "") == "buyer")
-    {
-
-    ?>
-
-        <li>
-            <a href="\WebTech-Summer25-26-Group-9\View\Buyer\Pages\MyOrders.php">
-                My Orders
-            </a>
-        </li>
-
-    <?php
-
-    }
-
-    ?>
+                            <li>
+                                <a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\shop.php">
+                                    Shop
+                                </a>
+                            </li>
 
 
-    <li>
-        <a href="http://localhost/WebTech-Summer25-26-Group-9/View/Common/Pages/landingPage.php#new-items-section">
-            New Collection
-        </a>
-    </li>
+                            <li>
+                                <a href="http://localhost/WebTech-Summer25-26-Group-9/View/Common/Pages/landingPage.php#new-items-section">
+                                    New Collection
+                                </a>
+                            </li>
 
-    <li>
-        <a href="#main-footer">
-            Contact
-        </a>
-    </li>
+                            <li>
+                                <a href="#main-footer">
+                                    Contact
+                                </a>
+                            </li>
 
-</ul>
+                            <?php
+
+                            if(($_SESSION["role"] ?? "") == "buyer")
+                            {
+                        
+                            ?>
+                        
+                                <li>
+                                    <a href="\WebTech-Summer25-26-Group-9\View\Buyer\Pages\MyOrders.php">
+                                        My Orders
+                                    </a>
+                                </li>
+                        
+                            <?php
+                        
+                            }
+                        
+                            ?>
+
+                        </ul>
+
                     </nav>
             
                     <!-- Action Icons -->
