@@ -88,7 +88,7 @@ class SellerModel
         ) {
 
             $uploadDirectory =
-                __DIR__ . "/../uploads/products/";
+                __DIR__ . "/../Uploads/products/";
 
 
             if (!is_dir($uploadDirectory)) {

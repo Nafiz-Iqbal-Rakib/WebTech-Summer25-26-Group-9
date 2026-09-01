@@ -31,7 +31,7 @@ class ShopController
                     $row["product_name"],
 
                 "image" =>
-                    "/WebTech-Summer25-26-Group-9/uploads/products/" .
+                    "/WebTech-Summer25-26-Group-9/Uploads/products/" .
                     $row["img"],
 
                 "price" =>

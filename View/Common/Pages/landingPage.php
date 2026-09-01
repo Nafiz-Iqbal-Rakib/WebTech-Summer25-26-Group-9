@@ -6,9 +6,6 @@ $shopController = new ShopController();
 
 $products = $shopController->getProducts();
 
-/*
- * Home page এ maximum 8 products দেখাবে
- */
 $featuredProducts = array_slice($products, 0, 8);
 
 ?>
@@ -54,7 +51,7 @@ $featuredProducts = array_slice($products, 0, 8);
         <div class="hero-image">
 
             <img
-                src="\WebTech-Summer25-26-Group-9\Uploaded File\banerimg.png"
+                src="\WebTech-Summer25-26-Group-9\Asset\banerimg.png"
                 alt="Green Dress Offer"
             >
 
@@ -408,7 +405,7 @@ $featuredProducts = array_slice($products, 0, 8);
         <div class="promo-image-wrapper">
 
             <img
-                src="../Asset/cargopant.png"
+                src="\WebTech-Summer25-26-Group-9\Asset\cargopant.png"
                 alt="Trendy Cargo Pants"
             >
 
