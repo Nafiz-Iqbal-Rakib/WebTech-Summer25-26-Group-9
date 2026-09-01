@@ -107,13 +107,12 @@ include '../../Layouts/header.php';
                 </div>
 
 
-                <!-- Order Now -->
-                <a
-                    class="buy-now-btn"
-                    href="../../Buyer/Pages/Cart.php?product_id=<?= (int)$product['id'] ?>"
-                >
-                    ORDER NOW
-                </a>
+                <!-- Buy Now -->
+                <button
+                     class="buy-now-btn"
+                     data-id="<?= $product['id'] ?>">
+                     BUY NOW
+                </button>
 
             </div>
 

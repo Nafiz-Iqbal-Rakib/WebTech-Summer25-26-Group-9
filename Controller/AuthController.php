@@ -70,15 +70,6 @@ class AuthController
         $_SESSION["email"] = $user[1];
         $_SESSION["role"] = $user[2];
 
-        if (isset($_POST["remember"])) {
-            setcookie(
-                "remember_email",
-                $email,
-                time() + (86400 * 7),
-                "/"
-            );
-        }
-
 
         return [
             "success" => true,

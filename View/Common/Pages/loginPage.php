@@ -22,7 +22,6 @@
                     name="email"
                     class="form-control" 
                     placeholder="Enter E-mail here"
-                    value="<?= htmlspecialchars($_COOKIE['remember_email'] ?? '') ?>"
                 > 
             </div> 
  
