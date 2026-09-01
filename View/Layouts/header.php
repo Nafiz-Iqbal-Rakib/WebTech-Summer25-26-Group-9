@@ -1,7 +1,9 @@
 <?php
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +13,10 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>
         <?= $title ?? 'My Website' ?>
@@ -19,55 +24,94 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
     <!-- Header CSS -->
-    <link rel="stylesheet" href="../../Layouts/header.css">
+    <link
+        rel="stylesheet"
+        href="../../Layouts/header.css"
+    >
 
 
     <!-- Footer CSS -->
-    <link rel="stylesheet" href="../../Layouts/footer.css">
+    <link
+        rel="stylesheet"
+        href="../../Layouts/footer.css"
+    >
 
 
     <!-- Landing Page CSS -->
-    <link rel="stylesheet" href="../../Common/Designs/landingPage.css">
+    <link
+        rel="stylesheet"
+        href="../../Common/Designs/landingPage.css"
+    >
 
 
     <!-- Login Page CSS -->
-    <link rel="stylesheet" href="../../Common/Designs/loginPage.css">
+    <link
+        rel="stylesheet"
+        href="../../Common/Designs/loginPage.css"
+    >
 
 
     <!-- Sign Up Page CSS -->
-    <link rel="stylesheet" href="../../Common/Designs/signUp.css">
+    <link
+        rel="stylesheet"
+        href="../../Common/Designs/signUp.css"
+    >
 
 
     <!-- Admin Dashboard CSS -->
-    <link rel="stylesheet" href="../../Admin/Designs/dashboard.css">
+    <link
+        rel="stylesheet"
+        href="../../Admin/Designs/dashboard.css"
+    >
 
 
     <!-- Admin Sidebar CSS -->
-    <link rel="stylesheet" href="../../Admin/Designs/sidebar.css">
+    <link
+        rel="stylesheet"
+        href="../../Admin/Designs/sidebar.css"
+    >
 
 
     <!-- Admin Order CSS -->
-    <link rel="stylesheet" href="../../Admin/Designs/order.css">
+    <link
+        rel="stylesheet"
+        href="../../Admin/Designs/order.css"
+    >
 
 
     <!-- Admin User CSS -->
-    <link rel="stylesheet" href="../../Admin/Designs/adminUser.css">
+    <link
+        rel="stylesheet"
+        href="../../Admin/Designs/adminUser.css"
+    >
 
 
     <!-- Admin Product CSS -->
-    <link rel="stylesheet" href="../../Admin/Designs/adminProduct.css">
+    <link
+        rel="stylesheet"
+        href="../../Admin/Designs/adminProduct.css"
+    >
 
 
     <!-- Information Update CSS -->
-    <link rel="stylesheet" href="../../Common/Designs/updateInfo.css">
+    <link
+        rel="stylesheet"
+        href="../../Common/Designs/updateInfo.css"
+    >
 
 
     <!-- Forgotten Password CSS -->
-    <link rel="stylesheet" href="../../Common/Designs/forgetPass.css">
+    <link
+        rel="stylesheet"
+        href="../../Common/Designs/forgetPass.css"
+    >
 
 
     <!-- Shop CSS -->
-    <link rel="stylesheet" href="../../Common/Designs/shop.css">
+    <link
+        rel="stylesheet"
+        href="../../Common/Designs/shop.css"
+    >
 
 
     <!-- Font Awesome -->
@@ -87,8 +131,6 @@ if (session_status() === PHP_SESSION_NONE) {
     <header class="main-header">
 
 
-        <!-- Main Navigation Bar -->
-
         <div class="main-nav-bar">
 
 
@@ -103,7 +145,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 >
 
 
-                <!-- Navigation Links -->
+                <!-- Navigation -->
 
                 <nav class="nav-links">
 
@@ -127,6 +169,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
                         </li>
 
+
+                        <!-- Buyer My Orders -->
 
                         <?php
                         if (($_SESSION["role"] ?? "") === "buyer"):
@@ -168,14 +212,17 @@ if (session_status() === PHP_SESSION_NONE) {
                 </nav>
 
 
-                <!-- Action Icons -->
+                <!-- Header Icons -->
 
                 <div class="header-actions">
 
 
                     <!-- Search -->
 
-                    <a href="#" aria-label="Search">
+                    <a
+                        href="#"
+                        aria-label="Search"
+                    >
 
                         <i class="fas fa-search"></i>
 
@@ -189,7 +236,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     ?>
 
                         <a
-                            href="../../Buyer/Pages/Cart.php"
+                            href="../../Common/Pages/shop.php"
                             aria-label="Cart"
                         >
 
@@ -215,7 +262,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     ?>
 
 
-                    <!-- Logged In User -->
+                    <!-- Logged In -->
 
                     <?php
                     if (isset($_SESSION["user_id"])):
@@ -237,8 +284,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <!-- Logout -->
 
                         <a
-                            href="#"
-                            class="logout-btn"
+                            href="../../../Controller/LogoutController.php"
                             aria-label="Logout"
                         >
 
@@ -256,7 +302,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
                         <a
                             href="../../Common/Pages/loginPage.php"
-                            aria-label="User"
+                            aria-label="Login"
                         >
 
                             <i class="fas fa-user"></i>
