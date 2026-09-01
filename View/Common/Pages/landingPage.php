@@ -341,7 +341,7 @@ $featuredProducts = array_slice($products, 0, 8);
                             <div class="product-price">
 
                                 <span class="current-price">
-                                    $<?= htmlspecialchars($product['price']) ?> USD
+                                    <?= htmlspecialchars($product['price']) ?> TK
                                 </span>
 
                             </div>

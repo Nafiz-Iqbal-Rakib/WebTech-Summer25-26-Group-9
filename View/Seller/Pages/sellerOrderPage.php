@@ -127,20 +127,16 @@ $sellerOrderData =
 
 
                 <a
-                    href="/WebTech-Summer25-26-Group-9/View/Common/Pages/landingPage.php"
-                    class="menu-item"
+                    href="#"
+                    class="menu-item logout-btn"
                     style="margin-top: 30px;"
-                >
-
+>               
                     <span>
-
                         <i class="fas fa-sign-out-alt"></i>
-
                     </span>
 
                     Logout
-
-                </a>
+                 </a>
 
             </div>
 
@@ -464,6 +460,8 @@ $sellerOrderData =
         </main>
 
     </div>
+
+    <script src="\WebTech-Summer25-26-Group-9\View\Common\JS\auth.js"></script>
 
 </body>
 

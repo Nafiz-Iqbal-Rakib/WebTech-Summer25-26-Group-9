@@ -76,10 +76,18 @@ $adminData = $sidebarController->getAdminData();
             <i class="fas fa-user-edit"></i>
         </a>
 
-        <a href="\WebTech-Summer25-26-Group-9\View\landingPage.php">
-            <i class="fas fa-sign-out-alt logout-btn"></i>
+       <a
+            href="#"
+            class="logout-btn"
+>       
+            <i class="fas fa-sign-out-alt"></i>
         </a>
 
     </div>
+
+    <script src="\WebTech-Summer25-26-Group-9\View\Common\JS\auth.js">
+
+
+    </script>
 
 </aside>

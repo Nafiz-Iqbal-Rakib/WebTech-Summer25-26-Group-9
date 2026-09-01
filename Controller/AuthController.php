@@ -164,8 +164,35 @@ class AuthController
             "message" => "Registration failed."
         ];
     }
+
+
+    // =========================
+    // LOGOUT
+    // =========================
+
+    public function logout()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+
+        session_unset();
+
+        session_destroy();
+
+
+        return [
+            "success" => true,
+            "message" => "Logout successful."
+        ];
+    }
 }
 
+
+// =========================================================
+// REQUEST HANDLER
+// =========================================================
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -179,6 +206,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     elseif ($_GET["action"] === "register") {
 
         $response = $controller->register();
+    }
+    elseif ($_GET["action"] === "logout") {
+
+        $response = $controller->logout();
     }
 
 

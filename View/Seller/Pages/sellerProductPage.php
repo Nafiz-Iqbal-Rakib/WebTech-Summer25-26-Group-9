@@ -82,8 +82,8 @@ $sellerData = $sellerController->getSellerProductData($userId);
 
 
             <a
-                href="/WebTech-Summer25-26-Group-9/View/Common/Pages/landingPage.php"
-                class="menu-item"
+                href="#"
+                class="menu-item logout-btn"
                 style="margin-top: 30px;"
             >
                 <span>
@@ -274,7 +274,7 @@ $sellerData = $sellerController->getSellerProductData($userId);
 
                                 <td>
 
-                                    ৳<?php
+                                    TK <?php
                                     echo number_format(
                                         $product["price"],
                                         2
@@ -461,7 +461,7 @@ $sellerData = $sellerController->getSellerProductData($userId);
                     <div class="form-field">
 
                         <label for="price">
-                            Price (৳)
+                            Price (TK)
                         </label>
 
                         <input
@@ -615,7 +615,7 @@ $sellerData = $sellerController->getSellerProductData($userId);
                     <div class="form-field">
 
                         <label for="edit_price">
-                            Price (৳)
+                            Price (TK)
                         </label>
 
                         <input
@@ -1238,6 +1238,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </script>
 
+<script src="\WebTech-Summer25-26-Group-9\View\Common\JS\auth.js"></script>
 
 </body>
 
