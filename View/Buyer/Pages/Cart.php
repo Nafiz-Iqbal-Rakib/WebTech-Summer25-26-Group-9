@@ -195,6 +195,7 @@ include '../../Layouts/header.php';
                                 id="quantity"
                                 name="quantity"
                                 value="<?= $quantity ?>"
+                                data-unit-price="<?= (float)$product['price'] ?>"
                                 min="1"
                                 max="<?= (int)$product['stock'] ?>"
                             >
@@ -288,7 +289,7 @@ include '../../Layouts/header.php';
                                 Product Price
                             </p>
 
-                            <p>
+                            <p id="summaryProductPrice">
 
                                 <?= htmlspecialchars(
                                     $product['price']
@@ -337,7 +338,7 @@ include '../../Layouts/header.php';
                             </p>
 
 
-                            <p>
+                            <p id="summaryTotal">
 
                                 <?= number_format(
 

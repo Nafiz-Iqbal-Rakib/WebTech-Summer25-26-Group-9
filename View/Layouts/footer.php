@@ -86,7 +86,7 @@
 </footer>
 
 <!-- common JS  -->
-<script src="\WebTech-Summer25-26-Group-9\View\Common\JS\auth.js"> </script>
+<script src="../../Common/JS/auth.js"></script>
 
 
 </body>

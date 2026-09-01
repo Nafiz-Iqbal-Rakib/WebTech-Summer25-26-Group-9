@@ -177,25 +177,25 @@ if (loginForm) {
                 if (data.role === "buyer") {
 
                     window.location.href =
-                        "/WebTech-Summer25-26-Group-9/View/Common/Pages/shop.php";
+                        "shop.php";
 
                 }
                 else if (data.role === "admin") { 
  
                     window.location.href = 
-                        "/WebTech-Summer25-26-Group-9/View/Admin/Pages/adminDashboardPage.php"; 
+                        "../../Admin/Pages/adminDashboardPage.php"; 
  
                 } 
                 else if (data.role === "seller") { 
  
                     window.location.href = 
-                        "/WebTech-Summer25-26-Group-9/View/Seller/Pages/sellerProductPage.php"; 
+                        "../../Seller/Pages/sellerProductPage.php"; 
  
                 } 
                 else if (data.role === "delivery") { 
  
                     window.location.href = 
-                        "/WebTech-Summer25-26-Group-9/View/Delivery/Pages/deliveryDashboardPage.php"; 
+                        "../../Delivery/Pages/deliveryDashboardPage.php"; 
  
                 } 
  
@@ -241,7 +241,7 @@ if (loginForm) {
  
  
     // Login Button Event 
-    loginBtn.addEventListener("click", handleLogin); 
+    loginForm.addEventListener("submit", handleLogin); 
  
  
     // Input Events 

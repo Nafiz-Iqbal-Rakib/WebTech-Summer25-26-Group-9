@@ -29,31 +29,45 @@ function validateBuyerCart()
     return valid;
 }
 
-function checkBuyerCoupon()
+
+function updateBuyerCartTotal()
 {
-    let coupon = document.getElementById("coupon").value.trim();
-    let responseText = document.getElementById("couponResponse");
+    let quantityInput = document.getElementById("quantity");
+    let productPriceText = document.getElementById("summaryProductPrice");
+    let totalText = document.getElementById("summaryTotal");
 
-    let xhttp = new XMLHttpRequest();
+    if (!quantityInput || !productPriceText || !totalText) {
+        return;
+    }
 
-    xhttp.onreadystatechange = function()
-    {
-        if (this.readyState == 4 && this.status == 200) {
-            let data = JSON.parse(this.responseText);
-            responseText.innerHTML = data.message;
-        }
-    };
+    let quantity = parseInt(quantityInput.value);
+    let unitPrice = parseFloat(quantityInput.getAttribute("data-unit-price"));
+    let maxStock = parseInt(quantityInput.max);
+    let shipping = 100;
 
-    xhttp.open(
-        "POST",
-        "/WebTech-Summer25-26-Group-9/Controller/BuyerController.php?action=coupon",
-        true
-    );
+    if (isNaN(quantity) || quantity < 1) {
+        quantity = 1;
+    }
 
-    xhttp.setRequestHeader(
-        "Content-type",
-        "application/x-www-form-urlencoded"
-    );
+    if (!isNaN(maxStock) && quantity > maxStock) {
+        quantity = maxStock;
+        quantityInput.value = maxStock;
+    }
 
-    xhttp.send("coupon=" + encodeURIComponent(coupon));
+    let productTotal = unitPrice * quantity;
+    let finalTotal = productTotal + shipping;
+
+    productPriceText.innerHTML = productTotal.toFixed(2) + " TK";
+    totalText.innerHTML = finalTotal.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }) + " TK";
+}
+
+
+let buyerQuantityInput = document.getElementById("quantity");
+
+if (buyerQuantityInput) {
+    buyerQuantityInput.addEventListener("input", updateBuyerCartTotal);
+    buyerQuantityInput.addEventListener("change", updateBuyerCartTotal);
 }
