@@ -1,0 +1,79 @@
+/* Bold Product Name */
+.product-name-bold {
+    font-weight: 600;
+    color: #000000;
+}
+
+/* Base class for outlined status badges */
+.badge-status-outline {
+    padding: 4px 12px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    text-align: center;
+    background: transparent;
+}
+
+/* Active Status */
+.badge-active {
+    border: 1px solid #000000;
+    color: #000000;
+}
+
+/* Low Stock Status */
+.badge-low-stock {
+    border: 1px solid #d97706;
+}
+
+/* Out of Stock Status */
+.badge-out-of-stock {
+    border: 1px solid #dc2626;
+    color: #dc2626;
+}
+
+.text-muted {
+    color: #888888;
+}
+
+.delete-product-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 75px;
+    height: 34px;
+
+    padding: 0;
+    margin: 0;
+
+    border: 1px solid #000000;
+    border-radius: 0;
+
+    background-color: #000000;
+    color: #ffffff;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1;
+
+    cursor: pointer;
+    white-space: nowrap;
+    box-sizing: border-box;
+
+    transition: all 0.2s ease;
+}
+
+.delete-product-btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #000000;
+}
+
+table .delete-product-btn:active {
+    background-color: #eeeeee;
+}

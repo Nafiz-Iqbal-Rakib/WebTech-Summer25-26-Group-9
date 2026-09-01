@@ -1,0 +1,75 @@
+MINIMART FINAL MERGED PROJECT
+=============================
+
+MAIN PROJECT
+------------
+This is the friend's complete Admin/Seller/Common project plus the Buyer feature.
+There is NO separate Buyer Dashboard.
+The existing Shop page is the Buyer shopping/dashboard page.
+
+BUYER FLOW
+----------
+1. Register / Login using the existing Common pages.
+2. Buyer login redirects to View/Common/Pages/shop.php.
+3. Shop or Home featured product -> ORDER NOW.
+4. ORDER NOW opens View/Buyer/Pages/Cart.php?product_id=...
+5. Cart shows selected product details on the left.
+6. Right side shows Shipping Address, Coupon and Order Summary.
+7. Checkout saves into the shared ecommerce_db.orders table.
+8. My Orders shows only Location and Status.
+
+REQUIRED COURSE ITEMS
+---------------------
+Frontend Validation:
+- View/Common/JS/auth.js (friend login)
+- View/Buyer/JS/cart.js (buyer cart)
+
+Backend Validation:
+- Controller/AuthController.php (friend login/register)
+- Controller/BuyerController.php (buyer checkout)
+
+Database Connection:
+- Model/Database.php (friend database connection)
+- Database name: ecommerce_db
+
+Session Management:
+- Friend AuthController creates user_id/email/role sessions.
+- BuyerController checks buyer session.
+- Logout uses friend's AuthController + auth.js.
+
+Cookies:
+- Login Remember Me stores remember_email.
+- Buyer checkout stores buyer_city.
+
+JSON:
+- AuthController returns JSON to login AJAX.
+- Buyer checkout stores a small order copy in Model/buyer_orders.json.
+
+AJAX:
+- Friend login uses AJAX/fetch.
+- Buyer coupon uses XMLHttpRequest and JSON response.
+- Demo coupon: MINI10
+
+DATABASE
+--------
+For a fresh database, import:
+Model/ecommerce_db.sql
+
+If you already imported the older friend's SQL, run:
+Model/ecommerce_db_update.sql
+
+The same tables are used:
+users
+products
+orders
+
+IMPORTANT ROOT FOLDER
+---------------------
+Place this folder in XAMPP htdocs with the exact name:
+WebTech-Summer25-26-Group-9
+
+Example:
+C:\\xampp\\htdocs\\WebTech-Summer25-26-Group-9
+
+Then open:
+http://localhost/WebTech-Summer25-26-Group-9/View/Common/Pages/loginPage.php

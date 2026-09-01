@@ -1,0 +1,126 @@
+/* Main Footer */
+.main-footer {
+    background-color: #f4fffe;
+    padding: 50px 0 30px;
+    color: #111;
+    border-top: 1px solid #eaeaea;
+}
+
+.footer-wrapper {
+    max-width: 85%;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Footer Top Section */
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.footer-col {
+    flex: 1.5;
+    margin-bottom: 30px;
+}
+
+.brand-col {
+    flex: 2;
+}
+
+/* Brand */
+.brand-logo {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+}
+
+/* Office Hour */
+.office-hour {
+    margin-bottom: 25px;
+}
+
+.office-hour h4 {
+    font-size: 15px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.office-hour p {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.office-hour span {
+    font-size: 10px;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Social Icons */
+.social-icons a {
+    color: #3d71ff;
+    font-size: 16px;
+    margin-right: 18px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0015ff;
+}
+
+/* Footer Navigation */
+.footer-col h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 16px;
+}
+
+.footer-col ul li a {
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: #000;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    border-top: 1px solid #a69f9f;
+    padding-top: 30px;
+    text-align: center;
+}
+
+.payment-methods {
+    margin-bottom: 15px;
+}
+
+.payment-methods i {
+    font-size: 26px;
+    margin: 0 6px;
+    color: #000000;
+}
+
+.copyright-text {
+    font-size: 12px;
+    color: #555;
+    font-weight: 500;
+}
