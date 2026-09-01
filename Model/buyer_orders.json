@@ -64,5 +64,11 @@
         "product_id": 8,
         "location": "Bangladesh, Dhaka - 1229",
         "status": "PENDING"
+    },
+    {
+        "buyer_id": 10,
+        "product_id": "8",
+        "location": "Bangladesh, Dhaka - 1229",
+        "status": "PENDING"
     }
 ]
