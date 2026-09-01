@@ -1,50 +1,125 @@
 <?php
 
-require_once '../../../Controller/BuyerController.php';
+include "../../../Controller/BuyerController.php";
 
-$buyerController = new BuyerController();
-$orders = $buyerController->getOrders();
 
-include '../../Layouts/header.php';
+$buyerController =
+    new BuyerController();
+
+
+$orders =
+    $buyerController->getOrders();
+
+
+include "../../Layouts/header.php";
+
 ?>
 
-<link rel="stylesheet" href="../Designs/myOrders.css">
+
+<link
+    rel="stylesheet"
+    href="../Designs/myOrders.css"
+>
+
 
 <section class="buyer-orders-page">
 
+
     <div class="buyer-orders-title">
-        <p>MY ACCOUNT</p>
-        <h1>My Orders</h1>
+
+        <p>
+            MY ACCOUNT
+        </p>
+
+        <h1>
+            My Orders
+        </h1>
+
     </div>
 
-    <?php if ($orders && $orders->num_rows > 0): ?>
 
-        <?php while ($order = $orders->fetch_assoc()): ?>
+<?php
 
-            <div class="buyer-order-box">
+if($orders && $orders->num_rows > 0)
+{
 
-                <div class="order-location">
-                    <p class="order-label">LOCATION</p>
-                    <h3><?= htmlspecialchars($order['address']) ?></h3>
-                </div>
+    while(
+        $order =
+        $orders->fetch_assoc()
+    )
+    {
 
-                <div class="order-status">
-                    <p class="order-label">STATUS</p>
-                    <h3><?= htmlspecialchars(strtoupper($order['status'])) ?></h3>
-                </div>
+?>
 
-            </div>
 
-        <?php endwhile; ?>
+    <div class="buyer-order-box">
 
-    <?php else: ?>
 
-        <div class="buyer-order-box">
-            <p>No orders found.</p>
+        <div class="order-location">
+
+            <p class="order-label">
+                LOCATION
+            </p>
+
+            <h3>
+                <?php
+                echo $order["address"];
+                ?>
+            </h3>
+
         </div>
 
-    <?php endif; ?>
+
+        <div class="order-status">
+
+            <p class="order-label">
+                STATUS
+            </p>
+
+            <h3>
+                <?php
+                echo $order["status"];
+                ?>
+            </h3>
+
+        </div>
+
+
+    </div>
+
+
+<?php
+
+    }
+
+}
+else
+{
+
+?>
+
+
+    <div class="buyer-order-box">
+
+        <p>
+            No orders found.
+        </p>
+
+    </div>
+
+
+<?php
+
+}
+
+?>
+
 
 </section>
 
-<?php include '../../Layouts/footer.php'; ?>
+
+<?php
+
+include "../../Layouts/footer.php";
+
+?>

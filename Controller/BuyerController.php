@@ -1,130 +1,134 @@
 <?php
 
-require_once __DIR__ . "/../Model/BuyerModel.php";
+include "../../../Model/Database.php";
+include "../../../Model/BuyerModel.php";
+
+session_start();
+
 
 class BuyerController
 {
-    protected $model;
-
-
-    public function __construct()
+    function checkBuyerSession()
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-
-        $this->model = new BuyerModel();
-    }
-
-
-    public function checkBuyerSession()
-    {
-        if (
+        if(
             !isset($_SESSION["user_id"]) ||
             !isset($_SESSION["role"]) ||
-            $_SESSION["role"] !== "buyer"
-        ) {
-            header(
-                "Location: /WebTech-Summer25-26-Group-9/View/Common/Pages/loginPage.php"
-            );
-
-            exit;
+            $_SESSION["role"] != "buyer"
+        )
+        {
+            Header("Location:../../Common/Pages/loginPage.php");
+            die();
         }
     }
 
 
-    public function getProduct($productId)
+    function getProduct($productId)
     {
-        $result = $this->model->getProductById(
-            (int)$productId
-        );
+        $model = new BuyerModel();
 
+        $result = $model->getProductById($productId);
 
-        if (
-            !$result ||
-            $result->num_rows === 0
-        ) {
+        if(!$result || $result->num_rows == 0)
+        {
             return null;
         }
 
+        $product = $result->fetch_assoc();
 
-        return $result->fetch_assoc();
+
+        $sellerResult = $model->getSellerById(
+            $product["seller_id"]
+        );
+
+        if($sellerResult && $sellerResult->num_rows > 0)
+        {
+            $seller = $sellerResult->fetch_assoc();
+
+            $product["seller_first_name"] =
+                $seller["first_name"];
+
+            $product["seller_last_name"] =
+                $seller["last_name"];
+        }
+        else
+        {
+            $product["seller_first_name"] = "";
+            $product["seller_last_name"] = "";
+        }
+
+        return $product;
     }
 
 
-    public function placeOrder()
+    function placeOrder()
     {
-        /*
-        Only check login when Buyer clicks
-        CHECKOUT NOW
-        */
-
         $this->checkBuyerSession();
 
 
-        $productId = (int)(
-            $_POST["product_id"] ?? 0
+        $productId = trim(
+            $_POST["product_id"] ?? ""
         );
 
-
-        $quantity = (int)(
-            $_POST["quantity"] ?? 0
+        $quantity = trim(
+            $_POST["quantity"] ?? ""
         );
-
 
         $country = trim(
             $_POST["country"] ?? ""
         );
 
-
         $city = trim(
             $_POST["city"] ?? ""
         );
-
 
         $zip = trim(
             $_POST["zip"] ?? ""
         );
 
 
-        if ($productId <= 0) {
+        $valid = true;
+        $message = "";
 
+
+        if(empty($productId))
+        {
+            $message .= "Product is required. ";
+            $valid = false;
+        }
+
+
+        if(empty($quantity) || $quantity < 1)
+        {
+            $message .= "Quantity must be at least 1. ";
+            $valid = false;
+        }
+
+
+        if(
+            empty($country) ||
+            empty($city) ||
+            empty($zip)
+        )
+        {
+            $message .= "Shipping address is required.";
+            $valid = false;
+        }
+
+
+        if(!$valid)
+        {
             return [
                 "success" => false,
-                "message" => "Product is required."
+                "message" => $message
             ];
         }
 
 
-        if ($quantity < 1) {
-
-            return [
-                "success" => false,
-                "message" => "Quantity must be at least 1."
-            ];
-        }
+        $product = $this->getProduct($productId);
 
 
-        if (
-            $country === "" ||
-            $city === "" ||
-            $zip === ""
-        ) {
-
-            return [
-                "success" => false,
-                "message" => "Shipping address is required."
-            ];
-        }
-
-
-        $product = $this->getProduct(
-            $productId
-        );
-
-
-        if (!$product) {
-
+        if(!$product)
+        {
             return [
                 "success" => false,
                 "message" => "Product not found."
@@ -132,11 +136,8 @@ class BuyerController
         }
 
 
-        if (
-            $quantity >
-            (int)$product["stock"]
-        ) {
-
+        if($quantity > $product["stock"])
+        {
             return [
                 "success" => false,
                 "message" => "Not enough stock."
@@ -146,11 +147,9 @@ class BuyerController
 
         $shipping = 100;
 
-
         $subtotal =
             $product["price"] *
             $quantity;
-
 
         $total =
             $subtotal +
@@ -165,25 +164,21 @@ class BuyerController
             $zip;
 
 
-        $success = $this->model->addOrder(
+        $model = new BuyerModel();
 
-            (int)$_SESSION["user_id"],
 
+        $result = $model->addOrder(
+            $_SESSION["user_id"],
             $productId,
-
-            (int)$product["seller_id"],
-
+            $product["seller_id"],
             $quantity,
-
             $total,
-
             $address
-
         );
 
 
-        if (!$success) {
-
+        if(!$result)
+        {
             return [
                 "success" => false,
                 "message" => "Order could not be placed."
@@ -198,46 +193,34 @@ class BuyerController
         setcookie(
             "buyer_city",
             $city,
-            time() + (86400 * 30),
+            time() + 60*60*24*30,
             "/"
         );
 
 
-        $jsonFile =
-            __DIR__ .
-            "/../Model/buyer_orders.json";
+        $jsonfile =
+            "../../../Model/buyer_orders.json";
 
 
         $orders = [];
 
 
-        if (file_exists($jsonFile)) {
-
+        if(file_exists($jsonfile))
+        {
             $jsonData =
-                file_get_contents(
-                    $jsonFile
-                );
-
+                file_get_contents($jsonfile);
 
             $orders =
                 json_decode(
                     $jsonData,
                     true
-                );
-
-
-            if (!is_array($orders)) {
-
-                $orders = [];
-
-            }
+                ) ?? [];
         }
 
 
         $orders[] = [
-
             "buyer_id" =>
-                (int)$_SESSION["user_id"],
+                $_SESSION["user_id"],
 
             "product_id" =>
                 $productId,
@@ -247,19 +230,15 @@ class BuyerController
 
             "status" =>
                 "PENDING"
-
         ];
 
 
         file_put_contents(
-
-            $jsonFile,
-
+            $jsonfile,
             json_encode(
                 $orders,
                 JSON_PRETTY_PRINT
             )
-
         );
 
 
@@ -270,18 +249,18 @@ class BuyerController
     }
 
 
-    public function getOrders()
+    function getOrders()
     {
-        /*
-        My Orders should still require login.
-        */
-
         $this->checkBuyerSession();
 
+        $model = new BuyerModel();
 
-        return $this->model->getBuyerOrders(
-            (int)$_SESSION["user_id"]
-        );
+        $result =
+            $model->getBuyerOrders(
+                $_SESSION["user_id"]
+            );
+
+        return $result;
     }
 }
 

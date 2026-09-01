@@ -1,28 +1,18 @@
 <?php
 
-require_once '../../../Controller/BuyerController.php';
+include "../../../Controller/BuyerController.php";
 
 
-$buyerController = new BuyerController();
+$buyerController =
+    new BuyerController();
 
 
-/*
-DO NOT CHECK LOGIN HERE.
-
-Anyone can open the Cart page.
-
-Login will be checked only when
-CHECKOUT NOW is clicked.
-*/
-
-
-$productId = (int)(
-    $_GET['product_id']
+$productId =
+    $_GET["product_id"]
     ??
-    $_POST['product_id']
+    $_POST["product_id"]
     ??
-    0
-);
+    "";
 
 
 $product =
@@ -31,396 +21,431 @@ $product =
     );
 
 
-$message = '';
+$message = "";
+$messageClass = "";
 
-$messageClass = '';
 
-
-if (
-    $_SERVER['REQUEST_METHOD'] === 'POST'
+if(
+    $_SERVER["REQUEST_METHOD"] == "POST"
     &&
-    isset($_POST['checkout'])
-) {
-
-    /*
-    placeOrder() checks whether
-    the Buyer is logged in.
-    */
-
+    isset($_POST["checkout"])
+)
+{
     $response =
         $buyerController->placeOrder();
 
 
     $message =
-        $response['message'];
+        $response["message"];
 
 
-    $messageClass =
-        $response['success']
-        ?
-        'success-message'
-        :
-        'error-message';
+    if($response["success"])
+    {
+        $messageClass =
+            "success-message";
+    }
+    else
+    {
+        $messageClass =
+            "error-message";
+    }
 }
 
 
 $city =
-    $_COOKIE['buyer_city']
+    $_COOKIE["buyer_city"]
     ??
-    '';
+    "";
 
 
-$quantity = (int)(
-    $_POST['quantity']
+$quantity =
+    $_POST["quantity"]
     ??
-    1
-);
+    1;
 
 
-include '../../Layouts/header.php';
+$productTotal = 0;
+$finalTotal = 0;
+
+
+if($product)
+{
+    $productTotal =
+        $product["price"] *
+        $quantity;
+
+    $finalTotal =
+        $productTotal +
+        100;
+}
+
+
+include "../../Layouts/header.php";
 
 ?>
 
 
-<link rel="stylesheet" href="../Designs/cart.css">
+<link
+    rel="stylesheet"
+    href="../Designs/cart.css"
+>
 
 
 <section class="buyer-cart-page">
 
 
-    <?php if ($product): ?>
+<?php
+
+if($product)
+{
+
+?>
 
 
-        <form
-            method="POST"
-            action="Cart.php?product_id=<?= (int)$product['id'] ?>"
-            onsubmit="return validateBuyerCart()"
-        >
+<form
+    method="POST"
+    action="Cart.php?product_id=<?php echo $product["id"]; ?>"
+    onsubmit="return validateBuyerCart()"
+>
 
 
-            <input
-                type="hidden"
-                name="product_id"
-                value="<?= (int)$product['id'] ?>"
+<input
+    type="hidden"
+    name="product_id"
+    value="<?php echo $product["id"]; ?>"
+>
+
+
+<input
+    type="hidden"
+    id="unitPrice"
+    value="<?php echo $product["price"]; ?>"
+>
+
+
+<div class="buyer-cart-layout">
+
+
+    <div class="selected-product-area">
+
+
+        <div class="selected-product-image">
+
+            <img
+                src="/WebTech-Summer25-26-Group-9/uploads/products/<?php echo $product["img"]; ?>"
+                alt="<?php echo $product["product_name"]; ?>"
             >
 
+        </div>
 
-            <div class="buyer-cart-layout">
 
+        <div class="selected-product-info">
 
-                <!-- Selected Product -->
 
+            <p class="small-label">
+                SELECTED PRODUCT
+            </p>
 
-                <div class="selected-product-area">
 
+            <h1>
+                <?php
+                echo $product["product_name"];
+                ?>
+            </h1>
 
-                    <div class="selected-product-image">
 
-                        <img
-                            src="/WebTech-Summer25-26-Group-9/uploads/products/<?= htmlspecialchars($product['img']) ?>"
-                            alt="<?= htmlspecialchars($product['product_name']) ?>"
-                        >
+            <p class="seller-text">
 
-                    </div>
+                Seller:
 
+                <?php
+                echo
+                    $product["seller_first_name"]
+                    .
+                    " "
+                    .
+                    $product["seller_last_name"];
+                ?>
 
-                    <div class="selected-product-info">
+            </p>
 
 
-                        <p class="small-label">
-                            SELECTED PRODUCT
-                        </p>
+            <p class="product-price-large">
 
+                <?php
+                echo $product["price"];
+                ?>
 
-                        <h1>
-                            <?= htmlspecialchars(
-                                $product['product_name']
-                            ) ?>
-                        </h1>
+                TK
 
+            </p>
 
-                        <p class="seller-text">
 
-                            Seller:
+            <p class="product-description">
 
-                            <?= htmlspecialchars(
-                                $product['seller_first_name']
-                                .
-                                ' '
-                                .
-                                $product['seller_last_name']
-                            ) ?>
+                <?php
+                echo $product["description"];
+                ?>
 
-                        </p>
+            </p>
 
 
-                        <p class="product-price-large">
+            <p class="stock-text">
 
-                            <?= htmlspecialchars(
-                                $product['price']
-                            ) ?>
+                Available Stock:
 
-                            TK
+                <?php
+                echo $product["stock"];
+                ?>
 
-                        </p>
+            </p>
 
 
-                        <p class="product-description">
+            <div class="quantity-area">
 
-                            <?= htmlspecialchars(
-                                $product['description']
-                            ) ?>
+                <label for="quantity">
+                    Quantity
+                </label>
 
-                        </p>
 
+                <input
+                    type="number"
+                    id="quantity"
+                    name="quantity"
+                    value="<?php echo $quantity; ?>"
+                    min="1"
+                    max="<?php echo $product["stock"]; ?>"
+                    onkeyup="updateBuyerCartTotal()"
+                    onchange="updateBuyerCartTotal()"
+                >
 
-                        <p class="stock-text">
+            </div>
 
-                            Available Stock:
 
-                            <?= (int)$product['stock'] ?>
+            <a
+                class="back-shop-link"
+                href="../../Common/Pages/shop.php"
+            >
+                Back To Shopping
+            </a>
 
-                        </p>
 
+        </div>
 
-                        <div class="quantity-area">
 
-                            <label for="quantity">
-                                Quantity
-                            </label>
+    </div>
 
 
-                            <input
-                                type="number"
-                                id="quantity"
-                                name="quantity"
-                                value="<?= $quantity ?>"
-                                data-unit-price="<?= (float)$product['price'] ?>"
-                                min="1"
-                                max="<?= (int)$product['stock'] ?>"
-                            >
+    <div class="checkout-side">
 
-                        </div>
 
+        <div class="checkout-box">
 
-                        <a
-                            class="back-shop-link"
-                            href="../../Common/Pages/shop.php"
-                        >
-                            Back To Shopping
-                        </a>
 
+            <h3>
+                Shipping Address
+            </h3>
 
-                    </div>
 
+            <select
+                id="country"
+                name="country"
+            >
 
-                </div>
+                <option value="Bangladesh">
+                    Bangladesh
+                </option>
 
+            </select>
 
-                <!-- Checkout Side -->
 
+            <div class="address-row">
 
-                <div class="checkout-side">
 
+                <input
+                    type="text"
+                    class="city-input"
+                    id="city"
+                    name="city"
+                    value="<?php echo $city; ?>"
+                    placeholder="City"
+                >
 
-                    <!-- Shipping Address -->
 
-
-                    <div class="checkout-box">
-
-
-                        <h3>
-                            Shipping Address
-                        </h3>
-
-
-                        <select
-                            id="country"
-                            name="country"
-                        >
-
-                            <option value="Bangladesh">
-                                Bangladesh
-                            </option>
-
-                        </select>
-
-
-                        <div class="address-row">
-
-
-                            <input
-                                type="text"
-                                id="city"
-                                name="city"
-                                value="<?= htmlspecialchars($city) ?>"
-                                placeholder="City"
-                            >
-
-
-                            <input
-                                type="text"
-                                id="zip"
-                                name="zip"
-                                placeholder="Zip Code"
-                            >
-
-
-                        </div>
-
-
-                    </div>
-
-
-                    <!-- Order Summary -->
-
-
-                    <div class="checkout-box order-summary-box">
-
-
-                        <h3>
-                            Order Summary
-                        </h3>
-
-
-                        <div class="summary-row">
-
-                            <p>
-                                Product Price
-                            </p>
-
-                            <p id="summaryProductPrice">
-
-                                <?= htmlspecialchars(
-                                    $product['price']
-                                ) ?>
-
-                                TK
-
-                            </p>
-
-                        </div>
-
-
-                        <div class="summary-row">
-
-                            <p>
-                                Shipping
-                            </p>
-
-                            <p>
-                                +100 TK
-                            </p>
-
-                        </div>
-
-
-                        <div class="summary-row">
-
-                            <p>
-                                Status
-                            </p>
-
-                            <p>
-                                PENDING
-                            </p>
-
-                        </div>
-
-
-                        <div class="summary-line"></div>
-
-
-                        <div class="summary-row total-row">
-
-                            <p>
-                                Total
-                            </p>
-
-
-                            <p id="summaryTotal">
-
-                                <?= number_format(
-
-                                    (
-                                        (float)$product['price']
-                                        *
-                                        $quantity
-                                    )
-                                    +
-                                    100,
-
-                                    2
-
-                                ) ?>
-
-                                TK
-
-                            </p>
-
-
-                        </div>
-
-
-                        <button
-                            type="submit"
-                            name="checkout"
-                            class="checkout-button"
-                        >
-                            CHECKOUT NOW
-                        </button>
-
-
-                        <?php
-                        if ($message !== ''):
-                        ?>
-
-                            <p class="<?= $messageClass ?>">
-
-                                <?= htmlspecialchars(
-                                    $message
-                                ) ?>
-
-                            </p>
-
-                        <?php
-                        endif;
-                        ?>
-
-
-                    </div>
-
-
-                </div>
+                <input
+                    type="text"
+                    class="zip-input"
+                    id="zip"
+                    name="zip"
+                    placeholder="Zip Code"
+                >
 
 
             </div>
 
 
-        </form>
+        </div>
 
 
-    <?php else: ?>
+        <div class="checkout-box order-summary-box">
 
 
-        <div class="no-product-box">
+            <h3>
+                Order Summary
+            </h3>
 
-            <h2>
-                No Product Selected
-            </h2>
 
-            <p>
-                Please select a product from the Shop page.
+            <div class="summary-row">
+
+                <p class="summary-left">
+                    Product Price
+                </p>
+
+
+                <p
+                    class="summary-right"
+                    id="summaryProductPrice"
+                >
+
+                    <?php
+                    echo $productTotal;
+                    ?>
+
+                    TK
+
+                </p>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <p class="summary-left">
+                    Shipping
+                </p>
+
+
+                <p class="summary-right">
+                    +100 TK
+                </p>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <p class="summary-left">
+                    Status
+                </p>
+
+
+                <p class="summary-right">
+                    PENDING
+                </p>
+
+            </div>
+
+
+            <div class="summary-line"></div>
+
+
+            <div class="summary-row total-row">
+
+                <p class="summary-left">
+                    Total
+                </p>
+
+
+                <p
+                    class="summary-right"
+                    id="summaryTotal"
+                >
+
+                    <?php
+                    echo $finalTotal;
+                    ?>
+
+                    TK
+
+                </p>
+
+            </div>
+
+
+            <button
+                type="submit"
+                name="checkout"
+                class="checkout-button"
+            >
+                CHECKOUT NOW
+            </button>
+
+
+<?php
+
+if($message != "")
+{
+
+?>
+
+            <p class="<?php echo $messageClass; ?>">
+
+                <?php
+                echo $message;
+                ?>
+
             </p>
 
-            <a href="../../Common/Pages/shop.php">
-                Go To Shop
-            </a>
+<?php
+
+}
+
+?>
+
 
         </div>
 
 
-    <?php endif; ?>
+    </div>
+
+
+</div>
+
+
+</form>
+
+
+<?php
+
+}
+else
+{
+
+?>
+
+
+<div class="no-product-box">
+
+    <h2>
+        No Product Selected
+    </h2>
+
+    <p>
+        Please select a product from the Shop page.
+    </p>
+
+    <a href="../../Common/Pages/shop.php">
+        Go To Shop
+    </a>
+
+</div>
+
+
+<?php
+
+}
+
+?>
 
 
 </section>
@@ -430,5 +455,7 @@ include '../../Layouts/header.php';
 
 
 <?php
-include '../../Layouts/footer.php';
+
+include "../../Layouts/footer.php";
+
 ?>

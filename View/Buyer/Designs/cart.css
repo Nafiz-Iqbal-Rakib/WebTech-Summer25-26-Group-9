@@ -29,8 +29,6 @@
 
 .selected-product-image img {
     width: 100%;
-    max-height: 520px;
-    object-fit: contain;
 }
 
 .selected-product-info {
@@ -123,16 +121,16 @@
     margin-top: 10px;
 }
 
-.address-row input {
+.city-input {
     width: 48%;
     float: left;
 }
 
-.address-row input:last-child {
+.zip-input {
+    width: 48%;
     float: right;
 }
 
-#couponBtn,
 .checkout-button {
     width: 100%;
     background-color: black;
@@ -144,17 +142,11 @@
     cursor: pointer;
 }
 
-#couponBtn:hover,
 .checkout-button:hover {
     background-color: white;
     color: black;
 }
 
-.coupon-response {
-    text-align: center;
-    font-size: 11px;
-    margin-top: 10px;
-}
 
 .summary-row {
     overflow: hidden;
@@ -162,11 +154,11 @@
     font-size: 12px;
 }
 
-.summary-row p:first-child {
+.summary-left {
     float: left;
 }
 
-.summary-row p:last-child {
+.summary-right {
     float: right;
 }
 
@@ -212,15 +204,3 @@
     color: black;
 }
 
-@media (max-width: 900px) {
-    .selected-product-area,
-    .checkout-side {
-        width: 100%;
-        float: none;
-        padding-right: 0;
-    }
-
-    .checkout-side {
-        margin-top: 30px;
-    }
-}

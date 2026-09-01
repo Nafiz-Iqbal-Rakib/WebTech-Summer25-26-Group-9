@@ -1,83 +1,77 @@
 <?php
 
-require_once __DIR__ . "/Database.php";
-
 class BuyerModel
 {
-    protected $connection;
-
-    public function __construct()
+    function getProductById($productId)
     {
         $database = new Database();
-        $this->connection = $database->connection();
+        $connection = $database->connection();
+
+        $sql = "SELECT * FROM products WHERE id = '".$productId."'";
+
+        $result = $connection->query($sql);
+
+        return $result;
     }
 
-    public function getProductById($productId)
+
+    function getSellerById($sellerId)
     {
-        $sql = "SELECT
-                    products.id,
-                    products.seller_id,
-                    products.product_name,
-                    products.description,
-                    products.price,
-                    products.stock,
-                    products.img,
-                    users.first_name AS seller_first_name,
-                    users.last_name AS seller_last_name
-                FROM products
-                INNER JOIN users
-                    ON products.seller_id = users.id
-                WHERE products.id = ?";
+        $database = new Database();
+        $connection = $database->connection();
 
-        $stmt = $this->connection->prepare($sql);
-        $stmt->bind_param("i", $productId);
-        $stmt->execute();
+        $sql = "SELECT * FROM users WHERE id = '".$sellerId."'";
 
-        return $stmt->get_result();
+        $result = $connection->query($sql);
+
+        return $result;
     }
 
-    public function addOrder(
+
+    function addOrder(
         $buyerId,
         $productId,
         $sellerId,
         $quantity,
         $totalPrice,
         $address
-    ) {
+    )
+    {
+        $database = new Database();
+        $connection = $database->connection();
+
         $status = "PENDING";
 
         $sql = "INSERT INTO orders
                 (buyer_id, product_id, seller_id, quantity, total_price, address, status)
-                VALUES (?, ?, ?, ?, ?, ?, ?)";
+                VALUES
+                ('".$buyerId."',
+                 '".$productId."',
+                 '".$sellerId."',
+                 '".$quantity."',
+                 '".$totalPrice."',
+                 '".$address."',
+                 '".$status."')";
 
-        $stmt = $this->connection->prepare($sql);
+        $result = $connection->query($sql);
 
-        $stmt->bind_param(
-            "iiiidss",
-            $buyerId,
-            $productId,
-            $sellerId,
-            $quantity,
-            $totalPrice,
-            $address,
-            $status
-        );
-
-        return $stmt->execute();
+        return $result;
     }
 
-    public function getBuyerOrders($buyerId)
+
+    function getBuyerOrders($buyerId)
     {
+        $database = new Database();
+        $connection = $database->connection();
+
         $sql = "SELECT id, address, status
                 FROM orders
-                WHERE buyer_id = ?
+                WHERE buyer_id = '".$buyerId."'
                 ORDER BY id DESC";
 
-        $stmt = $this->connection->prepare($sql);
-        $stmt->bind_param("i", $buyerId);
-        $stmt->execute();
+        $result = $connection->query($sql);
 
-        return $stmt->get_result();
+        return $result;
     }
 }
 
