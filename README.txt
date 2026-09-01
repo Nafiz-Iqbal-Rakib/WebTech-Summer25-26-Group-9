@@ -1,69 +1,131 @@
-MiniMart Buyer - MVC + Frontend/Backend Validation
-====================================================
+MiniMart Buyer - Simple Complete MVC
+======================================
 
-ALL BUYER VIEW PAGES ARE NOW PHP FILES.
+This version includes the professor's required topics while keeping the code simple.
 
-STRUCTURE
----------
-Controller/
-    LoginValidation.php
-    ProfileValidation.php
-    CartValidation.php
-
-Model/
-    Model.txt
-
+MVC
+---
+View:
 View/Buyer/Page/
-    Login.php
-    BuyerDashboard.php
-    Cart.php
-    MyOrders.php
-    EditProfile.php
-    Logout.php
 
-View/Buyer/Design/
-    Style.css
-    Login.css
-    EditProfile.css
-    Logout.css
+Controller:
+Controller/
+
+Model:
+Model/
 
 
-WHY ALL PAGES ARE PHP
----------------------
-The final MVC project will later use PHP for database/session work, so all Buyer
-pages use the .php extension for consistency.
-
-VALIDATION IS ONLY USED WHERE INPUT EXISTS
-------------------------------------------
+1. FRONTEND VALIDATION
+----------------------
 Login.php
-    Frontend Validation
-    Backend Validation -> Controller/LoginValidation.php
-
 Cart.php
-    Frontend Validation
-    Backend Validation -> Controller/CartValidation.php
-
 EditProfile.php
-    Frontend Validation
-    Backend Validation -> Controller/ProfileValidation.php
 
+Uses simple JavaScript:
+getElementById()
+trim()
+length checks
+alert()
+return true/false
+
+
+2. BACKEND VALIDATION
+---------------------
+Controller/LoginValidation.php
+Controller/CartValidation.php
+Controller/ProfileValidation.php
+
+
+3. DATABASE CONNECTION
+----------------------
+Uses the FRIEND'S database files exactly:
+
+Model/Database.php
+Model/ecommerce_db.sql
+
+Database:
+ecommerce_db
+
+Tables:
+users
+products
+orders
+
+Buyer login reads users.
+Edit Profile reads/updates users.
+Checkout inserts into orders.
+My Orders reads orders.
+
+
+4. SESSION MANAGEMENT
+---------------------
+Login creates:
+$_SESSION["user_id"]
+$_SESSION["email"]
+$_SESSION["role"]
+$_SESSION["first_name"]
+
+SessionCheck.php protects:
 BuyerDashboard.php
-    Display page only
-    No validation needed
-
+Cart.php
 MyOrders.php
-    Display page only
-    No validation needed
+EditProfile.php
 
-Logout.php
-    View page only for now
-    No validation needed
+LogoutController.php destroys the session.
 
-NOT ADDED YET
--------------
-Database Connection
-Session / Cookie
-JSON
-AJAX
 
-This step remains limited to MVC + Frontend Validation + Backend Validation.
+5. COOKIE
+---------
+Remember Me:
+buyer_email
+
+Cart remembers:
+buyer_city
+
+
+6. JSON
+-------
+On successful checkout, a small order copy is written to:
+
+Model/order.json
+
+Functions used:
+file_get_contents()
+json_decode()
+json_encode()
+file_put_contents()
+
+
+7. AJAX
+-------
+Cart coupon input calls:
+
+View/Buyer/JS/CheckCoupon.js
+Controller/CheckCoupon.php
+
+Uses:
+XMLHttpRequest
+
+Demo coupon:
+MINI10
+
+
+DATABASE SETUP
+--------------
+Import your friend's:
+Model/ecommerce_db.sql
+
+For login testing, add a buyer row to users with:
+role = buyer
+
+This simple class project expects the password value in the users table
+to match the password entered on Login.php.
+
+
+IMPORTANT
+---------
+No framework.
+No API.
+No advanced routing.
+No prepared statement.
+No extra project feature was added.

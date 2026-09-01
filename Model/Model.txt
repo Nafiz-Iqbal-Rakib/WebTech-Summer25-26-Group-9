@@ -1,12 +1,12 @@
-MODEL FOLDER
+MODEL
 
-No database or permanent data model is added in this step.
+Database.php
+    Friend's original database connection.
+    Database name: ecommerce_db
 
-Current task:
-- MVC folder structure
-- Frontend Validation
-- Backend Validation
+ecommerce_db.sql
+    Friend's original database schema.
+    Tables: users, products, orders
 
-The View receives user input.
-The Controller validates the input.
-The Model will be used later when database work is added.
+order.json
+    Simple JSON file used by Buyer checkout.

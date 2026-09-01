@@ -1,3 +1,7 @@
+<?php
+include "../../../Controller/LogoutController.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en-US">
 

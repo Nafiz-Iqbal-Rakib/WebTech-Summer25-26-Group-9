@@ -1,12 +1,20 @@
 <?php
 
-$first_name="Sadika";
-$last_name="Rahman";
-$phone="+880 17XX-XXXXXX";
-
 $profile_message="";
 $password_message="";
 $delete_message="";
+
+$database=new Database();
+$connection=$database->connection();
+
+$sql="SELECT * FROM users WHERE id=".$_SESSION["user_id"];
+$result=$connection->query($sql);
+
+$user=$result->fetch_assoc();
+
+$first_name=$user["first_name"];
+$last_name=$user["last_name"];
+$phone=$user["phone"];
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
 {
@@ -38,7 +46,17 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
         if($valid)
         {
-            $profile_message="Profile Data is Valid";
+            $sql="UPDATE users
+                  SET first_name='".$first_name."',
+                      last_name='".$last_name."',
+                      phone='".$phone."'
+                  WHERE id=".$_SESSION["user_id"];
+
+            if($connection->query($sql))
+            {
+                $_SESSION["first_name"]=$first_name;
+                $profile_message="Profile Updated Successfully";
+            }
         }
     }
 
@@ -69,9 +87,22 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             $valid=false;
         }
 
+        if($current_password!=$user["password"])
+        {
+            $password_message="Current Password is Wrong";
+            $valid=false;
+        }
+
         if($valid)
         {
-            $password_message="Password Data is Valid";
+            $sql="UPDATE users
+                  SET password='".$new_password."'
+                  WHERE id=".$_SESSION["user_id"];
+
+            if($connection->query($sql))
+            {
+                $password_message="Password Updated Successfully";
+            }
         }
     }
 
@@ -82,7 +113,15 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
         if($delete_confirmation=="DELETE")
         {
-            $delete_message="Delete Confirmation is Valid";
+            $sql="DELETE FROM users WHERE id=".$_SESSION["user_id"];
+
+            if($connection->query($sql))
+            {
+                session_destroy();
+
+                header("Location: Login.php");
+                exit;
+            }
         }
         else
         {

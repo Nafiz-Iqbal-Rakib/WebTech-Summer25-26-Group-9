@@ -1,4 +1,6 @@
 <?php
+include "../../../Controller/SessionCheck.php";
+include "../../../Model/Database.php";
 include "../../../Controller/ProfileValidation.php";
 ?>
 

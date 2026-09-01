@@ -1,4 +1,5 @@
 <?php
+include "../../../Model/Database.php";
 include "../../../Controller/LoginValidation.php";
 ?>
 
@@ -53,7 +54,10 @@ include "../../../Controller/LoginValidation.php";
                 <form class="login-form" method="post" action="" onsubmit="return collect_data()">
 
                     <div class="form-group">
-                        <label class="floating-label" for="email">E-mail</label>
+
+                        <label class="floating-label" for="email">
+                            E-mail
+                        </label>
 
                         <input
                             type="text"
@@ -63,6 +67,7 @@ include "../../../Controller/LoginValidation.php";
                             value="<?php echo $email; ?>"
                             placeholder="Enter E-mail here"
                         >
+
                     </div>
 
 
@@ -90,6 +95,8 @@ include "../../../Controller/LoginValidation.php";
                                 type="checkbox"
                                 id="remember"
                                 name="remember"
+                                value="1"
+                                <?php echo $remember; ?>
                             >
 
                             Remember me

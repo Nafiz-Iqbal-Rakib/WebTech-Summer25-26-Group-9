@@ -1,4 +1,6 @@
 <?php
+include "../../../Controller/SessionCheck.php";
+include "../../../Model/Database.php";
 include "../../../Controller/CartValidation.php";
 ?>
 
@@ -10,6 +12,8 @@ include "../../../Controller/CartValidation.php";
         <title>MiniMart - Shopping Cart</title>
 
         <link rel="stylesheet" href="../Design/Style.css">
+
+        <script src="../JS/CheckCoupon.js"></script>
 
         <script>
 
@@ -111,11 +115,8 @@ include "../../../Controller/CartValidation.php";
                         <tr>
 
                             <td>Products</td>
-
                             <td>Unit Price</td>
-
                             <td>Quantity</td>
-
                             <td>Total</td>
 
                         </tr>
@@ -123,13 +124,9 @@ include "../../../Controller/CartValidation.php";
 
                         <tr>
 
-                            <td>
-                                Winter Jacket for Man
-                            </td>
+                            <td>Winter Jacket for Man</td>
 
-                            <td>
-                                ৳2,000
-                            </td>
+                            <td>৳2,000</td>
 
                             <td>
 
@@ -143,22 +140,16 @@ include "../../../Controller/CartValidation.php";
 
                             </td>
 
-                            <td>
-                                ৳2,000
-                            </td>
+                            <td>৳2,000</td>
 
                         </tr>
 
 
                         <tr>
 
-                            <td>
-                                Gray Winter Full Sleeve Shirt
-                            </td>
+                            <td>Gray Winter Full Sleeve Shirt</td>
 
-                            <td>
-                                ৳2,000
-                            </td>
+                            <td>৳2,000</td>
 
                             <td>
 
@@ -172,22 +163,16 @@ include "../../../Controller/CartValidation.php";
 
                             </td>
 
-                            <td>
-                                ৳2,000
-                            </td>
+                            <td>৳2,000</td>
 
                         </tr>
 
 
                         <tr>
 
-                            <td>
-                                Winter Jacket for Women
-                            </td>
+                            <td>Winter Jacket for Women</td>
 
-                            <td>
-                                ৳1,000
-                            </td>
+                            <td>৳1,000</td>
 
                             <td>
 
@@ -201,9 +186,7 @@ include "../../../Controller/CartValidation.php";
 
                             </td>
 
-                            <td>
-                                ৳1,000
-                            </td>
+                            <td>৳1,000</td>
 
                         </tr>
 
@@ -294,16 +277,13 @@ include "../../../Controller/CartValidation.php";
 
                         <input
                             type="text"
+                            id="coupon"
                             name="coupon"
                             placeholder="Coupon Code"
+                            onkeyup="CheckCoupon()"
                         >
 
-                        <br><br>
-
-                        <input
-                            type="submit"
-                            value="APPLY COUPON"
-                        >
+                        <p id="couponresponse" class="smallText"></p>
 
                     </div>
 
@@ -318,54 +298,23 @@ include "../../../Controller/CartValidation.php";
                         <table>
 
                             <tr>
-
-                                <td>
-                                    Subtotal
-                                </td>
-
-                                <td>
-                                    ৳5,000
-                                </td>
-
+                                <td>Subtotal</td>
+                                <td>৳5,000</td>
                             </tr>
 
-
                             <tr>
-
-                                <td>
-                                    Shipping
-                                </td>
-
-                                <td>
-                                    +৳100
-                                </td>
-
+                                <td>Shipping</td>
+                                <td>+৳100</td>
                             </tr>
 
-
                             <tr>
-
-                                <td>
-                                    Discount
-                                </td>
-
-                                <td>
-                                    -৳100
-                                </td>
-
+                                <td>Discount</td>
+                                <td>-৳100</td>
                             </tr>
 
-
                             <tr>
-
-                                <td>
-                                    Total
-                                </td>
-
-                                <td>
-                                    ৳5,000
-                                </td>
-
+                                <td>Total</td>
+                                <td>৳5,000</td>
                             </tr>
 
                         </table>
