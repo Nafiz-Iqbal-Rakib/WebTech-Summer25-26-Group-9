@@ -1,5 +1,5 @@
 <?php
-require_once '../Model/DeliveryModel.php';
+require_once __DIR__ . '/../Model/DeliveryModel.php';
 
 class DeliveryController {
     private $model;
@@ -8,24 +8,26 @@ class DeliveryController {
         $this->model = new DeliveryModel();
     }
 
-    public function handleRequest() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'mark_delivered') {
-            $order_id = $_POST['order_id'];
-            $this->model->updateOrderStatus($order_id);
-            header("Location: ../View/my_deliveries.php");
-            exit();
-        }
+    public function getAssignedDeliveries() {
+        return $this->model->getAssignedOrders(1);
     }
 
-    public function getAssignedOrders() {
-        return $this->model->getAssignedDeliveries();
-    }
-
-    public function getDeliveredOrders() {
-        return $this->model->getDeliveredDeliveries();
+    public function getDeliveredHistory() {
+        return $this->model->getDeliveredOrders(1);
     }
 }
 
-$controller = new DeliveryController();
-$controller->handleRequest();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'mark_delivered') {
+    $orderId = $_POST['order_id'];
+    $model = new DeliveryModel();
+    $updated = $model->updateOrderStatusToDelivered($orderId);
+
+    if ($updated) {
+        echo json_encode(['status' => 'success']);
+    } else {
+        echo json_encode(['status' => 'error']);
+    }
+    exit;
+}
 ?>
