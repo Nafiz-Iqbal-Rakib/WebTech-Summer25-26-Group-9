@@ -136,27 +136,6 @@ include '../../Layouts/header.php';
                     </div>
 
 
-                    <div class="checkout-box">
-
-                        <h3>Coupon</h3>
-
-                        <input
-                            type="text"
-                            id="coupon"
-                            placeholder="Coupon Code"
-                        >
-
-                        <button
-                            type="button"
-                            id="couponBtn"
-                            onclick="checkBuyerCoupon()"
-                        >
-                            APPLY COUPON
-                        </button>
-
-                        <p id="couponResponse" class="coupon-response"></p>
-
-                    </div>
 
 
                     <div class="checkout-box order-summary-box">
