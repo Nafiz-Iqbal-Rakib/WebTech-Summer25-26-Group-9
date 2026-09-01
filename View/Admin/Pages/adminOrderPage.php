@@ -110,7 +110,7 @@ $deliveryAgents = $data["deliveryAgents"];
                                 <!-- AMOUNT -->
 
                                 <td>
-                                    <?php echo $order["amount"]; ?>
+                                    <?php echo $order["amount"]; ?> TK
                                 </td>
 
 
