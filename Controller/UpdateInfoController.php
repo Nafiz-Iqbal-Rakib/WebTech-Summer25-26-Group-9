@@ -555,7 +555,7 @@ if ($requestMethod === "GET") {
             ) {
 
                 header(
-                    "Location: /WebTech-Summer25-26-Group-9/View/Common/login.php"
+                    "Location: /WebTech-Summer25-26-Group-9/View/Common/Pages/loginPage.php"
                 );
 
                 exit;

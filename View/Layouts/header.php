@@ -82,6 +82,9 @@ if (session_status() === PHP_SESSION_NONE) {
                         <ul>
                             <li><a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\landingPage.php">Home</a></li>
                             <li><a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\shop.php">Shop</a></li>
+                            <?php if (($_SESSION["role"] ?? "") === "buyer"): ?>
+                                <li><a href="\WebTech-Summer25-26-Group-9\View\Buyer\Pages\MyOrders.php">My Orders</a></li>
+                            <?php endif; ?>
                             <li><a href="http://localhost/WebTech-Summer25-26-Group-9/View/Common/Pages/landingPage.php#new-items-section">New Collection</a></li>
                             <li><a href="#main-footer">Contact</a></li>
                         </ul>
@@ -94,12 +97,21 @@ if (session_status() === PHP_SESSION_NONE) {
                         <a href="#" aria-label="Search">
                             <i class="fas fa-search"></i>
                         </a>    
-                        <a href="#" aria-label="Cart">
+                        <a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\shop.php" aria-label="Cart">
                             <i class="fas fa-shopping-cart"></i>
                         </a>    
-                        <a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\loginPage.php" aria-label="User">
-                            <i class="fas fa-user"></i>
-                        </a>
+                        <?php if (isset($_SESSION["user_id"])): ?>
+                            <a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\updateInfopage.php" aria-label="Profile">
+                                <i class="fas fa-user"></i>
+                            </a>
+                            <a href="\WebTech-Summer25-26-Group-9\Controller\LogoutController.php" aria-label="Logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        <?php else: ?>
+                            <a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\loginPage.php" aria-label="User">
+                                <i class="fas fa-user"></i>
+                            </a>
+                        <?php endif; ?>
 
                      </div>
                     

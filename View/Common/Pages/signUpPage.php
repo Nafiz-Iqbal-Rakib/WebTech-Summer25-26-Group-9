@@ -6,12 +6,12 @@
         
         <!-- Tabs -->
         <div class="tab-headers">
-            <a href="#" class="tab">LOGIN</a>
+            <a href="loginPage.php" class="tab">LOGIN</a>
             <a href="#" class="tab active">REGISTER</a>
         </div>
 
         <!-- Register Form -->
-        <form class="register-form" action="\WebTech-Summer25-26-Group-9\Controller\AuthController.php?action=register" method="POST">
+        <form class="register-form" action="../../../Controller/AuthController.php?action=register" method="POST">
             
             <div class="form-group">
                 <input 

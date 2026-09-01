@@ -348,11 +348,14 @@ $featuredProducts = array_slice($products, 0, 8);
                     </div>
 
 
-                    <!-- Buy Now Button -->
+                    <!-- Order Now Button -->
 
-                    <button class="buy-now-btn">
-                        BUY NOW
-                    </button>
+                    <a
+                        class="buy-now-btn"
+                        href="../../Buyer/Pages/Cart.php?product_id=<?= (int)$product['id'] ?>"
+                    >
+                        ORDER NOW
+                    </a>
 
                 </div>
 

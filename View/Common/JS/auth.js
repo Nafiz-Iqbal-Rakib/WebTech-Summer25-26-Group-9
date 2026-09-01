@@ -174,7 +174,21 @@ if (loginForm) {
  
                 showLoginSuccess(loginPassword, data.message); 
  
-                if (data.role === "admin") { 
+                if (data.role === "buyer") {
+
+ 
+ 
+                    window.location.href =
+ 
+ 
+                        "/WebTech-Summer25-26-Group-9/View/Common/Pages/shop.php";
+
+ 
+ 
+                }
+ 
+ 
+                else if (data.role === "admin") { 
  
                     window.location.href = 
                         "/WebTech-Summer25-26-Group-9/View/Admin/Pages/adminDashboardPage.php"; 
