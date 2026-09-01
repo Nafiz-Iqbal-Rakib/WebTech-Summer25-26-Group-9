@@ -86,9 +86,9 @@ class OrderController
                     $row["seller_first_name"] . " " .
                     $row["seller_last_name"],
 
-                "product" => $row["produce_name"],
+                "product" => $row["product_name"],
 
-                "amount" => "৳" . number_format(
+                "amount" => number_format(
                     $row["total_price"]
                 ),
 

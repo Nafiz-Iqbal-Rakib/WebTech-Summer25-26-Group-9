@@ -188,7 +188,7 @@ $data = $controller->getDashboardData();
                                 <!-- AMOUNT -->
 
                                 <td>
-                                    <?php echo $order["amount"]; ?>
+                                    <?php echo $order["amount"]; ?> TK
                                 </td>
 
 

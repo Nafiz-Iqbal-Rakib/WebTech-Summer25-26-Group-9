@@ -1,330 +1,122 @@
-<?php
+<!-- views/layout/header.php -->
+ <?php
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<head>
+        <title><?= $title ?? 'My Website' ?></title>
 
-    <meta charset="UTF-8">
+        <!-- header css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Layouts\header.css">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+        <!-- footer css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Layouts\footer.css">
 
-    <title>
-        <?= $title ?? 'My Website' ?>
-    </title>
+        <!-- landing page css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\landingPage.css">
 
+        <!-- login page css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\loginPage.css">
 
-    <!-- Header CSS -->
-    <link
-        rel="stylesheet"
-        href="../../Layouts/header.css"
-    >
+        <!-- sign up page css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\signUp.css">
 
+        <!-- admin dashboard css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\Designs\dashboard.css">
 
-    <!-- Footer CSS -->
-    <link
-        rel="stylesheet"
-        href="../../Layouts/footer.css"
-    >
 
+        <!-- admin sidebar css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\Designs\sidebar.css">      
+        <!-- admin order css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\Designs\order.css">
+        <!-- Admin User View css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\Designs\adminUser.css">
+        <!-- product view -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Admin\Designs\adminProduct.css">
 
-    <!-- Landing Page CSS -->
-    <link
-        rel="stylesheet"
-        href="../../Common/Designs/landingPage.css"
-    >
+        <!-- information update css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\updateInfo.css">
+        <!-- forgotten password css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\forgetPass.css">
 
+        <!-- shop css -->
+        <link rel="stylesheet" href="\WebTech-Summer25-26-Group-9\View\Common\Designs\shop.css">
+         
+         
 
-    <!-- Login Page CSS -->
-    <link
-        rel="stylesheet"
-        href="../../Common/Designs/loginPage.css"
-    >
 
+        <!-- font awesome icon -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Sign Up Page CSS -->
-    <link
-        rel="stylesheet"
-        href="../../Common/Designs/signUp.css"
-    >
+        
+    </head>
 
+    <body>
 
-    <!-- Admin Dashboard CSS -->
-    <link
-        rel="stylesheet"
-        href="../../Admin/Designs/dashboard.css"
-    >
+     
 
+        <!-- Main Header -->
 
-    <!-- Admin Sidebar CSS -->
-    <link
-        rel="stylesheet"
-        href="../../Admin/Designs/sidebar.css"
-    >
+        <header class="main-header">
+        
+            <!-- Main Navigation Bar -->
 
+            <div class="main-nav-bar">
 
-    <!-- Admin Order CSS -->
-    <link
-        rel="stylesheet"
-        href="../../Admin/Designs/order.css"
-    >
+                <div class="header-wrapper">
 
+                    <!-- Logo -->
+                    <img src="\WebTech-Summer25-26-Group-9\Asset\Logo.png" alt="Brand Logo">
 
-    <!-- Admin User CSS -->
-    <link
-        rel="stylesheet"
-        href="../../Admin/Designs/adminUser.css"
-    >
+                    <!-- Navigation Links -->
 
+                    <nav class="nav-links">
+                        <ul>
+                            <li><a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\landingPage.php">Home</a></li>
+                            <li><a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\shop.php">Shop</a></li>
+                            <?php if (($_SESSION["role"] ?? "") === "buyer"): ?>
+                                <li><a href="\WebTech-Summer25-26-Group-9\View\Buyer\Pages\MyOrders.php">My Orders</a></li>
+                            <?php endif; ?>
+                            <li><a href="http://localhost/WebTech-Summer25-26-Group-9/View/Common/Pages/landingPage.php#new-items-section">New Collection</a></li>
+                            <li><a href="#main-footer">Contact</a></li>
+                        </ul>
+                    </nav>
+            
+                    <!-- Action Icons -->
+                      
+                    <div class="header-actions">
 
-    <!-- Admin Product CSS -->
-    <link
-        rel="stylesheet"
-        href="../../Admin/Designs/adminProduct.css"
-    >
-
-
-    <!-- Information Update CSS -->
-    <link
-        rel="stylesheet"
-        href="../../Common/Designs/updateInfo.css"
-    >
-
-
-    <!-- Forgotten Password CSS -->
-    <link
-        rel="stylesheet"
-        href="../../Common/Designs/forgetPass.css"
-    >
-
-
-    <!-- Shop CSS -->
-    <link
-        rel="stylesheet"
-        href="../../Common/Designs/shop.css"
-    >
-
-
-    <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
-
-</head>
-
-
-<body>
-
-
-    <!-- Main Header -->
-
-    <header class="main-header">
-
-
-        <div class="main-nav-bar">
-
-
-            <div class="header-wrapper">
-
-
-                <!-- Logo -->
-
-                <img
-                    src="../../../Asset/Logo.png"
-                    alt="Brand Logo"
-                >
-
-
-                <!-- Navigation -->
-
-                <nav class="nav-links">
-
-                    <ul>
-
-
-                        <li>
-
-                            <a href="../../Common/Pages/landingPage.php">
-                                Home
-                            </a>
-
-                        </li>
-
-
-                        <li>
-
-                            <a href="../../Common/Pages/shop.php">
-                                Shop
-                            </a>
-
-                        </li>
-
-
-                        <!-- Buyer My Orders -->
-
-                        <?php
-                        if (($_SESSION["role"] ?? "") === "buyer"):
-                        ?>
-
-                            <li>
-
-                                <a href="../../Buyer/Pages/MyOrders.php">
-                                    My Orders
-                                </a>
-
-                            </li>
-
-                        <?php
-                        endif;
-                        ?>
-
-
-                        <li>
-
-                            <a href="../../Common/Pages/landingPage.php#new-items-section">
-                                New Collection
-                            </a>
-
-                        </li>
-
-
-                        <li>
-
-                            <a href="#main-footer">
-                                Contact
-                            </a>
-
-                        </li>
-
-
-                    </ul>
-
-                </nav>
-
-
-                <!-- Header Icons -->
-
-                <div class="header-actions">
-
-
-                    <!-- Search -->
-
-                    <a
-                        href="#"
-                        aria-label="Search"
-                    >
-
-                        <i class="fas fa-search"></i>
-
-                    </a>
-
-
-                    <!-- Cart -->
-
-                    <?php
-                    if (($_SESSION["role"] ?? "") === "buyer"):
-                    ?>
-
-                        <a
-                            href="../../Common/Pages/shop.php"
-                            aria-label="Cart"
-                        >
-
+                        <a href="#" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </a>    
+                        <a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\shop.php" aria-label="Cart">
                             <i class="fas fa-shopping-cart"></i>
+                        </a>    
+                        <?php if (isset($_SESSION["user_id"])): ?>
+                            <a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\updateInfopage.php" aria-label="Profile">
+                                <i class="fas fa-user"></i>
+                            </a>
+                            <a href="\WebTech-Summer25-26-Group-9\Controller\LogoutController.php" aria-label="Logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        <?php else: ?>
+                            <a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\loginPage.php" aria-label="User">
+                                <i class="fas fa-user"></i>
+                            </a>
+                        <?php endif; ?>
 
-                        </a>
-
-                    <?php
-                    else:
-                    ?>
-
-                        <a
-                            href="../../Common/Pages/shop.php"
-                            aria-label="Shop"
-                        >
-
-                            <i class="fas fa-shopping-cart"></i>
-
-                        </a>
-
-                    <?php
-                    endif;
-                    ?>
-
-
-                    <!-- Logged In -->
-
-                    <?php
-                    if (isset($_SESSION["user_id"])):
-                    ?>
-
-
-                        <!-- Profile -->
-
-                        <a
-                            href="../../Common/Pages/updateInfopage.php"
-                            aria-label="Profile"
-                        >
-
-                            <i class="fas fa-user"></i>
-
-                        </a>
-
-
-                        <!-- Logout -->
-
-                        <a
-                            href="../../../Controller/LogoutController.php"
-                            aria-label="Logout"
-                        >
-
-                            <i class="fas fa-sign-out-alt"></i>
-
-                        </a>
-
-
-                    <?php
-                    else:
-                    ?>
-
-
-                        <!-- Login -->
-
-                        <a
-                            href="../../Common/Pages/loginPage.php"
-                            aria-label="Login"
-                        >
-
-                            <i class="fas fa-user"></i>
-
-                        </a>
-
-
-                    <?php
-                    endif;
-                    ?>
-
-
+                     </div>
+                    
                 </div>
-
-
             </div>
+        </header>
 
-
-        </div>
-
-
-    </header>
-
-
-    <main>
+        <main>

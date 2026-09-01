@@ -52,7 +52,7 @@
             </div> 
  
             <!-- Submit Button --> 
-            <button type="submit" class="btn-submit" id="loginBtn">
+            <button type="button" class="btn-submit" id="loginBtn">
                 LOG IN
             </button> 
         

@@ -1,14 +1,5 @@
 <?php
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-if (!isset($_SESSION["user_id"])) {
-    header("Location: loginPage.php");
-    exit;
-}
-
 require_once '../../../Controller/ShopController.php';
 
 $shopController = new ShopController();

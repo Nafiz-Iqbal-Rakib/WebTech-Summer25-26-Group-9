@@ -99,7 +99,7 @@ $products = $controller->getProducts();
                                 <!-- PRICE -->
 
                                 <td>
-                                    <?php echo $product["price"]; ?>
+                                    <?php echo $product["price"]; ?> TK
                                 </td>
 
 
