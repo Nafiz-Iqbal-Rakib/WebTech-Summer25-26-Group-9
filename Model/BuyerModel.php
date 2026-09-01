@@ -4,12 +4,23 @@ class BuyerModel
 {
     function getProductById($productId)
     {
-        $database = new Database();
-        $connection = $database->connection();
+        $database =
+            new Database();
 
-        $sql = "SELECT * FROM products WHERE id = '".$productId."'";
 
-        $result = $connection->query($sql);
+        $connection =
+            $database->connection();
+
+
+        $sql =
+            "SELECT *
+             FROM products
+             WHERE id = '".$productId."'";
+
+
+        $result =
+            $connection->query($sql);
+
 
         return $result;
     }
@@ -17,12 +28,23 @@ class BuyerModel
 
     function getSellerById($sellerId)
     {
-        $database = new Database();
-        $connection = $database->connection();
+        $database =
+            new Database();
 
-        $sql = "SELECT * FROM users WHERE id = '".$sellerId."'";
 
-        $result = $connection->query($sql);
+        $connection =
+            $database->connection();
+
+
+        $sql =
+            "SELECT *
+             FROM users
+             WHERE id = '".$sellerId."'";
+
+
+        $result =
+            $connection->query($sql);
+
 
         return $result;
     }
@@ -32,28 +54,46 @@ class BuyerModel
         $buyerId,
         $productId,
         $sellerId,
-        $quantity,
         $totalPrice,
         $address
     )
     {
-        $database = new Database();
-        $connection = $database->connection();
+        $database =
+            new Database();
 
-        $status = "PENDING";
 
-        $sql = "INSERT INTO orders
-                (buyer_id, product_id, seller_id, quantity, total_price, address, status)
-                VALUES
-                ('".$buyerId."',
-                 '".$productId."',
-                 '".$sellerId."',
-                 '".$quantity."',
-                 '".$totalPrice."',
-                 '".$address."',
-                 '".$status."')";
+        $connection =
+            $database->connection();
 
-        $result = $connection->query($sql);
+
+        $status =
+            "PENDING";
+
+
+        $sql =
+            "INSERT INTO orders
+            (
+                buyer_id,
+                product_id,
+                seller_id,
+                total_price,
+                address,
+                status
+            )
+            VALUES
+            (
+                '".$buyerId."',
+                '".$productId."',
+                '".$sellerId."',
+                '".$totalPrice."',
+                '".$address."',
+                '".$status."'
+            )";
+
+
+        $result =
+            $connection->query($sql);
+
 
         return $result;
     }
@@ -61,15 +101,27 @@ class BuyerModel
 
     function getBuyerOrders($buyerId)
     {
-        $database = new Database();
-        $connection = $database->connection();
+        $database =
+            new Database();
 
-        $sql = "SELECT id, address, status
-                FROM orders
-                WHERE buyer_id = '".$buyerId."'
-                ORDER BY id DESC";
 
-        $result = $connection->query($sql);
+        $connection =
+            $database->connection();
+
+
+        $sql =
+            "SELECT
+                id,
+                address,
+                status
+             FROM orders
+             WHERE buyer_id = '".$buyerId."'
+             ORDER BY id DESC";
+
+
+        $result =
+            $connection->query($sql);
+
 
         return $result;
     }

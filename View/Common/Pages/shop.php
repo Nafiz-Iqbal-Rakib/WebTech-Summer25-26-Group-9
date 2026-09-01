@@ -109,9 +109,9 @@ include '../../Layouts/header.php';
 
                 <!-- Buy Now -->
                 <button
-                     class="buy-now-btn"
-                     data-id="<?= $product['id'] ?>">
-                     BUY NOW
+                    class="buy-now-btn"
+                    data-id="<?= $product['id'] ?>">
+                    BUY NOW
                 </button>
 
             </div>
@@ -137,5 +137,8 @@ include '../../Layouts/header.php';
     </div>
 
 </main>
+
+<script src="\WebTech-Summer25-26-Group-9\View\Common\JS\shop.js"></script>
+
 
 <?php include '../../Layouts/footer.php'; ?>

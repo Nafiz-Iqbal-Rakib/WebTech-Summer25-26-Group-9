@@ -40,9 +40,15 @@ class BuyerController
             $product["seller_id"]
         );
 
-        if($sellerResult && $sellerResult->num_rows > 0)
+
+        if(
+            $sellerResult &&
+            $sellerResult->num_rows > 0
+        )
         {
-            $seller = $sellerResult->fetch_assoc();
+            $seller =
+                $sellerResult->fetch_assoc();
+
 
             $product["seller_first_name"] =
                 $seller["first_name"];
@@ -56,6 +62,7 @@ class BuyerController
             $product["seller_last_name"] = "";
         }
 
+
         return $product;
     }
 
@@ -65,41 +72,64 @@ class BuyerController
         $this->checkBuyerSession();
 
 
-        $productId = trim(
-            $_POST["product_id"] ?? ""
-        );
+        $productId =
+            trim(
+                $_POST["product_id"] ?? ""
+            );
 
-        $quantity = trim(
-            $_POST["quantity"] ?? ""
-        );
 
-        $country = trim(
-            $_POST["country"] ?? ""
-        );
+        $quantity =
+            trim(
+                $_POST["quantity"] ?? ""
+            );
 
-        $city = trim(
-            $_POST["city"] ?? ""
-        );
 
-        $zip = trim(
-            $_POST["zip"] ?? ""
-        );
+        $country =
+            trim(
+                $_POST["country"] ?? ""
+            );
+
+
+        $city =
+            trim(
+                $_POST["city"] ?? ""
+            );
+
+
+        $zip =
+            trim(
+                $_POST["zip"] ?? ""
+            );
 
 
         $valid = true;
         $message = "";
 
 
+        /*
+        =========================
+        Validation
+        =========================
+        */
+
+
         if(empty($productId))
         {
-            $message .= "Product is required. ";
+            $message .=
+                "Product is required. ";
+
             $valid = false;
         }
 
 
-        if(empty($quantity) || $quantity < 1)
+        if(
+            empty($quantity) ||
+            $quantity < 1
+        )
         {
-            $message .= "Quantity must be at least 1. ";
+            $message .=
+                "Quantity must be at least 1. ";
+
             $valid = false;
         }
 
@@ -110,7 +140,9 @@ class BuyerController
             empty($zip)
         )
         {
-            $message .= "Shipping address is required.";
+            $message .=
+                "Shipping address is required.";
+
             $valid = false;
         }
 
@@ -124,7 +156,17 @@ class BuyerController
         }
 
 
-        $product = $this->getProduct($productId);
+        /*
+        =========================
+        Get Product
+        =========================
+        */
+
+
+        $product =
+            $this->getProduct(
+                $productId
+            );
 
 
         if(!$product)
@@ -136,7 +178,17 @@ class BuyerController
         }
 
 
-        if($quantity > $product["stock"])
+        /*
+        =========================
+        Stock Check
+        =========================
+        */
+
+
+        if(
+            $quantity >
+            $product["stock"]
+        )
         {
             return [
                 "success" => false,
@@ -145,15 +197,31 @@ class BuyerController
         }
 
 
+        /*
+        =========================
+        Calculate Total
+        =========================
+        */
+
+
         $shipping = 100;
+
 
         $subtotal =
             $product["price"] *
             $quantity;
 
+
         $total =
             $subtotal +
             $shipping;
+
+
+        /*
+        =========================
+        Create Address
+        =========================
+        */
 
 
         $address =
@@ -164,38 +232,68 @@ class BuyerController
             $zip;
 
 
-        $model = new BuyerModel();
+        /*
+        =========================
+        Add Order
+        =========================
+        */
 
 
-        $result = $model->addOrder(
-            $_SESSION["user_id"],
-            $productId,
-            $product["seller_id"],
-            $quantity,
-            $total,
-            $address
-        );
+        $model =
+            new BuyerModel();
+
+
+        $result =
+            $model->addOrder(
+                $_SESSION["user_id"],
+                $productId,
+                $product["seller_id"],
+                $total,
+                $address
+            );
 
 
         if(!$result)
         {
             return [
                 "success" => false,
-                "message" => "Order could not be placed."
+                "message" =>
+                    "Order could not be placed."
             ];
         }
+
+
+        /*
+        =========================
+        Order Status
+        =========================
+        */
 
 
         $_SESSION["last_order_status"] =
             "PENDING";
 
 
+        /*
+        =========================
+        Save City Cookie
+        =========================
+        */
+
+
         setcookie(
             "buyer_city",
             $city,
-            time() + 60*60*24*30,
+            time() + 60 * 60 * 24 * 30,
             "/"
         );
+
+
+        /*
+        =========================
+        Save Order JSON
+        =========================
+        */
 
 
         $jsonfile =
@@ -208,7 +306,10 @@ class BuyerController
         if(file_exists($jsonfile))
         {
             $jsonData =
-                file_get_contents($jsonfile);
+                file_get_contents(
+                    $jsonfile
+                );
+
 
             $orders =
                 json_decode(
@@ -219,6 +320,7 @@ class BuyerController
 
 
         $orders[] = [
+
             "buyer_id" =>
                 $_SESSION["user_id"],
 
@@ -242,9 +344,17 @@ class BuyerController
         );
 
 
+        /*
+        =========================
+        Success
+        =========================
+        */
+
+
         return [
             "success" => true,
-            "message" => "Order placed successfully."
+            "message" =>
+                "Order placed successfully."
         ];
     }
 
@@ -253,12 +363,16 @@ class BuyerController
     {
         $this->checkBuyerSession();
 
-        $model = new BuyerModel();
+
+        $model =
+            new BuyerModel();
+
 
         $result =
             $model->getBuyerOrders(
                 $_SESSION["user_id"]
             );
+
 
         return $result;
     }
