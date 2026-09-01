@@ -1,0 +1,124 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: white;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.page-header-section{
+    padding: 40px 48px;
+    border-bottom: 1px solid lightgray;
+}
+
+.section-subtitle{
+    font-size: 11px;
+    color: gray;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.page-title{
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.forms-container{
+    width: 600px;
+    margin: 45px auto;
+}
+
+.profileBox{
+    background-color: white;
+    border: 1px solid lightgray;
+    margin-bottom: 24px;
+}
+
+.box-header{
+    padding: 18px 24px;
+    border-bottom: 1px solid lightgray;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.box-body{
+    padding: 24px;
+}
+
+.form-group{
+    margin-bottom: 20px;
+}
+
+.form-group label{
+    display: block;
+    font-size: 10px;
+    color: gray;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.form-control{
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid lightgray;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.btn-dark{
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    padding: 12px 24px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.btn-dark:hover{
+    background-color: white;
+    color: black;
+}
+
+.dangerBox{
+    border-color: pink;
+}
+
+.dangerHeader{
+    color: crimson;
+    border-bottom-color: pink;
+}
+
+.danger-text{
+    font-size: 13px;
+    color: gray;
+    margin-bottom: 18px;
+}
+
+.btn-danger{
+    background-color: pink;
+    color: white;
+    border: 1px solid pink;
+    padding: 12px 24px;
+    font-size: 11px;
+}
+
+.backText{
+    text-align: center;
+}
+
+.backText a{
+    color: black;
+}
+
+
+.validationMessage{
+    color: red;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 12px;
+}

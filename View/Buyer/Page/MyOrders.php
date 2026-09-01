@@ -1,14 +1,3 @@
-<?php
-session_start();
-
-$username="Buyer";
-
-if(isset($_SESSION["username"]))
-    {
-        $username=$_SESSION["username"];
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -23,14 +12,14 @@ if(isset($_SESSION["username"]))
             <div class="nav">
                 <a href="BuyerDashboard.php">Shop</a>
                 <a href="MyOrders.php">My Orders</a>
-                <a href="EditProfile.html">Profile</a>
+                <a href="EditProfile.php">Profile</a>
                 <a href="Cart.php">Cart</a>
             </div>
         </div>
 
         <div class="container">
             <div class="pageTitle">
-                <p class="smallText"><?php echo $username; ?></p>
+                <p class="smallText">Sadika</p>
                 <h1>My Orders</h1>
             </div>
 
@@ -42,7 +31,7 @@ if(isset($_SESSION["username"]))
                 </div>
                 <div class="orderRight">
                     <h3>৳5,400</h3>
-                    <p>DELIVERED</p>
+                    <td>DELIVERED</td>
                 </div>
             </div>
 
@@ -54,7 +43,7 @@ if(isset($_SESSION["username"]))
                 </div>
                 <div class="orderRight">
                     <h3>৳3,600</h3>
-                    <p>ASSIGNED</p>
+                    <td>ASSIGNED</td>
                 </div>
             </div>
 
@@ -66,7 +55,7 @@ if(isset($_SESSION["username"]))
                 </div>
                 <div class="orderRight">
                     <h3>৳12,500</h3>
-                    <p>PENDING</p>
+                    <td>PENDING</td>
                 </div>
             </div>
         </div>

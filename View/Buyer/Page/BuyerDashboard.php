@@ -1,14 +1,3 @@
-<?php
-session_start();
-
-$username="Buyer";
-
-if(isset($_SESSION["username"]))
-    {
-        $username=$_SESSION["username"];
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
@@ -23,15 +12,15 @@ if(isset($_SESSION["username"]))
             <div class="nav">
                 <a href="BuyerDashboard.php">Shop</a>
                 <a href="MyOrders.php">My Orders</a>
-                <a href="EditProfile.html">Profile</a>
+                <a href="EditProfile.php">Profile</a>
                 <a href="Cart.php">Cart</a>
-                <a href="Login.html">Logout</a>
+                <a href="Logout.php">Logout</a>
             </div>
         </div>
 
         <div class="container">
             <div class="pageTitle">
-                <p class="smallText">WELCOME <?php echo $username; ?></p>
+                <p class="smallText">WELCOME </p>
                 <h1>Buyer Dashboard</h1>
             </div>
 

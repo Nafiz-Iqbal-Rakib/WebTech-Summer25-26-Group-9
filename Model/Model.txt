@@ -1,1 +1,12 @@
-This is for model
+MODEL FOLDER
+
+No database or permanent data model is added in this step.
+
+Current task:
+- MVC folder structure
+- Frontend Validation
+- Backend Validation
+
+The View receives user input.
+The Controller validates the input.
+The Model will be used later when database work is added.
