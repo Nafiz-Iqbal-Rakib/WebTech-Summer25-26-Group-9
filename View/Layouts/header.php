@@ -136,7 +136,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <a href="#" aria-label="Search">
                             <i class="fas fa-search"></i>
                         </a>    
-                        <a href="#" aria-label="Cart">
+                        <a href="\WebTech-Summer25-26-Group-9\View\Buyer\Pages\MyOrders.php" aria-label="Cart">
                             <i class="fas fa-shopping-cart"></i>
                         </a>    
                         <a href="\WebTech-Summer25-26-Group-9\View\Common\Pages\loginPage.php" aria-label="User">
