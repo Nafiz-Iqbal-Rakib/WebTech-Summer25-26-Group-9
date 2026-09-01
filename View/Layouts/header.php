@@ -182,7 +182,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     </a>
 
 
-                    <!-- Shop / Cart -->
+                    <!-- Cart -->
 
                     <?php
                     if (($_SESSION["role"] ?? "") === "buyer"):
@@ -225,7 +225,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <!-- Profile -->
 
                         <a
-                            href="../../../Controller/UpdateInfoController.php?action=edit_profile"
+                            href="../../Common/Pages/updateInfopage.php"
                             aria-label="Profile"
                         >
 
