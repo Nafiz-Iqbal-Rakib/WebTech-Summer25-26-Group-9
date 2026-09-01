@@ -180,10 +180,10 @@ if (loginForm) {
                         "/WebTech-Summer25-26-Group-9/View/Admin/Pages/adminDashboardPage.php";
 
                 }
-                else if (data.role === "employee") {
+                else if (data.role === "seller") {
 
                     window.location.href =
-                        "/WebTech-Summer25-26-Group-9/View/Employee/Pages/employeeDashboardPage.php";
+                        "/WebTech-Summer25-26-Group-9/View/Seller/Pages/sellerProductPage.php";
 
                 }
                 else if (data.role === "delivery") {

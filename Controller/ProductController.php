@@ -54,7 +54,7 @@ class ProductController
                     $row["id"],
 
                 "name" =>
-                    $row["produce_name"],
+                    $row["product_name"],
 
                 "seller" =>
                     $row["first_name"] . " " .

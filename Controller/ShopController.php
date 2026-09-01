@@ -28,7 +28,7 @@ class ShopController
                     $row["id"],
 
                 "name" =>
-                    $row["produce_name"],
+                    $row["product_name"],
 
                 "image" =>
                     "/WebTech-Summer25-26-Group-9/Uploaded%20File/" .

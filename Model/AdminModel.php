@@ -116,7 +116,7 @@ class AdminModel
                     seller.first_name AS seller_first_name,
                     seller.last_name AS seller_last_name,
 
-                    products.produce_name,
+                    products.product_name,
 
                     orders.total_price,
                     orders.status,
@@ -176,7 +176,7 @@ class AdminModel
     {
         $sql = "SELECT
                     products.id,
-                    products.produce_name,
+                    products.product_name,
                     products.price,
                     products.stock,
                     users.first_name,
@@ -205,7 +205,7 @@ class AdminModel
                     seller.first_name AS seller_first_name,
                     seller.last_name AS seller_last_name,
 
-                    products.produce_name,
+                    products.product_name,
 
                     orders.total_price,
                     orders.created_at,
@@ -277,7 +277,7 @@ class AdminModel
     {
         $sql = "SELECT
                     products.id,
-                    products.produce_name,
+                    products.product_name,
                     products.price,
                     products.stock,
                     products.img,
