@@ -1,0 +1,773 @@
+
+/* General Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 85%;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   1. Hero / Banner Section
+   ========================================================= */
+
+.hero-section {
+    background-color: #f6f5f3;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-container {
+    display: flex;
+    max-width: 100%;
+    align-items: center;
+    position: relative;
+}
+
+.hero-content {
+    flex: 1;
+    padding-right: 40px;
+    padding-left: 100px;
+    position: absolute;
+}
+
+.hero-content .subtitle {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    display: block;
+    color: #333;
+}
+
+.hero-content .title {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.hero-content .description {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    max-width: 400px;
+}
+
+.buy-now-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 1px solid #000;
+    background: #e8ede7;
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.buy-now-btn:hover {
+    background: #000;
+    color: #fff;
+}
+
+
+.btn-outline {
+    display: inline-block;
+    padding: 14px 35px;
+    border: 1px solid #000;
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+    background: #000;
+    color: #fff;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* =========================================================
+   2. Brands / Logos Section
+   ========================================================= */
+
+.brands-section {
+    background-color: #fcfbfa;
+    padding: 30px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.brands-container {
+    max-width: 85%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.brand {
+    color: #333;
+}
+
+
+/* =========================================================
+   3. Featured Collections Section
+   ========================================================= */
+
+.collections-section {
+    padding: 60px 40px;
+    background-color: #ffffff;
+}
+
+.collections-container {
+    max-width: 85%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 20px;
+}
+
+.collection-card {
+    border-radius: 4px;
+    overflow: hidden;
+    padding: 30px;
+    transition: transform 0.2s ease;
+}
+
+.collection-card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* Large Card */
+
+.large-card {
+    background-color: #e8ede7;
+    display: flex;
+    align-items: center;
+}
+
+.large-card .card-img {
+    flex: 1;
+    text-align: center;
+}
+
+.large-card .card-img img {
+    max-width: 90%;
+    height: auto;
+}
+
+.large-card .card-content {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.large-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.large-card p {
+    font-size: 13px;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.large-card .price {
+    display: block;
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.large-card .price strong {
+    font-size: 16px;
+    font-weight: 800;
+    color: #000;
+}
+
+.btn-solid {
+    background-color: #000;
+    color: #fff;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+
+/* Small Cards */
+
+.small-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.bg-mint {
+    background-color: #eaf3ea;
+}
+
+.bg-blue {
+    background-color: #e5f0f2;
+}
+
+.small-card .card-img {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.small-card .card-img img {
+    max-width: 80%;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+.small-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.link-underline {
+    color: #000;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 3px;
+}
+
+
+/* =========================================================
+   4. Fashion Collection Section
+   ========================================================= */
+
+.fashion-collection {
+    padding: 80px 40px;
+    background-color: #ffffff;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 25px;
+}
+
+.filter-tabs {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.filter-tabs li a {
+    text-decoration: none;
+    color: #777;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.filter-tabs li.active a,
+.filter-tabs li a:hover {
+    color: #000;
+    border-bottom: 1px solid #000;
+}
+
+
+/* =========================================================
+   Product Grid
+   ========================================================= */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+
+/* Product Wrapper */
+
+.product-wrapper {
+    text-align: center;
+}
+
+
+/* Product Card */
+
+.product-card {
+    text-align: center;
+}
+
+
+/* =========================================================
+   Product Image Card
+   ========================================================= */
+
+.product-image {
+    background-color: #f6f6f6;
+    padding: 30px;
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    transition: transform 0.2s ease;
+}
+
+
+/* Image Size Stays Same */
+
+.product-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+
+/* Only Grey Card Gets Bigger */
+
+.product-image:hover {
+    transform: scale(1.03);
+}
+
+
+/* =========================================================
+   Product Rating
+   ========================================================= */
+
+.product-rating {
+    color: #f1c40f;
+    font-size: 10px;
+    margin-bottom: 10px;
+}
+
+.product-rating .fa-regular {
+    color: #e0e0e0;
+}
+
+
+/* =========================================================
+   Product Info
+   ========================================================= */
+
+.product-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.current-price {
+    font-weight: 700;
+    color: #111;
+}
+
+
+/* =========================================================
+   Product Buy Now Button
+   ========================================================= */
+
+.product-wrapper .buy-now-btn {
+    display: inline-block;
+    border: none;
+    margin-top: 10px;
+    padding: 12px 35px;
+    background-color: #dff6f0;
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.product-wrapper .buy-now-btn:hover {
+    background-color: #2db79b;
+    color: #fff;
+}
+
+
+/* =========================================================
+   View All Button
+   ========================================================= */
+
+.view-all-action {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.view-all-action .btn-outline {
+    display: inline-block;
+    padding: 12px 35px;
+    border: 1px solid #111;
+    color: #111;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.view-all-action .btn-outline:hover {
+    background-color: #111;
+    color: #fff;
+}
+
+
+/* =========================================================
+   5. Promotional Banner Section
+   ========================================================= */
+
+.promo-banner-section {
+    background-color: #dff6f0;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* Decorative Shapes */
+
+.bg-shape {
+    position: absolute;
+    background-color: #2b9c85;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.shape-top-left {
+    width: 80px;
+    height: 80px;
+    top: -20px;
+    left: -20px;
+}
+
+.shape-center {
+    width: 450px;
+    height: 450px;
+    top: 50%;
+    left: 30%;
+    transform: translateY(-50%);
+}
+
+.shape-top-right {
+    width: 40px;
+    height: 40px;
+    top: 40px;
+    right: 25%;
+}
+
+.shape-bottom-right {
+    width: 200px;
+    height: 200px;
+    bottom: -50px;
+    right: -50px;
+}
+
+
+/* Promo Container */
+
+.promo-container {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    padding: 0 40px;
+}
+
+.promo-image-wrapper {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.promo-image-wrapper img {
+    max-width: 100%;
+    height: 100%;
+    max-height: 150%;
+    object-fit: cover;
+}
+
+.promo-content-card {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 60px 50px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    max-width: 450px;
+    margin-left: -50px;
+}
+
+.product-count {
+    font-size: 11px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.promo-title {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    color: #111;
+}
+
+.promo-desc {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.promo-price {
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.promo-price strong {
+    font-size: 16px;
+    font-weight: 800;
+    color: #111;
+}
+
+.btn-outline-square {
+    display: inline-block;
+    padding: 12px 30px;
+    border: 1px solid #111;
+    color: #111;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.btn-outline-square:hover {
+    background-color: #111;
+    color: #fff;
+}
+
+
+/* =========================================================
+   6. Features / Benefits Section
+   ========================================================= */
+
+.features-section {
+    padding: 80px 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.features-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.feature-box {
+    flex: 1;
+    text-align: center;
+    padding: 0 30px;
+    position: relative;
+}
+
+.feature-box:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background-color: #eaeaea;
+}
+
+.feature-icon {
+    font-size: 28px;
+    color: #111;
+    margin-bottom: 20px;
+}
+
+.feature-box h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.feature-box p {
+    font-size: 12px;
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    font-size: 10px;
+    font-weight: 700;
+    color: #555;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #555;
+    padding-bottom: 2px;
+}
+
+.read-more:hover {
+    color: #000;
+    border-bottom-color: #000;
+}
+
+
+/* =========================================================
+   7. New Items Section
+   ========================================================= */
+
+.new-items-section {
+    padding: 80px 0;
+    background-color: #ffffff;
+}
+
+.section-title-center {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 40px;
+}
+
+.carousel-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.carousel-arrow {
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #555;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.carousel-arrow:hover {
+    border-color: #111;
+    color: #111;
+}
+
+.product-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    flex: 1;
+}
+
+
+/* New Items Discount Badge */
+
+.badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 4px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 2px;
+}
+
+.badge.discount {
+    background-color: #ff6b6b;
+}
+
+.old-price {
+    color: #aaa;
+    margin-left: 8px;
+    text-decoration: line-through;
+}
